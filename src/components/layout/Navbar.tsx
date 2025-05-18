@@ -56,9 +56,15 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#home" className="flex items-center space-x-2">
-          <span className="font-bold text-lg md:text-xl gradient-heading">DevPortfolio</span>
+        <a href="#home" className="flex flex-col items-center space-y-1">
+          <img 
+            src="/images/logo.png" // update to your actual path
+            alt="Nexco Media Logo"
+            className="w-16 h-16 object-contain"
+          />
+          <span className="font-bold text-lg md:text-xl gradient-heading"></span>
         </a>
+
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-1">
