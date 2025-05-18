@@ -58,9 +58,9 @@ export default function Navbar() {
         {/* Logo */}
         <a href="#home" className="flex flex-col items-center space-y-1">
           <img 
-            src="/images/logo.png" // update to your actual path
+            src="/images/logo2.png"
             alt="Nexco Media Logo"
-            className="w-16 h-16 object-contain"
+            className="w-32 h-32 object-contain"
           />
           <span className="font-bold text-lg md:text-xl gradient-heading"></span>
         </a>

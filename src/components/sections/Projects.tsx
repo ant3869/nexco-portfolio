@@ -1,4 +1,4 @@
-import { ExternalLink, Github, Link2 } from 'lucide-react';
+import { ExternalLink, GalleryHorizontalIcon, Github, Link2 } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -65,33 +65,44 @@ const projects = [
     type: 'other',
   },
   {
-    id: 'auto-docs',
-    title: 'Automated Documentation Generator',
+    id: 'proton-pack',
+    title: 'Proton Pack (Ghostbusters II)',
     description:
-      'Tool that automatically generates technical documentation from code comments and structure analysis.',
-    image: 'https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg',
-    tech: ['Python', 'NLP', 'Markdown'],
+      'Proton Pack prop replica from the movie Ghostbusters.',
+    image: 'images/pack1.jpg',
+    tech: ['Microcontrollers', 'Electronics', '3d Printing'],
     demoUrl: 'https://example.com/auto-docs',
     repoUrl: 'https://github.com/example/auto-docs',
-    type: 'other',
+    type: 'prop',
   },
   {
     id: 'pke-meter',
     title: 'PKE Meter Replica with EMF Detection',
     description:
-      'This project replicates the iconic P.K.E. Meter from the Ghostbusters movie, integrating modern electronics to simulate its behavior based on electromagnetic field (EMF) detection.',
-    image: 'https://www.tiktok.com/@nexcomedia/video/7345535167726947630',
-    tech: ['Microcontroller', 'C++', 'Arduino', 'Prop'],
+      'P.K.E. Meter replica from the Ghostbusters movies, integrating modern electronics to simulate its behavior based on electromagnetic field (EMF) detection.',
+      image: 'images/pke1.png',
+    tech: ['Microcontroller', 'C++', 'Python', 'Arduino', 'Prop', '3d Printing'],
     demoUrl:
       'https://www.tiktok.com/@nexcomedia/video/7345535167726947630?is_from_webapp=1&sender_device=pc&web_id=7505664205899761198',
     repoUrl: 'https://github.com/ant3869/PKE-EMF-Meter-Teensy-4.0',
-    type: 'other',
+    type: 'prop',
+  },
+  {
+    id: 'ghost-trap',
+    title: 'Ghost Trap (Ghostbusters II)',
+    description:
+    'Ghost Trap prop replica from the movie Ghostbusters.',
+    image: 'images/trap1.jpg',
+    tech: ['Microcontroller', 'C++', 'Arduino', 'Prop', '3d Printing'],
+    demoUrl: 'https://example.com/auto-docs',
+    repoUrl: 'https://github.com/example/auto-docs',
+    type: 'prop',
   },
 ];
 
 // Filter projects by type
 const featuredProjects = projects.filter((p) => p.type === 'featured');
-const otherProjects = projects.filter((p) => p.type === 'other');
+const propProjects = projects.filter((p) => p.type === 'prop');
 
 export default function Projects() {
   return (
@@ -103,7 +114,7 @@ export default function Projects() {
           <div className="flex justify-center mb-8">
             <TabsList>
               <TabsTrigger value="featured">Featured</TabsTrigger>
-              <TabsTrigger value="other">Other Projects</TabsTrigger>
+              <TabsTrigger value="prop">Prop Replicas</TabsTrigger>
             </TabsList>
           </div>
 
@@ -177,10 +188,10 @@ export default function Projects() {
             ))}
           </TabsContent>
 
-          {/* Other Projects Tab */}
-          <TabsContent value="other">
+          {/* Prop Projects Tab */}
+          <TabsContent value="prop">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {otherProjects.map((project) => (
+              {propProjects.map((project) => (
                 <Card
                   key={project.id}
                   className="overflow-hidden card-hover border-primary/10"
@@ -216,7 +227,7 @@ export default function Projects() {
                         rel="noopener noreferrer"
                       >
                         <Link2 className="h-4 w-4 mr-2" />
-                        Demo
+                        Video
                       </a>
                     </Button>
                     <Button asChild variant="ghost" size="sm">
@@ -227,6 +238,16 @@ export default function Projects() {
                       >
                         <Github className="h-4 w-4 mr-2" />
                         Code
+                      </a>
+                    </Button>
+                    <Button asChild variant="ghost" size="sm">
+                      <a
+                        href={project.repoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <GalleryHorizontalIcon className="h-4 w-4 mr-2" />
+                        Gallery
                       </a>
                     </Button>
                   </CardFooter>

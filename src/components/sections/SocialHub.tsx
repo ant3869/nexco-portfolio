@@ -68,28 +68,28 @@ const socialData = {
   ],
   youtube: [
     {
-      id: 1,
-      title: 'Building a Custom Developer Toolkit from Scratch',
+      id: 'tJ2tKEvZGIw',
+      title: 'Ghostbusters Proton Beam After Effects',
       thumbnailUrl:
-        'https://www.youtube.com/watch?v=OwWkHsjrHbk&ab_channel=NexcoMedia',
-      views: '24K',
-      published: '3 weeks ago',
+        'https://i9.ytimg.com/vi/tJ2tKEvZGIw/maxresdefault.jpg?v=6158e911&sqp=CNTQqMEG&rs=AOn4CLDn6v51_GdhKyxBDQ1AdVv1T75Urw',
+      views: '5.2K',
+      published: '3 years ago',
     },
     {
-      id: 2,
-      title: 'Advanced C++ Performance Optimization Techniques',
+      id: 'WZGYdTfGNgQ',
+      title: 'Planet Vegeta (DBZ) Mockup After Effects',
       thumbnailUrl:
-        'https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg',
-      views: '18K',
-      published: '1 month ago',
+        'https://i9.ytimg.com/vi_webp/WZGYdTfGNgQ/maxresdefault.webp?v=616cd813&sqp=CNTQqMEG&rs=AOn4CLDkyCahZxq1Mpb-hXfSA9yaVD8TUg',
+      views: '888',
+      published: '3 years ago',
     },
     {
-      id: 3,
-      title: 'Automating Your Development Workflow',
+      id: 'OwWkHsjrHbk',
+      title: 'Planet Earth (After Effects) (VideoCopilot) (Orb Plugin)',
       thumbnailUrl:
-        'https://images.pexels.com/photos/7988079/pexels-photo-7988079.jpeg',
-      views: '32K',
-      published: '2 months ago',
+        'https://i9.ytimg.com/vi_webp/OwWkHsjrHbk/maxresdefault.webp?v=61903bad&sqp=CKjOqMEG&rs=AOn4CLCY8UIQxGUokqmM3iDSGh_DCcv4xQ',
+      views: '126',
+      published: '3 years ago',
     },
   ],
   reddit: [
@@ -221,10 +221,16 @@ export default function SocialHub() {
           {/* YouTube Tab */}
           <TabsContent value="youtube">
             <p className="text-center text-muted-foreground mb-6">
-              Technical tutorials and coding live streams on YouTube
+              Visual effects and creative render showcases on YouTube
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {socialData.youtube.map((video) => (
+                <a
+                href={`https://www.youtube.com/watch?v=${video.id}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
                 <Card
                   key={video.id}
                   className="overflow-hidden card-hover border-primary/10"
@@ -246,11 +252,36 @@ export default function SocialHub() {
                   </div>
                   <CardContent className="p-4">
                     <h4 className="font-medium line-clamp-2">{video.title}</h4>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      {video.published}
-                    </p>
+                    <p className="text-xs text-muted-foreground mt-1">{video.published}</p>
                   </CardContent>
                 </Card>
+              </a>
+                // <Card
+                //   key={video.id}
+                //   className="overflow-hidden card-hover border-primary/10"
+                // >
+                //   <div className="aspect-video relative">
+                //     <img
+                //       src={video.thumbnailUrl}
+                //       alt={video.title}
+                //       className="w-full h-full object-cover"
+                //     />
+                //     <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                //       <span className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center">
+                //         <Youtube className="h-6 w-6 text-red-500" />
+                //       </span>
+                //     </div>
+                //     <div className="absolute bottom-2 right-2 bg-black/70 px-2 py-0.5 rounded text-xs text-white">
+                //       {video.views} views
+                //     </div>
+                //   </div>
+                //   <CardContent className="p-4">
+                //     <h4 className="font-medium line-clamp-2">{video.title}</h4>
+                //     <p className="text-xs text-muted-foreground mt-1">
+                //       {video.published}
+                //     </p>
+                //   </CardContent>
+                // </Card>
               ))}
             </div>
           </TabsContent>
@@ -258,7 +289,7 @@ export default function SocialHub() {
           {/* Reddit Tab */}
           <TabsContent value="reddit">
             <p className="text-center text-muted-foreground mb-6">
-              Discussions and contributions to tech communities on Reddit
+              Random on Reddit
             </p>
             <div className="space-y-4">
               {socialData.reddit.map((post) => (

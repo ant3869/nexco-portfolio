@@ -9,7 +9,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand and Copyright */}
           <div className="space-y-3">
-            <h3 className="font-bold text-lg gradient-heading">DevPortfolio</h3>
+          <img 
+            src="/images/logo.png"
+            alt="Nexco Media Logo"
+            className="w-16 h-16 object-contain"
+          />
+            {/* <h3 className="font-bold text-lg gradient-heading">Nexco Media</h3> */}
             <p className="text-sm text-muted-foreground max-w-xs">
               Software Developer specializing in tools and automation to improve
               development workflows and efficiency.
