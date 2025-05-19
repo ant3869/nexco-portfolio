@@ -32,9 +32,7 @@ export default function Dashboard() {
         {/* GitHub Activity */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <GitHubActivity />
-          {/* <SystemStatus /> */}
         </div>
       </div>
-    </section>
   );
 }
