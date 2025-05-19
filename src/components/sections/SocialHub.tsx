@@ -48,22 +48,22 @@ const socialData = {
       id: 1,
       title: 'Earth Render',
       imageUrl:
-        'https://www.deviantart.com/ant3869/art/Earth-Render-Nexco-Media-844790832',
+        'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a4f4e45e-85b0-4cc4-bea3-2c7667ed9797/ddyyss0-2189da69-c02b-417a-8b1d-c5c5c86487b4.png/v1/fill/w_1192,h_670,q_70,strp/earth_render__nexco_media__by_ant3869_ddyyss0-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6IlwvZlwvYTRmNGU0NWUtODViMC00Y2M0LWJlYTMtMmM3NjY3ZWQ5Nzk3XC9kZHl5c3MwLTIxODlkYTY5LWMwMmItNDE3YS04YjFkLWM1YzVjODY0ODdiNC5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.a5dpWoYw6fc5sJczyrX0VG6JZnRP9P7NFUkz_2sS_Wc',
       likes: 124,
     },
     {
       id: 2,
-      title: 'Minimalist Development Setup',
+      title: 'Purple Nexco Layout',
       imageUrl:
-        'https://images.pexels.com/photos/5483077/pexels-photo-5483077.jpeg',
-      likes: 86,
+        'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a4f4e45e-85b0-4cc4-bea3-2c7667ed9797/ddz7e9y-fd63ea10-f7e8-4ace-9427-72e20e87a1fd.png/v1/fill/w_1192,h_670,q_70,strp/purple_nexco_layout_by_ant3869_ddz7e9y-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6IlwvZlwvYTRmNGU0NWUtODViMC00Y2M0LWJlYTMtMmM3NjY3ZWQ5Nzk3XC9kZHo3ZTl5LWZkNjNlYTEwLWY3ZTgtNGFjZS05NDI3LTcyZTIwZTg3YTFmZC5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.Pi-kJqSSEpeWUbBoVAurrGFZI2Z2Q1sYiYKQ2mQFeeU',
+      likes: 83,
     },
     {
       id: 3,
-      title: 'Neural Network Visualization',
+      title: 'Game Title',
       imageUrl:
-        'https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg',
-      likes: 152,
+        'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a4f4e45e-85b0-4cc4-bea3-2c7667ed9797/ddkzn2m-8a4ee20f-f20e-4bf5-86b0-72dab3300ab1.png/v1/fill/w_1862,h_429/game_title_by_ant3869_ddkzn2m-pre.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2E0ZjRlNDVlLTg1YjAtNGNjNC1iZWEzLTJjNzY2N2VkOTc5N1wvZGRrem4ybS04YTRlZTIwZi1mMjBlLTRiZjUtODZiMC03MmRhYjMzMDBhYjEucG5nIiwiaGVpZ2h0IjoiPD00NDMiLCJ3aWR0aCI6Ijw9MTkyMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS53YXRlcm1hcmsiXSwid21rIjp7InBhdGgiOiJcL3dtXC9hNGY0ZTQ1ZS04NWIwLTRjYzQtYmVhMy0yYzc2NjdlZDk3OTdcL2FudDM4NjktNC5wbmciLCJvcGFjaXR5Ijo5NSwicHJvcG9ydGlvbnMiOjAuNDUsImdyYXZpdHkiOiJjZW50ZXIifX0.bYslgqfuSznYy8FOjCms_7SV7ZOjzHlzj3prRNdV14Y',
+      likes: 66,
     },
   ],
   youtube: [
@@ -71,7 +71,7 @@ const socialData = {
       id: 'tJ2tKEvZGIw',
       title: 'Ghostbusters Proton Beam After Effects',
       thumbnailUrl:
-        'https://i9.ytimg.com/vi/tJ2tKEvZGIw/maxresdefault.jpg?v=6158e911&sqp=CNTQqMEG&rs=AOn4CLDn6v51_GdhKyxBDQ1AdVv1T75Urw',
+        'https://i9.ytimg.com/vi/tJ2tKEvZGIw/maxresdefault.jpg?v=6158e911&sqp=COiJqsEG&rs=AOn4CLC2lxWLdVGj81liePUA5DsA8CpInA',
       views: '5.2K',
       published: '3 years ago',
     },
@@ -79,7 +79,7 @@ const socialData = {
       id: 'WZGYdTfGNgQ',
       title: 'Planet Vegeta (DBZ) Mockup After Effects',
       thumbnailUrl:
-        'https://i9.ytimg.com/vi_webp/WZGYdTfGNgQ/maxresdefault.webp?v=616cd813&sqp=CNTQqMEG&rs=AOn4CLDkyCahZxq1Mpb-hXfSA9yaVD8TUg',
+        'https://i9.ytimg.com/vi_webp/WZGYdTfGNgQ/maxresdefault.webp?v=616cd813&sqp=COiJqsEG&rs=AOn4CLD__rcIbkkheaivM4LrUbckJWyIqA',
       views: '888',
       published: '3 years ago',
     },
@@ -87,10 +87,18 @@ const socialData = {
       id: 'OwWkHsjrHbk',
       title: 'Planet Earth (After Effects) (VideoCopilot) (Orb Plugin)',
       thumbnailUrl:
-        'https://i9.ytimg.com/vi_webp/OwWkHsjrHbk/maxresdefault.webp?v=61903bad&sqp=CKjOqMEG&rs=AOn4CLCY8UIQxGUokqmM3iDSGh_DCcv4xQ',
+        'https://i9.ytimg.com/vi_webp/OwWkHsjrHbk/maxresdefault.webp?v=61903bad&sqp=COiJqsEG&rs=AOn4CLDQ6s4lkmb0Hb79xojzJCCUtex38w',
       views: '126',
       published: '3 years ago',
     },
+    {
+      id: '-A7nD_mlL9w',
+      title: 'Motion Tracked Demonic Face Test (After Effects)',
+      thumbnailUrl:
+        'https://i9.ytimg.com/vi_webp/-A7nD_mlL9w/maxresdefault.webp?v=615baad9&sqp=CLyHqsEG&rs=AOn4CLA_17zdiDen8dWYv8JeerNq202mwg',
+      views: '56',
+      published: '3 years ago',
+    }
   ],
   reddit: [
     {
@@ -256,32 +264,6 @@ export default function SocialHub() {
                   </CardContent>
                 </Card>
               </a>
-                // <Card
-                //   key={video.id}
-                //   className="overflow-hidden card-hover border-primary/10"
-                // >
-                //   <div className="aspect-video relative">
-                //     <img
-                //       src={video.thumbnailUrl}
-                //       alt={video.title}
-                //       className="w-full h-full object-cover"
-                //     />
-                //     <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                //       <span className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center">
-                //         <Youtube className="h-6 w-6 text-red-500" />
-                //       </span>
-                //     </div>
-                //     <div className="absolute bottom-2 right-2 bg-black/70 px-2 py-0.5 rounded text-xs text-white">
-                //       {video.views} views
-                //     </div>
-                //   </div>
-                //   <CardContent className="p-4">
-                //     <h4 className="font-medium line-clamp-2">{video.title}</h4>
-                //     <p className="text-xs text-muted-foreground mt-1">
-                //       {video.published}
-                //     </p>
-                //   </CardContent>
-                // </Card>
               ))}
             </div>
           </TabsContent>

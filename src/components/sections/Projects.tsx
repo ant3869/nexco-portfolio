@@ -15,54 +15,65 @@ import { AspectRatio } from '@/components/ui/aspect-ratio';
 // Project data
 const projects = [
   {
-    id: 'developer-tools',
-    title: 'Developer Toolkit',
+    id: 'nexta',
+    title: 'Nexta-UI',
     description:
-      'A comprehensive suite of developer tools that streamlines common tasks, automates repetitive processes, and improves overall workflow efficiency.',
-    image: 'https://images.pexels.com/photos/1181271/pexels-photo-1181271.jpeg',
-    tech: ['TypeScript', 'React', 'Node.js', 'Electron'],
-    demoUrl: 'https://example.com/devtoolkit',
-    repoUrl: 'https://github.com/ant3869/PKE-EMF-Meter-Teensy-4.0',
+      'Nexta-UI is a modern UI component library built with React and TypeScript. It provides a set of reusable and customizable UI components designed to help developers build beautiful and responsive web applications efficiently.',
+    image: 'images/nexta.png',
+    tech: ['Typescript', 'React', 'Node.js', 'Tailwind', 'Theme', 'Frontend', 'Component Library'],
+    demoUrl: 'https://nexta.anthon3869.workers.dev/',
+    repoUrl: 'https://github.com/ant3869/Nexta-UI/tree/main',
     metrics:
-      'Reduced build times by 40% and automated 75+ routine tasks for a team of 20+ developers',
+      'Professional and elegant for a more modern componeent look and design.',
     type: 'featured',
   },
   {
-    id: 'code-analyzer',
-    title: 'Code Quality Analyzer',
+    id: 'proton-pack',
+    title: 'Proton Pack Replica',
     description:
-      'An intelligent code analysis tool that identifies potential bugs, security vulnerabilities, and performance bottlenecks, helping teams maintain high code quality standards.',
-    image: 'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg',
-    tech: ['Python', 'Machine Learning', 'AST Analysis'],
+      'It\'s a proton pack.',
+    image: 'images/pack3.jpg',
+    tech: ['Prop Replica', 'Arduino', 'Electronics'],
     demoUrl: 'https://example.com/analyzer',
     repoUrl: 'https://github.com/example/code-analyzer',
     metrics:
-      'Identified 200+ critical issues across 500K+ lines of code, improving overall code quality by 35%',
+      'Full working lights, vibration motors, smoke machine, video game modes, sound tracks, overheating and overload functions.',
     type: 'featured',
   },
   {
-    id: 'build-system',
-    title: 'Custom Build System',
+    id: 'llm-frontend',
+    title: 'LLM Manager (frontend)',
     description:
-      'A highly optimized build system for large-scale C++ projects that significantly reduces compilation times through intelligent caching and parallel processing.',
-    image: 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg',
-    tech: ['C++', 'Python', 'CMake', 'CI/CD'],
+      'A custom built all-in-one for your open source LLM needs. Chat, tune, benchmark -- all in a easy to use framework.',
+    image: 'images/llm1.png',
+    tech: ['Typescript', 'Python', 'Vite', 'TailwindCSS', "React", "Node.Js"],
     demoUrl: 'https://example.com/build-system',
     repoUrl: 'https://github.com/example/build-system',
     metrics:
-      'Reduced build times from 45 minutes to under 5 minutes for a 2M+ line codebase',
+      'Ease-of-use and approachability at a higher level than any other open source solution of its kind.',
     type: 'featured',
   },
   {
     id: 'dev-dashboard',
-    title: 'Developer Analytics Dashboard',
+    title: 'Technician Metrics Dashboard',
     description:
-      'Real-time analytics dashboard for monitoring developer productivity, build health, and project progress.',
-    image: 'https://images.pexels.com/photos/93599/pexels-photo-93599.jpeg',
-    tech: ['React', 'D3.js', 'Node.js', 'MongoDB'],
-    demoUrl: 'https://example.com/dev-dashboard',
+      'CSV powered analytics dashboard for monitoring developer productivity, build health, and project progress.',
+    image: 'images/dashboard1.png',
+    tech: ['React', 'Typescript', 'Node.js', 'Vite', 'TailwindCSS', 'Recharts'],
+    demoUrl: 'https://classy-melomakarona-ddc438.netlify.app',
     repoUrl: 'https://github.com/example/dev-dashboard',
-    type: 'other',
+    type: 'ui',
+  },
+  {
+    id: 'tailwind-showcase',
+    title: 'Tailwind UI Showcase',
+    description:
+      'Popular Tailwind CSS-based UI libraries with interactive dashboard examples.',
+    image: 'images/showcase1.png',
+    tech: ['React', 'Typescript', 'Node.js', 'Vite', 'TailwindCSS', 'Recharts'],
+    demoUrl: 'https://classy-melomakarona-ddc438.netlify.app',
+    repoUrl: 'https://github.com/ant3869/tailwind-ui-showcase/tree/main',
+    type: 'ui',
   },
   {
     id: 'proton-pack',
@@ -103,18 +114,26 @@ const projects = [
 // Filter projects by type
 const featuredProjects = projects.filter((p) => p.type === 'featured');
 const propProjects = projects.filter((p) => p.type === 'prop');
+const uiProjects = projects.filter((p) => p.type === 'ui');
+const autoProjects = projects.filter((p) => p.type === 'auto');
+const arduinoProjects = projects.filter((p) => p.type === 'arduino');
+const otherProjects = projects.filter((p) => p.type === 'other');
 
 export default function Projects() {
   return (
     <section id="projects" className="py-20 bg-muted/20">
       <div className="container mx-auto px-4">
-        <h2 className="section-heading text-center mb-12">Featured Projects</h2>
+        <h2 className="section-heading text-center mb-12">Projects</h2>
 
         <Tabs defaultValue="featured" className="max-w-6xl mx-auto">
           <div className="flex justify-center mb-8">
             <TabsList>
               <TabsTrigger value="featured">Featured</TabsTrigger>
               <TabsTrigger value="prop">Prop Replicas</TabsTrigger>
+              <TabsTrigger value="ui">UI</TabsTrigger>
+              <TabsTrigger value="auto">Automation</TabsTrigger>
+              <TabsTrigger value="arduino">Arduino</TabsTrigger>
+              <TabsTrigger value="other">Other</TabsTrigger>
             </TabsList>
           </div>
 
@@ -175,7 +194,7 @@ export default function Projects() {
                   </div>
 
                   <div className="md:order-first md:h-auto">
-                    <AspectRatio ratio={16 / 9} className="bg-muted">
+                    <AspectRatio ratio={15 / 13} className="bg-muted">
                       <img
                         src={project.image}
                         alt={project.title}
@@ -255,6 +274,217 @@ export default function Projects() {
               ))}
             </div>
           </TabsContent>
+
+          {/* UI Projects Tab */}
+          <TabsContent value="ui" className="space-y-12">
+            {uiProjects.map((project) => (
+              <Card
+                key={project.id}
+                className="overflow-hidden border-primary/10 shadow-lg"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="p-6 md:p-8 flex flex-col">
+                    <CardHeader className="p-0 mb-4">
+                      <CardTitle className="text-2xl">
+                        {project.title}
+                      </CardTitle>
+                      <CardDescription className="text-base mt-2">
+                        {project.description}
+                      </CardDescription>
+                    </CardHeader>
+
+                    <div className="flex flex-wrap gap-2 my-4">
+                      {project.tech.map((tech) => (
+                        <Badge key={tech} variant="secondary">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+
+                    {project.metrics && (
+                      <div className="bg-primary/5 rounded-lg p-3 my-2 text-sm">
+                        <strong>Impact:</strong> {project.metrics}
+                      </div>
+                    )}
+
+                    <CardFooter className="p-0 mt-auto pt-4 flex gap-3">
+                      <Button asChild size="sm">
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Live Demo
+                        </a>
+                      </Button>
+                      <Button asChild variant="outline" size="sm">
+                        <a
+                          href={project.repoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Github className="h-4 w-4 mr-2" />
+                          Source Code
+                        </a>
+                      </Button>
+                    </CardFooter>
+                  </div>
+
+                  <div className="md:order-first md:h-auto">
+                    <AspectRatio ratio={15 / 13} className="bg-muted">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="rounded-l-none md:rounded-l-lg h-full w-full object-cover"
+                      />
+                    </AspectRatio>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </TabsContent>
+
+            {/* Arduino Projects Tab */}
+            <TabsContent value="arduino" className="space-y-12">
+            {arduinoProjects.map((project) => (
+              <Card
+                key={project.id}
+                className="overflow-hidden border-primary/10 shadow-lg"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="p-6 md:p-8 flex flex-col">
+                    <CardHeader className="p-0 mb-4">
+                      <CardTitle className="text-2xl">
+                        {project.title}
+                      </CardTitle>
+                      <CardDescription className="text-base mt-2">
+                        {project.description}
+                      </CardDescription>
+                    </CardHeader>
+
+                    <div className="flex flex-wrap gap-2 my-4">
+                      {project.tech.map((tech) => (
+                        <Badge key={tech} variant="secondary">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+
+                    {project.metrics && (
+                      <div className="bg-primary/5 rounded-lg p-3 my-2 text-sm">
+                        <strong>Impact:</strong> {project.metrics}
+                      </div>
+                    )}
+
+                    <CardFooter className="p-0 mt-auto pt-4 flex gap-3">
+                      <Button asChild size="sm">
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Live Demo
+                        </a>
+                      </Button>
+                      <Button asChild variant="outline" size="sm">
+                        <a
+                          href={project.repoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Github className="h-4 w-4 mr-2" />
+                          Source Code
+                        </a>
+                      </Button>
+                    </CardFooter>
+                  </div>
+
+                  <div className="md:order-first md:h-auto">
+                    <AspectRatio ratio={15 / 13} className="bg-muted">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="rounded-l-none md:rounded-l-lg h-full w-full object-cover"
+                      />
+                    </AspectRatio>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </TabsContent>
+
+            {/* Other Projects Tab */}
+            <TabsContent value="other" className="space-y-12">
+            {otherProjects.map((project) => (
+              <Card
+                key={project.id}
+                className="overflow-hidden border-primary/10 shadow-lg"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="p-6 md:p-8 flex flex-col">
+                    <CardHeader className="p-0 mb-4">
+                      <CardTitle className="text-2xl">
+                        {project.title}
+                      </CardTitle>
+                      <CardDescription className="text-base mt-2">
+                        {project.description}
+                      </CardDescription>
+                    </CardHeader>
+
+                    <div className="flex flex-wrap gap-2 my-4">
+                      {project.tech.map((tech) => (
+                        <Badge key={tech} variant="secondary">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+
+                    {project.metrics && (
+                      <div className="bg-primary/5 rounded-lg p-3 my-2 text-sm">
+                        <strong>Impact:</strong> {project.metrics}
+                      </div>
+                    )}
+
+                    <CardFooter className="p-0 mt-auto pt-4 flex gap-3">
+                      <Button asChild size="sm">
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Live Demo
+                        </a>
+                      </Button>
+                      <Button asChild variant="outline" size="sm">
+                        <a
+                          href={project.repoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Github className="h-4 w-4 mr-2" />
+                          Source Code
+                        </a>
+                      </Button>
+                    </CardFooter>
+                  </div>
+
+                  <div className="md:order-first md:h-auto">
+                    <AspectRatio ratio={15 / 13} className="bg-muted">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="rounded-l-none md:rounded-l-lg h-full w-full object-cover"
+                      />
+                    </AspectRatio>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </TabsContent>
+
         </Tabs>
       </div>
     </section>

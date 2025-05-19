@@ -1,0 +1,63 @@
+Anthony Clark
+2500 SE Bridle St. APT 203, Bentonville, AR 72712
+(C) (479) 330-1427 | [Anthon3869@gmail.com](mailto:Anthon3869@gmail.com) | [Anthony.Clark0@walmart.com](mailto:Anthony.Clark0@walmart.com)
+
+PERSONAL SUMMARY
+
+Tech-savvy IT professional specializing in WinUI3, front-end GUI design, and AI integration. Working knowledge of C++, Python, C#, PowerShell, and automation scripting. Experienced in IoT development with Arduino and Raspberry Pi and leveraging AI models (OpenAI, Claude, LLaMA, Gemini) for intelligent solutions. Focused on clear, functional design and consistent project delivery.
+
+WORK HISTORY
+
+Walmart (ADE-Tech Spot)
+End-User IT Support, Customer-Facing | June 2023 – Present
+
+* Direct Technical Support for End-Users: Resolve software, application, and device issues to minimize downtime and maximize user satisfaction.
+* Active Directory & Microsoft 365 Support: Manage AD configurations, troubleshoot Microsoft 365, and provide user training.
+* PC/Mac Maintenance & Recovery: Perform diagnostics, repairs, and data recovery on Windows and macOS systems.
+* Process Automation & Tool Development: Develop and maintain automation scripts and custom GUIs to streamline workflows.
+* Customer Communication: Translate technical concepts into clear, user-friendly guidance.
+
+Walmart (ADE-PROTech)
+Technician V (Software & Hardware Support) | October 2021 – June 2023
+
+* C# GUI Development: Built and enhanced GUIs for automated tools, improving operational efficiency.
+* Onsite Migration Tool Enhancement: Expanded OMT GUI, adding usability features and custom tools.
+* Device Refresh Automation: Designed an automated emailing platform to support device refresh programs.
+* Custom Scripting: Created situational scripts to address specific workflow challenges.
+* End-User Support & Training: Guided Home Office associates through system access, data migrations, and device changes.
+* Process Standardization: Refined existing tools, reducing error rates and improving consistency.
+
+Walmart (Contact Center)
+Resolution Specialist III | February 2018 – October 2021
+
+* Managed 50+ inbound/outbound calls daily for customer care, facilities, fuel, and fraud inquiries.
+* Coordinated with vendors and regional teams to resolve maintenance and operational issues.
+* Delivered clear solutions, enhancing customer satisfaction and service efficiency.
+
+MED3000 (Blue Cross & Blue Shield)
+Customer Service Representative | January 2017 – February 2018
+
+* Assisted policyholders with account management, policy inquiries, and claims resolutions.
+* Communicated medical coverage details to providers, ensuring billing accuracy.
+* Resolved discrepancies, improving provider-policyholder coordination.
+
+PROJECTS
+
+* Automation Scripts — Developed Batch, PowerShell, and Python scripts to automate routine IT and support tasks.
+* Tech Spot Walk-Up Overhaul — Major contributor in concept and design to restructure the walk-up support experience and ticket creation using C#, TypeScript, and WinForms enhancements.
+* Metrics Dashboards — Designed and built dashboards using TypeScript, React, Vite, and Tailwind CSS to visualize support metrics from limited datasets.
+* Front-End Design Reusability — Created front-end designs for multiple internal applications; designs were later adopted in production.
+* AI Integration & Prototyping — Integrated AI systems (OpenAI GPT models, Anthropic Claude, Meta LLaMA, Google Gemini, X Grok) and AI tools (NotebookLM, LMStudio, image-generation models) into daily workflows to drive automation and insights.
+
+SKILLS
+
+* Programming & Frameworks: C++, C#, Python, PowerShell, Batch, TypeScript, Node.js, React, Electron, WinForms, WinUI3, Tailwind CSS, Vite
+* AI & Machine Learning: OpenAI (GPT models), Anthropic Claude, Meta LLaMA, Google Gemini, X Grok, NotebookLM, LMStudio, Stable Diffusion, open-source LLMs
+* Automation & Scripting: Batch, PowerShell, Python
+* Tools & Platforms: Windows, macOS, Linux (Raspbian), Active Directory, Microsoft 365, SCCM, JAMF, Microsoft Office, Adobe Suite
+* Other: Customer communication, GUI design, graphic design, situational scripting
+
+EDUCATION
+
+Mississippi Gulf Community College
+Associate of Science in Computer Science, 2015

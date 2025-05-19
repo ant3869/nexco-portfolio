@@ -10,11 +10,11 @@ const skillCategories = [
     name: 'Languages',
     icon: <Code className="h-5 w-5" />,
     skills: [
-      { name: 'C++', level: 95 },
+      { name: 'C++', level: 65 },
       { name: 'C#', level: 90 },
-      { name: 'Python', level: 85 },
-      { name: 'TypeScript', level: 92 },
-      { name: 'JavaScript', level: 95 },
+      { name: 'Python', level: 60 },
+      { name: 'TypeScript', level: 75 },
+      { name: 'JavaScript', level: 35 },
     ],
   },
   {
@@ -48,9 +48,9 @@ const skillCategories = [
     skills: [
       { name: 'PowerShell', level: 95 },
       { name: 'Bash/Shell', level: 90 },
-      { name: 'CI/CD Pipelines', level: 85 },
+      { name: 'CI/CD Pipelines', level: 0 },
       { name: 'GitHub Actions', level: 90 },
-      { name: 'Docker', level: 80 },
+      { name: 'Docker', level: 10 },
     ],
   },
 ];
