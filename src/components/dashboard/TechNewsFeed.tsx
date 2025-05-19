@@ -25,7 +25,7 @@ export default function TechNewsFeed() {
             title: article.title,
             url: article.url,
             source: article.source.name,
-            publishedAt: new Date(article.publishedAt).toRelativeTimeString()
+            publishedAt: new Date(article.publishedAt).toLocaleTimeString()
           }))
         );
       } catch (error) {
