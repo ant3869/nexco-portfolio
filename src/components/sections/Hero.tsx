@@ -151,7 +151,9 @@ export default function Hero() {
             </div>
           </div>
 
-
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <LiveTickers/>
+        </div>
           
           {/* Enhanced scroll indicator */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
