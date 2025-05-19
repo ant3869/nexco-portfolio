@@ -2,7 +2,6 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import {
   Github,
   Youtube,
-  Instagram,
   FileCode,
   Brush,
   MessageCircle,

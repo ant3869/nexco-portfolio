@@ -107,11 +107,11 @@ export default function Skills() {
                       <Progress
                         value={skill.level}
                         className="h-2 bg-muted"
-                        indicatorClassName={`${
-                          skill.level > 90
-                            ? 'bg-gradient-to-r from-primary to-accent'
-                            : 'bg-primary'
-                        }`}
+                        // indicatorClassName={`${
+                        //   skill.level > 90
+                        //     ? 'bg-gradient-to-r from-primary to-accent'
+                        //     : 'bg-primary'
+                        // }`}
                       />
                     </div>
                   ))}

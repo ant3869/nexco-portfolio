@@ -115,7 +115,7 @@ const projects = [
 const featuredProjects = projects.filter((p) => p.type === 'featured');
 const propProjects = projects.filter((p) => p.type === 'prop');
 const uiProjects = projects.filter((p) => p.type === 'ui');
-const autoProjects = projects.filter((p) => p.type === 'auto');
+// const autoProjects = projects.filter((p) => p.type === 'auto');
 const arduinoProjects = projects.filter((p) => p.type === 'arduino');
 const otherProjects = projects.filter((p) => p.type === 'other');
 
