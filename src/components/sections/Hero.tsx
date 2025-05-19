@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { useEffect, useState, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import Globe from '@/components/3d/Globe';
+import LiveTickers from '@/components/dashboard/LiveTickers';
 
 const roles = [
   'Software Developer',
@@ -150,6 +151,8 @@ export default function Hero() {
             </div>
           </div>
 
+
+          
           {/* Enhanced scroll indicator */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
             <a
