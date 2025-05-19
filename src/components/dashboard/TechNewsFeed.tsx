@@ -9,6 +9,33 @@ interface NewsItem {
   publishedAt: string;
 }
 
+// Helper function to format relative time
+function formatRelativeTime(date: Date): string {
+  const now = new Date();
+  const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+  
+  if (diffInSeconds < 60) {
+    return `${diffInSeconds} second${diffInSeconds !== 1 ? 's' : ''} ago`;
+  }
+  
+  const diffInMinutes = Math.floor(diffInSeconds / 60);
+  if (diffInMinutes < 60) {
+    return `${diffInMinutes} minute${diffInMinutes !== 1 ? 's' : ''} ago`;
+  }
+  
+  const diffInHours = Math.floor(diffInMinutes / 60);
+  if (diffInHours < 24) {
+    return `${diffInHours} hour${diffInHours !== 1 ? 's' : ''} ago`;
+  }
+  
+  const diffInDays = Math.floor(diffInHours / 24);
+  if (diffInDays < 7) {
+    return `${diffInDays} day${diffInDays !== 1 ? 's' : ''} ago`;
+  }
+  
+  return date.toLocaleDateString();
+}
+
 export default function TechNewsFeed() {
   const [news, setNews] = useState<NewsItem[]>([]);
 
@@ -25,7 +52,7 @@ export default function TechNewsFeed() {
             title: article.title,
             url: article.url,
             source: article.source.name,
-            publishedAt: new Date(article.publishedAt).toLocaleTimeString()
+            publishedAt: formatRelativeTime(new Date(article.publishedAt))
           }))
         );
       } catch (error) {
@@ -44,7 +71,7 @@ export default function TechNewsFeed() {
         <h3 className="font-semibold mb-4">Tech News Feed</h3>
         <div className="space-y-4">
           {news.map((item, index) => (
-            <a
+            
               key={index}
               href={item.url}
               target="_blank"
