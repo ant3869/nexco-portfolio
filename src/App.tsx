@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ThemeProvider } from '@/components/theme-provider';
+import { Toaster } from '@/components/ui/toaster';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/sections/Hero';
@@ -11,8 +12,10 @@ import SocialHub from '@/components/sections/SocialHub';
 import Contact from '@/components/sections/Contact';
 import Dashboard from '@/components/dashboard/Dashboard';
 import LoadingScreen from '@/components/ui/LoadingScreen';
-import { Toaster } from '@/components/ui/toaster';
-import Liveticker from '@/components/dashboard/Dashboard';
+import LiveTickers from './LiveTickers';
+import TechNewsFeed from './TechNewsFeed';
+import GitHubActivity from './GitHubActivity';
+import SystemStatus from './SystemStatus';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
