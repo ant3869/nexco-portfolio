@@ -105,7 +105,6 @@ export default function Hero() {
                     ></span>
                   </span>
                 </h2>
-              </div>
 
             {/* Enhanced CTA buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
