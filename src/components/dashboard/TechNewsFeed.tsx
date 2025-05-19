@@ -9,33 +9,6 @@ interface NewsItem {
   publishedAt: string;
 }
 
-// Helper function to format relative time
-function formatRelativeTime(date: Date): string {
-  const now = new Date();
-  const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
-  
-  if (diffInSeconds < 60) {
-    return `${diffInSeconds} second${diffInSeconds !== 1 ? 's' : ''} ago`;
-  }
-  
-  const diffInMinutes = Math.floor(diffInSeconds / 60);
-  if (diffInMinutes < 60) {
-    return `${diffInMinutes} minute${diffInMinutes !== 1 ? 's' : ''} ago`;
-  }
-  
-  const diffInHours = Math.floor(diffInMinutes / 60);
-  if (diffInHours < 24) {
-    return `${diffInHours} hour${diffInHours !== 1 ? 's' : ''} ago`;
-  }
-  
-  const diffInDays = Math.floor(diffInHours / 24);
-  if (diffInDays < 7) {
-    return `${diffInDays} day${diffInDays !== 1 ? 's' : ''} ago`;
-  }
-  
-  return date.toLocaleDateString();
-}
-
 export default function TechNewsFeed() {
   const [news, setNews] = useState<NewsItem[]>([]);
 
@@ -48,12 +21,15 @@ export default function TechNewsFeed() {
         const data = await response.json();
         
         setNews(
-          data.articles.slice(0, 5).map((article: any) => ({
-            title: article.title,
-            url: article.url,
-            source: article.source.name,
-            publishedAt: formatRelativeTime(new Date(article.publishedAt))
-          }))
+          data.articles.slice(0, 5).map((article: any) => {
+            const date = new Date(article.publishedAt);
+            return {
+              title: article.title,
+              url: article.url,
+              source: article.source.name,
+              publishedAt: date.toLocaleTimeString() // Changed from toRelativeTimeString
+            };
+          })
         );
       } catch (error) {
         console.error('Error fetching news:', error);
@@ -68,16 +44,15 @@ export default function TechNewsFeed() {
   return (
     <Card className="border-primary/10">
       <CardContent className="p-4">
-        <h3 className="font-semibold mb-4">Tech News Feed</h3>
+        <h3 className="font-semibold mb-4">Tech News Feed</h3>   
         <div className="space-y-4">
           {news.map((item, index) => (
-            
+              <a>
               key={index}
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
               className="block group"
-            >
               <div className="flex items-start gap-3">
                 <div className="flex-1">
                   <h4 className="font-medium group-hover:text-primary transition-colors">
