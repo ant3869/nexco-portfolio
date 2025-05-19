@@ -12,6 +12,7 @@ import Contact from '@/components/sections/Contact';
 import Dashboard from '@/components/dashboard/Dashboard';
 import LoadingScreen from '@/components/ui/LoadingScreen';
 import { Toaster } from '@/components/ui/toaster';
+import Liveticker from '@/components/dashboard/Dashboard';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -34,7 +35,7 @@ function App() {
       <div className="min-h-screen bg-background font-sans antialiased">
         <Navbar />
         <main className="relative">
-          <Dashboard /> {/* Dashboard integrated at the top */}
+          <Dashboard />
           <Hero />
           <About />
           <Skills />
