@@ -43,10 +43,8 @@ function App() {
           <About />
           <Skills />
           <Projects />
-          <DevTools />
+          {/* <DevTools /> */}
           <SocialHub />
-          <GitHubActivity/>
-          <TechNewsFeed/>
           <Contact />
         </main>
         <Footer />
