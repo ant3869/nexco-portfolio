@@ -12,7 +12,7 @@ export default function Footer() {
           <img 
             src="/images/logo2.png"
             alt="Nexco Media Logo"
-            className="w-16 h-16 object-contain"
+            className="w-8 h-8 object-contain"
           />
             {/* <h3 className="font-bold text-lg gradient-heading">Nexco Media</h3> */}
             <p className="text-sm text-muted-foreground max-w-xs">
