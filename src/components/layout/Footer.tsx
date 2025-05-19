@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Brand and Copyright */}
           <div className="space-y-3">
           <img 
-            src="/images/logo.png"
+            src="/images/logo2.png"
             alt="Nexco Media Logo"
             className="w-16 h-16 object-contain"
           />
