@@ -20,11 +20,17 @@ export default function Dashboard() {
             <TechNewsFeed />
           </div>
           
-        {/* GitHub Activity */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <GitHubActivity />
+          {/* GitHub Activity */}
+          <div className="lg:col-span-1">
+            <GitHubActivity />
+          </div>
+          
+          {/* System Status - Added since it was imported but not used */}
+          <div className="lg:col-span-3">
+            <SystemStatus />
+          </div>
         </div>
-        </div>
+      </div>
     </section>
   );
 }
