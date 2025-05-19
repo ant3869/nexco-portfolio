@@ -12,10 +12,10 @@ import SocialHub from '@/components/sections/SocialHub';
 import Contact from '@/components/sections/Contact';
 import Dashboard from '@/components/dashboard/Dashboard';
 import LoadingScreen from '@/components/ui/LoadingScreen';
-import LiveTickers from './LiveTickers';
-import TechNewsFeed from './TechNewsFeed';
-import GitHubActivity from './GitHubActivity';
-import SystemStatus from './SystemStatus';
+import LiveTickers from '@/components/dashboard/LiveTickers';
+import TechNewsFeed from '@/components/dashboard/TechNewsFeed';
+import GitHubActivity from '@/components/dashboard/GitHubActivity';
+import SystemStatus from '@/components/dashboard/SystemStatus';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,14 +37,16 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
       <div className="min-h-screen bg-background font-sans antialiased">
         <Navbar />
+        <LiveTickers/>
         <main className="relative">
-          <Dashboard />
           <Hero />
           <About />
           <Skills />
           <Projects />
           <DevTools />
           <SocialHub />
+          <GitHubActivity/>
+          <TechNewsFeed/>
           <Contact />
         </main>
         <Footer />
