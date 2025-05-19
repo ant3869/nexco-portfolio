@@ -20,7 +20,7 @@ export default function Dashboard() {
             <TechNewsFeed />
           </div>
           
-          {/* Right Column */}
+          {/* {/* Right Column */}
           <div className="space-y-4">
             <div className="aspect-video bg-black rounded-lg overflow-hidden">
               {/* Video placeholder */}
@@ -28,11 +28,11 @@ export default function Dashboard() {
             <SystemStatus />
           </div>
         </div>
-        
+         */}
         {/* GitHub Activity */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <GitHubActivity />
-          <SystemStatus />
+          {/* <SystemStatus /> */}
         </div>
       </div>
     </section>
