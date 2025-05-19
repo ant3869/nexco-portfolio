@@ -88,24 +88,24 @@ export default function Hero() {
 
             {/* Name & Role with enhanced typography */}
           <div className="space-y-4">
-  <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-    <span className="block bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-secondary">
-      Anthony "Ant" Clark
-    </span>
-  </h1>
-  <div className="h-20">
-    <h2 className="text-2xl md:text-3xl font-medium">
-      <span className="inline-flex items-center">
-        <span className="gradient-heading text-gray-200">{displayText}</span>
-        <span
-          className={`ml-1 h-8 w-1 bg-primary ${
-            isTyping ? 'opacity-100' : 'opacity-0'
-          } transition-opacity duration-200`}
-        ></span>
-      </span>
-    </h2>
-  </div>
-</div>
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+              <span className="block bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-secondary">
+                Anthony "Ant" Clark
+              </span>
+            </h1>
+            <div className="h-20">
+              <h2 className="text-2xl md:text-3xl font-medium">
+                <span className="inline-flex items-center">
+                  <span className="gradient-heading text-gray-200">{displayText}</span>
+                  <span
+                    className={`ml-1 h-8 w-1 bg-primary ${
+                      isTyping ? 'opacity-100' : 'opacity-0'
+                    } transition-opacity duration-200`}
+                  ></span>
+                </span>
+              </h2>
+            </div>
+          </div>
 
             {/* Enhanced CTA buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
