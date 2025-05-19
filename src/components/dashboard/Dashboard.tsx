@@ -20,20 +20,12 @@ export default function Dashboard() {
             <TechNewsFeed />
           </div>
           
-         {/* Right Column
-          <div className="space-y-4">
-            <div className="aspect-video bg-black rounded-lg overflow-hidden">
-
-            </div>
-            <SystemStatus />
-          </div>
-        </div>
-  */}
         {/* GitHub Activity */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <GitHubActivity />
         </div>
       </div>
+    </section>
     </section>
   );
 }
