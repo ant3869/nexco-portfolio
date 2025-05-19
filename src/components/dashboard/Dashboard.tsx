@@ -25,7 +25,5 @@ export default function Dashboard() {
           <GitHubActivity />
         </div>
       </div>
-    </section>
-    </section>
   );
 }
