@@ -56,14 +56,14 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        {/* <a href="#home" className="flex flex-col items-center space-y-1">
-          <img 
+        <a href="#home" className="flex flex-col items-center space-y-1">
+          {/* <img 
             src="/images/logo2.png"
             alt="Nexco Media Logo"
             className="w-32 h-32 object-contain"
-          />
+          /> */}
           <span className="font-bold text-lg md:text-xl gradient-heading"></span>
-        </a> */}
+        </a>
 
 
         {/* Desktop Navigation */}

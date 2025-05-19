@@ -8,11 +8,11 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand and Copyright */}
-          <div className="space-y-3">
+          <div className="space-y-2">
           <img 
             src="/images/logo2.png"
             alt="Nexco Media Logo"
-            className="w-32 h-32 object-contain"
+            className="w-32 h-16 items-center object-contain"
           />
             {/* <h3 className="font-bold text-lg gradient-heading">Nexco Media</h3> */}
             <p className="text-sm text-muted-foreground max-w-xs">
