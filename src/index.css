@@ -95,6 +95,19 @@
     font-family: 'JetBrains Mono', monospace;
     @apply p-4 rounded-md bg-muted/50 text-sm border overflow-x-auto;
   }
+  
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
 }
 
 /* Animations */
