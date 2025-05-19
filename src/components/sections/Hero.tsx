@@ -97,6 +97,19 @@ export default function Hero() {
               <div className="h-20">
                 <h2 className="text-2xl md:text-3xl font-medium">
                   <span className="inline-flex items-center">
+                    <span className="gradient-heading text-gray-200">{displayText}</span>
+                    <span
+                      className={`ml-1 h-8 w-1 bg-primary ${
+                        isTyping ? 'opacity-100' : 'opacity-0'
+                      } transition-opacity duration-200`}
+                    ></span>
+                  </span>
+                </h2>
+              </div>
+
+              {/* <div className="h-20">
+                <h2 className="text-2xl md:text-3xl font-medium">
+                  <span className="inline-flex items-center">
                     <span className="gradient-heading">{displayText}</span>
                     <span
                       className={`ml-1 h-8 w-1 bg-primary ${
@@ -106,7 +119,7 @@ export default function Hero() {
                   </span>
                 </h2>
               </div>
-            </div>
+            </div> */}
 
             {/* Enhanced CTA buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
