@@ -1,0 +1,31 @@
+{
+    "articles": [
+      {
+        "id": "1",
+        "title": "Latest AI Breakthrough in Machine Learning",
+        "description": "Researchers have discovered new methods for improving neural network efficiency by 40%.",
+        "url": "https://example.com/ai-breakthrough",
+        "publishedAt": "2025-05-22T10:30:00Z",
+        "source": { "name": "Tech Daily" },
+        "urlToImage": "https://via.placeholder.com/300x200/1f2937/ffffff?text=AI+News"
+      },
+      {
+        "id": "2", 
+        "title": "Cloud Computing Trends for 2025",
+        "description": "Industry experts predict major shifts in cloud infrastructure and serverless computing.",
+        "url": "https://example.com/cloud-trends",
+        "publishedAt": "2025-05-22T08:15:00Z", 
+        "source": { "name": "Cloud Weekly" },
+        "urlToImage": "https://via.placeholder.com/300x200/1f2937/ffffff?text=Cloud+News"
+      },
+      {
+        "id": "3",
+        "title": "Quantum Computing Milestone Achieved",
+        "description": "Scientists demonstrate 1000-qubit quantum processor with unprecedented stability.",
+        "url": "https://example.com/quantum-milestone",
+        "publishedAt": "2025-05-22T06:45:00Z",
+        "source": { "name": "Quantum Today" },
+        "urlToImage": "https://via.placeholder.com/300x200/1f2937/ffffff?text=Quantum+News"
+      }
+    ]
+  }
