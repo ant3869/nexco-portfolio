@@ -25,6 +25,23 @@ interface HackerNewsHit {
   author: string;
 }
 
+interface DevToArticle {
+  id: number;
+  title: string;
+  description: string;
+  url: string;
+  published_at: string;
+  user: { name: string };
+  social_image: string;
+}
+
+interface RssItem {
+  title: string;
+  link: string;
+  pubDate: string;
+  thumbnail?: string;
+}
+
 interface TechNewsFeedProps {
   className?: string;
 }
@@ -40,26 +57,73 @@ const TechNewsFeed: React.FC<TechNewsFeedProps> = ({ className = '' }) => {
         setLoading(true);
         setError(null);
 
-        // Fetch latest technology stories from the free Hacker News search API
-        const response = await fetch(
+        const hnReq = fetch(
           'https://hn.algolia.com/api/v1/search_by_date?tags=story&query=technology'
         );
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        const devtoReq = fetch(
+          'https://dev.to/api/articles?per_page=5&tag=technology'
+        );
+        const vergeReq = fetch(
+          'https://api.rss2json.com/v1/api.json?rss_url=https://www.theverge.com/rss/index.xml'
+        );
+
+        const [hnRes, devtoRes, vergeRes] = await Promise.allSettled([
+          hnReq,
+          devtoReq,
+          vergeReq,
+        ]);
+
+        const articles: NewsItem[] = [];
+
+        if (hnRes.status === 'fulfilled' && hnRes.value.ok) {
+          const data = await hnRes.value.json();
+          articles.push(
+            ...(data.hits || []).map((hit: HackerNewsHit) => ({
+              id: hit.objectID,
+              title: hit.title || hit.story_title || 'Untitled',
+              description: hit.story_text || hit.comment_text || '',
+              url: hit.url || `https://news.ycombinator.com/item?id=${hit.objectID}`,
+              publishedAt: hit.created_at,
+              source: { name: hit.author || 'Hacker News' },
+            }))
+          );
         }
-        
-        const data = await response.json();
-        // Map API response to NewsItem[] structure
-        const mapped = (data.hits || []).map((hit: HackerNewsHit) => ({
-          id: hit.objectID,
-          title: hit.title || hit.story_title || 'Untitled',
-          description: hit.story_text || hit.comment_text || '',
-          url: hit.url || `https://news.ycombinator.com/item?id=${hit.objectID}`,
-          publishedAt: hit.created_at,
-          source: { name: hit.author || 'Hacker News' },
-        }));
-        setNews(mapped);
+
+        if (devtoRes.status === 'fulfilled' && devtoRes.value.ok) {
+          const data = await devtoRes.value.json();
+          articles.push(
+            ...(data as DevToArticle[]).map((item) => ({
+              id: String(item.id),
+              title: item.title,
+              description: item.description,
+              url: item.url,
+              publishedAt: item.published_at,
+              source: { name: item.user.name },
+              urlToImage: item.social_image,
+            }))
+          );
+        }
+
+        if (vergeRes.status === 'fulfilled' && vergeRes.value.ok) {
+          const data = await vergeRes.value.json();
+          articles.push(
+            ...(data.items || []).map((item: RssItem, index: number) => ({
+              id: `verge-${index}`,
+              title: item.title,
+              description: '',
+              url: item.link,
+              publishedAt: item.pubDate,
+              source: { name: 'The Verge' },
+              urlToImage: item.thumbnail,
+            }))
+          );
+        }
+
+        articles.sort(
+          (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+        );
+
+        setNews(articles);
         
       } catch (err) {
         console.error('Failed to fetch tech news:', err);
@@ -122,49 +186,22 @@ const TechNewsFeed: React.FC<TechNewsFeedProps> = ({ className = '' }) => {
   return (
     <div className={`bg-gray-900 border border-gray-700 rounded-lg p-6 ${className}`}>
       <h3 className="text-lg font-semibold text-white mb-4">Tech News</h3>
-      <div className="space-y-4 max-h-96 overflow-y-auto">
-        {news.slice(0, 10).map((item) => (
-          <article 
-            key={item.id} 
-            className="border-b border-gray-700 pb-4 last:border-b-0 last:pb-0"
-          >
-            <div className="flex gap-3">
-              {item.urlToImage && (
-                <img 
-                  src={item.urlToImage} 
-                  alt=""
-                  className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                  }}
-                />
-              )}
-              <div className="flex-1 min-w-0">
-                <h4 className="text-white font-medium text-sm leading-5 mb-1 line-clamp-2">
-                  <a 
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-blue-400 transition-colors"
-                  >
-                    {item.title}
-                  </a>
-                </h4>
-                <p className="text-gray-400 text-xs mb-2 line-clamp-2">
-                  {item.description}
-                </p>
-                <div className="flex items-center gap-2 text-xs text-gray-500">
-                  <span>{item.source.name}</span>
-                  <span>•</span>
-                  <time dateTime={item.publishedAt}>
-                    {toRelativeTimeString(new Date(item.publishedAt))}
-                  </time>
-                </div>
-              </div>
-            </div>
-          </article>
-        ))}
+      <div className="overflow-hidden whitespace-nowrap">
+        <div className="flex gap-8 animate-marquee items-center">
+          {news.map((item, idx) => (
+            <React.Fragment key={item.id}>
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-gray-300 hover:text-white"
+              >
+                {item.title}
+              </a>
+              {idx !== news.length - 1 && <span className="mx-4">•</span>}
+            </React.Fragment>
+          ))}
+        </div>
       </div>
       {news.length === 0 && (
         <div className="text-gray-400 text-sm text-center py-8">
