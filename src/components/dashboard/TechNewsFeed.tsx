@@ -172,15 +172,18 @@ const TechNewsFeed: React.FC<TechNewsFeedProps> = ({ className = '' }) => {
           const data = await spaceRes.value.json();
           const results: SpaceArticle[] = data.results || data;
           articles.push(
-            ...(results || []).map((item: SpaceArticle, index: number) => ({
-              id: `space-${item.id ?? index}`,
-              title: item.title,
-              description: item.summary || '',
-              url: item.url,
-              publishedAt: item.publishedAt || item.published_at,
-              source: { name: item.newsSite || 'SpaceFlightNews' },
-              urlToImage: item.imageUrl,
-            }))
+              ...(results || []).map((item: SpaceArticle, index: number) => ({
+                id: `space-${item.id ?? index}`,
+                title: item.title,
+                description: item.summary || '',
+                url: item.url,
+                publishedAt:
+                  item.publishedAt ||
+                  item.published_at ||
+                  new Date().toISOString(),
+                source: { name: item.newsSite || 'SpaceFlightNews' },
+                urlToImage: item.imageUrl,
+              }))
           );
         }
 
