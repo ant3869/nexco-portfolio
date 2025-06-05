@@ -14,6 +14,17 @@ interface NewsItem {
   urlToImage?: string;
 }
 
+interface HackerNewsHit {
+  objectID: string;
+  title?: string;
+  story_title?: string;
+  story_text?: string;
+  comment_text?: string;
+  url?: string;
+  created_at: string;
+  author: string;
+}
+
 interface TechNewsFeedProps {
   className?: string;
 }
@@ -29,15 +40,26 @@ const TechNewsFeed: React.FC<TechNewsFeedProps> = ({ className = '' }) => {
         setLoading(true);
         setError(null);
 
-        // Using free news API (NewsAPI alternative or mock data)
-        const response = await fetch('/api/tech-news');
+        // Fetch latest technology stories from the free Hacker News search API
+        const response = await fetch(
+          'https://hn.algolia.com/api/v1/search_by_date?tags=story&query=technology'
+        );
         
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         
         const data = await response.json();
-        setNews(data.articles || []);
+        // Map API response to NewsItem[] structure
+        const mapped = (data.hits || []).map((hit: HackerNewsHit) => ({
+          id: hit.objectID,
+          title: hit.title || hit.story_title || 'Untitled',
+          description: hit.story_text || hit.comment_text || '',
+          url: hit.url || `https://news.ycombinator.com/item?id=${hit.objectID}`,
+          publishedAt: hit.created_at,
+          source: { name: hit.author || 'Hacker News' },
+        }));
+        setNews(mapped);
         
       } catch (err) {
         console.error('Failed to fetch tech news:', err);
