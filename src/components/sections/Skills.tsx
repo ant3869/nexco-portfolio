@@ -10,11 +10,11 @@ const skillCategories = [
     name: 'Languages',
     icon: <Code className="h-5 w-5" />,
     skills: [
-      { name: 'C++', level: 65 },
       { name: 'C#', level: 90 },
+      { name: 'TypeScript', level: 85 },
+      { name: 'JavaScript', level: 75 },
+      { name: 'C++', level: 65 },
       { name: 'Python', level: 60 },
-      { name: 'TypeScript', level: 75 },
-      { name: 'JavaScript', level: 35 },
     ],
   },
   {
@@ -23,10 +23,10 @@ const skillCategories = [
     icon: <Layers className="h-5 w-5" />,
     skills: [
       { name: 'React', level: 90 },
-      { name: 'CSS/SCSS', level: 85 },
       { name: 'Tailwind CSS', level: 95 },
-      { name: 'Angular', level: 75 },
+      { name: 'CSS/SCSS', level: 85 },
       { name: 'Next.js', level: 80 },
+      { name: 'Radix UI', level: 70 },
     ],
   },
   {
@@ -34,11 +34,11 @@ const skillCategories = [
     name: 'Backend',
     icon: <Server className="h-5 w-5" />,
     skills: [
-      { name: 'Node.js', level: 85 },
-      { name: 'ASP.NET Core', level: 90 },
-      { name: 'Django', level: 70 },
-      { name: 'GraphQL', level: 75 },
-      { name: 'RESTful APIs', level: 95 },
+      { name: 'ASP.NET Core', level: 85 },
+      { name: 'Node.js', level: 80 },
+      { name: 'RESTful APIs', level: 85 },
+      { name: 'GraphQL', level: 60 },
+      { name: 'Docker', level: 60 },
     ],
   },
   {
@@ -47,10 +47,10 @@ const skillCategories = [
     icon: <Terminal className="h-5 w-5" />,
     skills: [
       { name: 'PowerShell', level: 95 },
-      { name: 'Bash/Shell', level: 90 },
-      { name: 'CI/CD Pipelines', level: 0 },
-      { name: 'GitHub Actions', level: 90 },
-      { name: 'Docker', level: 10 },
+      { name: 'Batch Scripting', level: 85 },
+      { name: 'Bash/Shell', level: 80 },
+      { name: 'GitHub Actions', level: 80 },
+      { name: 'CI/CD Pipelines', level: 70 },
     ],
   },
 ];
@@ -125,9 +125,16 @@ export default function Skills() {
             <h3 className="section-subheading text-center">Additional Expertise</h3>
             <div className="flex flex-wrap justify-center gap-2 mt-4">
               {[
-                'Git', 'AWS', 'Azure', 'Kubernetes', 'SOLID Principles',
-                'Microservices', 'Performance Optimization', 'TDD', 'UX/UI',
-                'Data Structures', 'Algorithms', 'System Design'
+                'Git',
+                'Microcontrollers',
+                'OpenAI API',
+                'Docker Compose',
+                'Windows Automation',
+                'SOLID Principles',
+                'Performance Optimization',
+                'TDD',
+                'UX/UI',
+                'System Design'
               ].map((skill) => (
                 <span key={skill} className="tech-badge">
                   {skill}
