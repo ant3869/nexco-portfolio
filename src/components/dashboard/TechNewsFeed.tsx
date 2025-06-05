@@ -1,6 +1,5 @@
 // src/components/dashboard/TechNewsFeed.tsx
 import React, { useState, useEffect } from 'react';
-import { toRelativeTimeString } from '../../utils/dateUtils';
 
 interface NewsItem {
   id: string;
