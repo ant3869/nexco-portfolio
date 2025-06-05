@@ -37,6 +37,7 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
       <div className="min-h-screen bg-background font-sans antialiased">
         <Navbar />
+        <TechNewsFeed />
         <main className="relative">
           <Hero />
           <About />
@@ -46,7 +47,6 @@ function App() {
           <SocialHub />
           <Contact />
         </main>
-        <TechNewsFeed/>
         <Footer />
         <Toaster />
       </div>

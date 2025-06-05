@@ -1,5 +1,6 @@
 // src/components/dashboard/TechNewsFeed.tsx
 import React, { useState, useEffect } from 'react';
+import { Plus, Minus } from 'lucide-react';
 
 interface NewsItem {
   id: string;
@@ -41,6 +42,28 @@ interface RssItem {
   thumbnail?: string;
 }
 
+interface RedditChild {
+  data: {
+    id: string;
+    title: string;
+    selftext?: string;
+    permalink: string;
+    created_utc: number;
+    thumbnail?: string;
+  };
+}
+
+interface SpaceArticle {
+  id?: number;
+  title: string;
+  summary?: string;
+  url: string;
+  publishedAt?: string;
+  published_at?: string;
+  newsSite?: string;
+  imageUrl?: string;
+}
+
 interface TechNewsFeedProps {
   className?: string;
 }
@@ -49,6 +72,7 @@ const TechNewsFeed: React.FC<TechNewsFeedProps> = ({ className = '' }) => {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [speed, setSpeed] = useState(30); // seconds
 
   useEffect(() => {
     const fetchTechNews = async () => {
@@ -65,11 +89,19 @@ const TechNewsFeed: React.FC<TechNewsFeedProps> = ({ className = '' }) => {
         const vergeReq = fetch(
           'https://api.rss2json.com/v1/api.json?rss_url=https://www.theverge.com/rss/index.xml'
         );
+        const redditReq = fetch(
+          'https://www.reddit.com/r/technology/top.json?limit=5&t=day'
+        );
+        const spaceReq = fetch(
+          'https://api.spaceflightnewsapi.net/v4/articles?limit=5'
+        );
 
-        const [hnRes, devtoRes, vergeRes] = await Promise.allSettled([
+        const [hnRes, devtoRes, vergeRes, redditRes, spaceRes] = await Promise.allSettled([
           hnReq,
           devtoReq,
           vergeReq,
+          redditReq,
+          spaceReq,
         ]);
 
         const articles: NewsItem[] = [];
@@ -115,6 +147,43 @@ const TechNewsFeed: React.FC<TechNewsFeedProps> = ({ className = '' }) => {
               source: { name: 'The Verge' },
               urlToImage: item.thumbnail,
             }))
+          );
+        }
+
+        if (redditRes.status === 'fulfilled' && redditRes.value.ok) {
+          const data = (await redditRes.value.json()) as { data: { children: RedditChild[] } };
+          articles.push(
+            ...(data.data?.children || []).map((child: RedditChild) => ({
+              id: `reddit-${child.data.id}`,
+              title: child.data.title,
+              description: child.data.selftext || '',
+              url: `https://www.reddit.com${child.data.permalink}`,
+              publishedAt: new Date(child.data.created_utc * 1000).toISOString(),
+              source: { name: 'Reddit' },
+              urlToImage:
+                child.data.thumbnail && child.data.thumbnail.startsWith('http')
+                  ? child.data.thumbnail
+                  : undefined,
+            }))
+          );
+        }
+
+        if (spaceRes.status === 'fulfilled' && spaceRes.value.ok) {
+          const data = await spaceRes.value.json();
+          const results: SpaceArticle[] = data.results || data;
+          articles.push(
+              ...(results || []).map((item: SpaceArticle, index: number) => ({
+                id: `space-${item.id ?? index}`,
+                title: item.title,
+                description: item.summary || '',
+                url: item.url,
+                publishedAt:
+                  item.publishedAt ||
+                  item.published_at ||
+                  new Date().toISOString(),
+                source: { name: item.newsSite || 'SpaceFlightNews' },
+                urlToImage: item.imageUrl,
+              }))
           );
         }
 
@@ -185,8 +254,11 @@ const TechNewsFeed: React.FC<TechNewsFeedProps> = ({ className = '' }) => {
   return (
     <div className={`bg-gray-900 border border-accent rounded-lg p-6 ${className}`}>
       <h3 className="text-lg font-semibold text-white mb-4">Tech News</h3>
-      <div className="overflow-hidden whitespace-nowrap">
-        <div className="flex gap-8 animate-marquee items-center">
+      <div className="overflow-hidden whitespace-nowrap relative group">
+        <div
+          className="flex gap-8 animate-marquee items-center"
+          style={{ animationDuration: `${speed}s` }}
+        >
           {news.map((item, idx) => (
             <React.Fragment key={item.id}>
               <a
@@ -200,6 +272,22 @@ const TechNewsFeed: React.FC<TechNewsFeedProps> = ({ className = '' }) => {
               {idx !== news.length - 1 && <span className="mx-4">•</span>}
             </React.Fragment>
           ))}
+        </div>
+        <div className="absolute right-2 top-1/2 -translate-y-1/2 flex space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          <button
+            onClick={() => setSpeed((s) => Math.min(60, s + 5))}
+            className="p-1 rounded bg-gray-800/60 hover:bg-gray-800"
+            aria-label="Slow down ticker"
+          >
+            <Minus className="h-3 w-3" />
+          </button>
+          <button
+            onClick={() => setSpeed((s) => Math.max(5, s - 5))}
+            className="p-1 rounded bg-gray-800/60 hover:bg-gray-800"
+            aria-label="Speed up ticker"
+          >
+            <Plus className="h-3 w-3" />
+          </button>
         </div>
       </div>
       {news.length === 0 && (

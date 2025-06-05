@@ -6,12 +6,6 @@ Hey there! I'm Anthony "Ant" Clark and this repo holds the code behind my person
 
 ## What You'll Find
 
-- **React + TypeScript** under Vite for a speedy workflow
-- **Tailwind + Radix UI** for styling and accessible components
-- **React Three Fiber** driving the spinning globe background
-- **A dark/light theme** saved in local storage
-- A few Vitest tests to keep utilities honest
-
 Most of the features began as weekend curiosities. The hero section cycles through my various roles, projects load dynamically with tabs and badges, and the contact form funnels messages through Formspree. I also keep a set of dev tools and a live stock ticker on the dashboard just because I can.
 
 ## Running Locally (If You Really Want To)
@@ -28,8 +22,6 @@ To build a production bundle:
 ```bash
 npm run build
 ```
-
-Run the tiny test suite with:
 
 ```bash
 npm test
