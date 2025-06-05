@@ -14,6 +14,7 @@ A modern, responsive personal portfolio website built with React, TypeScript, an
 - **Contact Form**: Working contact form for visitor inquiries
 - **Performance Optimized**: Fast loading and smooth animations
 - **SEO Ready**: Built with search engine optimization in mind
+- **Tech News Ticker**: Scrolls headlines from multiple free news APIs with adjustable speed
 
 ## 📋 Table of Contents
 
@@ -180,6 +181,7 @@ This portfolio is designed to fetch and display real data from:
 1. **GitHub API**: Projects, skills (based on repository languages), and profile information
 2. **Formspree**: For the contact form functionality
 3. **DEV.TO API** (optional): For displaying blog posts
+4. **Public Tech News APIs**: Headlines from Hacker News, Dev.to, The Verge RSS, Reddit, and the Spaceflight News API
 
 You can replace these with your own data sources or use static data if preferred.
 
