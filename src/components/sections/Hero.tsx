@@ -66,10 +66,10 @@ export default function Hero() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="min-h-screen flex flex-col items-center justify-center text-center">
           {/* Main content */}
-          <div className="space-y-8 max-w-4xl backdrop-blur-sm bg-background/30 p-8 rounded-2xl">
+          <div className="space-y-8 max-w-4xl backdrop-blur-sm bg-background/30 p-8 rounded-2xl tilt-card">
             {/* Avatar/Headshot with enhanced styling */}
             <div className="relative inline-block group">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity animated-hue"></div>
               <div className="relative w-32 h-32 md:w-40 md:h-40">
                 <div className="w-full h-full bg-gradient-to-r from-primary to-accent rounded-full p-1">
                   <div className="w-full h-full bg-background rounded-full flex items-center justify-center overflow-hidden">
@@ -111,7 +111,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
                 size="lg"
-                className="w-full sm:w-auto bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
+                className="w-full sm:w-auto bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity hover:scale-105"
               >
                 <a href="#contact" className="flex items-center">
                   Contact Me
@@ -120,7 +120,7 @@ export default function Hero() {
               <Button
                 variant="outline"
                 size="lg"
-                className="w-full sm:w-auto border-primary/20 hover:border-primary/40"
+                className="w-full sm:w-auto border-primary/20 hover:border-primary/40 hover:scale-105"
               >
                 <a
                   href="#"
@@ -135,7 +135,7 @@ export default function Hero() {
               <Button
                 variant="outline"
                 size="lg"
-                className="w-full sm:w-auto border-primary/20 hover:border-primary/40"
+                className="w-full sm:w-auto border-primary/20 hover:border-primary/40 hover:scale-105"
               >
                 <a
                   href="https://github.com/ant3869"

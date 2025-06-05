@@ -119,6 +119,23 @@ const autoProjects = projects.filter((p) => p.type === 'auto');
 const arduinoProjects = projects.filter((p) => p.type === 'arduino');
 const otherProjects = projects.filter((p) => p.type === 'other');
 
+function getCategoryBorder(type: string) {
+  switch (type) {
+    case 'featured':
+      return 'border-yellow-500';
+    case 'prop':
+      return 'border-green-500';
+    case 'ui':
+      return 'border-blue-500';
+    case 'auto':
+      return 'border-purple-500';
+    case 'arduino':
+      return 'border-teal-500';
+    default:
+      return 'border-primary/10';
+  }
+}
+
 export default function Projects() {
   return (
     <section id="projects" className="py-20 bg-muted/20">
@@ -142,7 +159,7 @@ export default function Projects() {
             {featuredProjects.map((project) => (
               <Card
                 key={project.id}
-                className="overflow-hidden border-primary/10 shadow-lg"
+                className={`overflow-hidden border-2 ${getCategoryBorder(project.type)} shadow-lg`}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="p-6 md:p-8 flex flex-col">
@@ -213,7 +230,7 @@ export default function Projects() {
               {propProjects.map((project) => (
                 <Card
                   key={project.id}
-                  className="overflow-hidden card-hover border-primary/10"
+                  className={`overflow-hidden card-hover border-2 ${getCategoryBorder(project.type)}`}
                 >
                   <AspectRatio ratio={16 / 9} className="bg-muted">
                     <img
@@ -280,7 +297,7 @@ export default function Projects() {
             {uiProjects.map((project) => (
               <Card
                 key={project.id}
-                className="overflow-hidden border-primary/10 shadow-lg"
+                className={`overflow-hidden border-2 ${getCategoryBorder(project.type)} shadow-lg`}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="p-6 md:p-8 flex flex-col">
@@ -350,7 +367,7 @@ export default function Projects() {
             {autoProjects.map((project) => (
               <Card
                 key={project.id}
-                className="overflow-hidden border-primary/10 shadow-lg"
+                className={`overflow-hidden border-2 ${getCategoryBorder(project.type)} shadow-lg`}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="p-6 md:p-8 flex flex-col">
@@ -420,7 +437,7 @@ export default function Projects() {
             {arduinoProjects.map((project) => (
               <Card
                 key={project.id}
-                className="overflow-hidden border-primary/10 shadow-lg"
+                className={`overflow-hidden border-2 ${getCategoryBorder(project.type)} shadow-lg`}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="p-6 md:p-8 flex flex-col">
@@ -490,7 +507,7 @@ export default function Projects() {
             {otherProjects.map((project) => (
               <Card
                 key={project.id}
-                className="overflow-hidden border-primary/10 shadow-lg"
+                className={`overflow-hidden border-2 ${getCategoryBorder(project.type)} shadow-lg`}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="p-6 md:p-8 flex flex-col">

@@ -14,6 +14,10 @@ export default function Globe() {
     const geometry = new THREE.BufferGeometry();
     const positions = [];
     const colors = [];
+
+    const style = getComputedStyle(document.documentElement);
+    const primary = new THREE.Color(`hsl(${style.getPropertyValue('--primary')})`);
+    const accent = new THREE.Color(`hsl(${style.getPropertyValue('--accent')})`);
     const color = new THREE.Color();
     
     for (let i = 0; i < 2000; i++) {
@@ -28,7 +32,7 @@ export default function Globe() {
       );
       
       // Random color between primary and accent
-      color.setHSL(0.6 + Math.random() * 0.2, 0.8, 0.6);
+      color.copy(primary).lerp(accent, Math.random());
       colors.push(color.r, color.g, color.b);
     }
     
@@ -40,10 +44,16 @@ export default function Globe() {
   
   useFrame(({ clock }) => {
     if (!globeRef.current || !pointsRef.current) return;
-    
+
     // Rotate the globe
     globeRef.current.rotation.y = clock.getElapsedTime() * 0.1;
     pointsRef.current.rotation.y = clock.getElapsedTime() * 0.1;
+
+    const material = pointsRef.current.material as THREE.PointsMaterial;
+    const hsl = { h: 0, s: 0, l: 0 } as THREE.HSL;
+    material.color.getHSL(hsl);
+    hsl.h = (hsl.h + 0.0005) % 1;
+    material.color.setHSL(hsl.h, hsl.s, hsl.l);
   });
   
   return (
