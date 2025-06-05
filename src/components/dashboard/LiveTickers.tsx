@@ -8,9 +8,14 @@ interface TickerData {
   change: number;
 }
 
+interface WeatherData {
+  temp: number;
+  condition: string;
+}
+
 export default function LiveTickers() {
   const [tickers, setTickers] = useState<TickerData[]>([]);
-  const [weather, setWeather] = useState<any>(null);
+  const [weather, setWeather] = useState<WeatherData | null>(null);
   const [lastCommit, setLastCommit] = useState<string>('');
   const [uptime, setUptime] = useState<string>('');
 

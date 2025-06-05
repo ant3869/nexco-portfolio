@@ -34,7 +34,11 @@ export default function GitHubActivity() {
         setStats(prev => ({
           ...prev,
           repositories: repos.length,
-          stars: repos.reduce((acc: number, repo: any) => acc + repo.stargazers_count, 0),
+          stars: repos.reduce(
+            (acc: number, repo: { stargazers_count: number }) =>
+              acc + repo.stargazers_count,
+            0
+          ),
           recentContributions: Array(30)
             .fill(0)
             .map(() => Math.floor(Math.random() * 10)) // Simulated for demo
