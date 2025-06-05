@@ -115,7 +115,7 @@ const projects = [
 const featuredProjects = projects.filter((p) => p.type === 'featured');
 const propProjects = projects.filter((p) => p.type === 'prop');
 const uiProjects = projects.filter((p) => p.type === 'ui');
-// const autoProjects = projects.filter((p) => p.type === 'auto');
+const autoProjects = projects.filter((p) => p.type === 'auto');
 const arduinoProjects = projects.filter((p) => p.type === 'arduino');
 const otherProjects = projects.filter((p) => p.type === 'other');
 
@@ -278,6 +278,76 @@ export default function Projects() {
           {/* UI Projects Tab */}
           <TabsContent value="ui" className="space-y-12">
             {uiProjects.map((project) => (
+              <Card
+                key={project.id}
+                className="overflow-hidden border-primary/10 shadow-lg"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="p-6 md:p-8 flex flex-col">
+                    <CardHeader className="p-0 mb-4">
+                      <CardTitle className="text-2xl">
+                        {project.title}
+                      </CardTitle>
+                      <CardDescription className="text-base mt-2">
+                        {project.description}
+                      </CardDescription>
+                    </CardHeader>
+
+                    <div className="flex flex-wrap gap-2 my-4">
+                      {project.tech.map((tech) => (
+                        <Badge key={tech} variant="secondary">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+
+                    {project.metrics && (
+                      <div className="bg-primary/5 rounded-lg p-3 my-2 text-sm">
+                        <strong>Impact:</strong> {project.metrics}
+                      </div>
+                    )}
+
+                    <CardFooter className="p-0 mt-auto pt-4 flex gap-3">
+                      <Button asChild size="sm">
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Live Demo
+                        </a>
+                      </Button>
+                      <Button asChild variant="outline" size="sm">
+                        <a
+                          href={project.repoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Github className="h-4 w-4 mr-2" />
+                          Source Code
+                        </a>
+                      </Button>
+                    </CardFooter>
+                  </div>
+
+                  <div className="md:order-first md:h-auto">
+                    <AspectRatio ratio={15 / 13} className="bg-muted">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="rounded-l-none md:rounded-l-lg h-full w-full object-cover"
+                      />
+                    </AspectRatio>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </TabsContent>
+
+            {/* Automation Projects Tab */}
+            <TabsContent value="auto" className="space-y-12">
+            {autoProjects.map((project) => (
               <Card
                 key={project.id}
                 className="overflow-hidden border-primary/10 shadow-lg"
