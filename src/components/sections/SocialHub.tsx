@@ -30,6 +30,15 @@ interface GitHubApiRepo {
   language: string | null;
 }
 
+interface RedditPost {
+  id: string;
+  title: string;
+  subreddit: string;
+  score: number;
+  comments: number;
+  url: string;
+}
+
 const initialGitHubRepos: GitHubRepo[] = [
   {
     id: 1,
@@ -121,34 +130,12 @@ const socialData = {
       published: '3 years ago',
     }
   ],
-  reddit: [
-    {
-      id: 1,
-      title: 'Created a tool that automates repetitive development tasks',
-      subreddit: 'r/programming',
-      upvotes: 542,
-      comments: 87,
-    },
-    {
-      id: 2,
-      title: 'What are your favorite VSCode extensions for C++ development?',
-      subreddit: 'r/cpp',
-      upvotes: 324,
-      comments: 156,
-    },
-    {
-      id: 3,
-      title:
-        'I built a code quality tool that helped our team reduce bugs by 40%',
-      subreddit: 'r/webdev',
-      upvotes: 456,
-      comments: 92,
-    },
-  ],
+  reddit: [],
 };
 
 export default function SocialHub() {
   const [githubRepos, setGithubRepos] = useState<GitHubRepo[]>(initialGitHubRepos);
+  const [redditPosts, setRedditPosts] = useState<RedditPost[]>([]);
 
   useEffect(() => {
     const fetchRepos = async () => {
@@ -177,6 +164,40 @@ export default function SocialHub() {
     };
 
     fetchRepos();
+
+    const fetchReddit = async () => {
+      try {
+        const res = await fetch(
+          'https://www.reddit.com/user/SuperHands3869/submitted.json?limit=10'
+        );
+        if (!res.ok) return;
+        const data = await res.json();
+        type RedditApiChild = {
+          data: {
+            id: string;
+            title: string;
+            subreddit_name_prefixed: string;
+            score: number;
+            num_comments: number;
+            permalink: string;
+          };
+        };
+        const posts: RedditPost[] = (data.data.children as RedditApiChild[]).map(
+          (child) => ({
+            id: child.data.id,
+            title: child.data.title,
+            subreddit: child.data.subreddit_name_prefixed,
+            score: child.data.score,
+            comments: child.data.num_comments,
+            url: `https://www.reddit.com${child.data.permalink}`,
+        }));
+        setRedditPosts(posts);
+      } catch (err: unknown) {
+        console.error('Failed to fetch Reddit posts:', err);
+      }
+    };
+
+    fetchReddit();
   }, []);
 
   return (
@@ -323,16 +344,21 @@ export default function SocialHub() {
           {/* Reddit Tab */}
           <TabsContent value="reddit">
             <p className="text-center text-muted-foreground mb-6">
-              Random on Reddit
+              Latest on Reddit
             </p>
             <div className="space-y-4">
-              {socialData.reddit.map((post) => (
+              {redditPosts.length === 0 && (
+                <p className="text-center text-sm text-muted-foreground">
+                  Unable to load posts.
+                </p>
+              )}
+              {redditPosts.map((post) => (
                 <Card key={post.id} className="card-hover border-primary/10">
                   <CardContent className="p-4">
                     <div className="flex items-start">
                       <div className="mr-4 flex flex-col items-center">
                         <span className="font-bold text-lg text-primary">
-                          {post.upvotes}
+                          {post.score}
                         </span>
                         <span className="text-xs text-muted-foreground">
                           upvotes
