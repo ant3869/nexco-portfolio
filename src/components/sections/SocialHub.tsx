@@ -7,41 +7,63 @@ import {
   MessageCircle,
 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useEffect, useState } from 'react';
 
 // Sample data for social feeds
+interface GitHubRepo {
+  id: number;
+  title: string;
+  description: string;
+  url: string;
+  stars: number;
+  forks: number;
+  language: string;
+}
+
+interface GitHubApiRepo {
+  id: number;
+  name: string;
+  description: string | null;
+  html_url: string;
+  stargazers_count: number;
+  forks_count: number;
+  language: string | null;
+}
+
+const initialGitHubRepos: GitHubRepo[] = [
+  {
+    id: 1,
+    title: 'developer-toolkit',
+    description:
+      'A comprehensive suite of developer tools that streamlines common tasks',
+    url: 'https://github.com/example/developer-toolkit',
+    stars: 235,
+    forks: 45,
+    language: 'TypeScript',
+  },
+  {
+    id: 2,
+    title: 'build-optimizer',
+    description:
+      'An intelligent build system for C++ projects that reduces compilation time',
+    url: 'https://github.com/example/build-optimizer',
+    stars: 187,
+    forks: 32,
+    language: 'C++',
+  },
+  {
+    id: 3,
+    title: 'code-analyzer',
+    description:
+      'Static analysis tool that identifies code quality issues and security vulnerabilities',
+    url: 'https://github.com/example/code-analyzer',
+    stars: 156,
+    forks: 28,
+    language: 'Python',
+  },
+];
+
 const socialData = {
-  github: [
-    {
-      id: 1,
-      title: 'developer-toolkit',
-      description:
-        'A comprehensive suite of developer tools that streamlines common tasks',
-      url: 'https://github.com/example/developer-toolkit',
-      stars: 235,
-      forks: 45,
-      language: 'TypeScript',
-    },
-    {
-      id: 2,
-      title: 'build-optimizer',
-      description:
-        'An intelligent build system for C++ projects that reduces compilation time',
-      url: 'https://github.com/example/build-optimizer',
-      stars: 187,
-      forks: 32,
-      language: 'C++',
-    },
-    {
-      id: 3,
-      title: 'code-analyzer',
-      description:
-        'Static analysis tool that identifies code quality issues and security vulnerabilities',
-      url: 'https://github.com/example/code-analyzer',
-      stars: 156,
-      forks: 28,
-      language: 'Python',
-    },
-  ],
   deviantArt: [
     {
       id: 1,
@@ -126,6 +148,37 @@ const socialData = {
 };
 
 export default function SocialHub() {
+  const [githubRepos, setGithubRepos] = useState<GitHubRepo[]>(initialGitHubRepos);
+
+  useEffect(() => {
+    const fetchRepos = async () => {
+      try {
+        const res = await fetch(
+          'https://api.github.com/users/ant3869/repos?per_page=100'
+        );
+        if (!res.ok) return;
+        const data: GitHubApiRepo[] = await res.json();
+        const repos = data
+          .sort((a, b) => b.stargazers_count - a.stargazers_count)
+          .slice(0, 6)
+          .map((repo) => ({
+            id: repo.id,
+            title: repo.name,
+            description: repo.description ?? '',
+            url: repo.html_url,
+            stars: repo.stargazers_count,
+            forks: repo.forks_count,
+            language: repo.language ?? 'N/A',
+          }));
+        setGithubRepos(repos);
+      } catch (err: unknown) {
+        console.error('Failed to fetch GitHub repositories:', err);
+      }
+    };
+
+    fetchRepos();
+  }, []);
+
   return (
     <section id="social" className="py-20 bg-muted/20">
       <div className="container mx-auto px-4">
@@ -156,7 +209,7 @@ export default function SocialHub() {
               tools, automation scripts, and more.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {socialData.github.map((repo) => (
+              {githubRepos.map((repo) => (
                 <Card key={repo.id} className="card-hover border-primary/10">
                   <CardHeader className="pb-2">
                     <div className="flex items-start justify-between">
