@@ -32,7 +32,7 @@ export default function LiveTickers() {
         <div className="flex items-center space-x-8 whitespace-nowrap px-4">
           {tickers.map((ticker) => (
             <div key={ticker.symbol} className="flex items-center space-x-2">
-              <span className="font-medium">{ticker.symbol}:</span>
+              <span className="font-medium text-accent">{ticker.symbol}:</span>
               <span>${ticker.price.toLocaleString()}</span>
               <span
                 className={cn(
@@ -59,13 +59,13 @@ export default function LiveTickers() {
           <div className="flex items-center space-x-2">
             <GitCommit className="h-4 w-4" />
             <span>Latest Commit:</span>
-            <span className="text-primary">{lastCommit}</span>
+            <span className="text-accent">{lastCommit}</span>
           </div>
 
           <div className="flex items-center space-x-2">
             <Activity className="h-4 w-4" />
             <span>Uptime:</span>
-            <span className="text-primary">{uptime}</span>
+            <span className="text-accent">{uptime}</span>
           </div>
         </div>
       </div>

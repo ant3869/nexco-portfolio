@@ -65,6 +65,7 @@
 @layer components {
   .gradient-heading {
     @apply bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-gradient;
+    text-shadow: 0 2px 4px hsl(var(--accent) / 0.3);
   }
   
   .section-heading {
@@ -95,6 +96,13 @@
     font-family: 'JetBrains Mono', monospace;
     @apply p-4 rounded-md bg-muted/50 text-sm border overflow-x-auto;
   }
+
+  .tilt-card {
+    @apply transition-transform duration-300 transform-gpu;
+  }
+  .tilt-card:hover {
+    transform: rotateX(6deg) rotateY(-6deg);
+  }
   
   @keyframes marquee {
     0% {
@@ -123,10 +131,23 @@
   }
 }
 
+@keyframes hue-rotate {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
 @layer utilities {
   .animate-gradient {
     animation: gradient-shift 3s ease infinite;
     background-size: 200% 200%;
+  }
+
+  .animated-hue {
+    animation: hue-rotate 10s linear infinite;
   }
 }
 
