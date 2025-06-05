@@ -1,4 +1,5 @@
 import { Github, Instagram, Linkedin } from 'lucide-react';
+import { FaReddit } from 'react-icons/fa';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -67,6 +68,15 @@ export default function Footer() {
                 aria-label="GitHub"
               >
                 <Github size={20} />
+              </a>
+              <a
+                href="https://www.reddit.com/user/SuperHands3869/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-colors"
+                aria-label="Reddit"
+              >
+                <FaReddit size={20} />
               </a>
               <a
                 href="https://linkedin.com"
