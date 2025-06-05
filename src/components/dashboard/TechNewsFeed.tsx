@@ -159,7 +159,7 @@ const TechNewsFeed: React.FC<TechNewsFeedProps> = ({ className = '' }) => {
 
   if (loading) {
     return (
-      <div className={`bg-gray-900 border border-gray-700 rounded-lg p-6 ${className}`}>
+      <div className={`bg-gray-900 border border-accent rounded-lg p-6 ${className}`}>
         <h3 className="text-lg font-semibold text-white mb-4">Tech News</h3>
         <div className="space-y-4">
           {[...Array(3)].map((_, i) => (
@@ -175,7 +175,7 @@ const TechNewsFeed: React.FC<TechNewsFeedProps> = ({ className = '' }) => {
 
   if (error) {
     return (
-      <div className={`bg-gray-900 border border-gray-700 rounded-lg p-6 ${className}`}>
+      <div className={`bg-gray-900 border border-accent rounded-lg p-6 ${className}`}>
         <h3 className="text-lg font-semibold text-white mb-4">Tech News</h3>
         <div className="text-red-400 text-sm">{error}</div>
       </div>
@@ -183,7 +183,7 @@ const TechNewsFeed: React.FC<TechNewsFeedProps> = ({ className = '' }) => {
   }
 
   return (
-    <div className={`bg-gray-900 border border-gray-700 rounded-lg p-6 ${className}`}>
+    <div className={`bg-gray-900 border border-accent rounded-lg p-6 ${className}`}>
       <h3 className="text-lg font-semibold text-white mb-4">Tech News</h3>
       <div className="overflow-hidden whitespace-nowrap">
         <div className="flex gap-8 animate-marquee items-center">
@@ -193,7 +193,7 @@ const TechNewsFeed: React.FC<TechNewsFeedProps> = ({ className = '' }) => {
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-gray-300 hover:text-white"
+                className="text-sm text-accent hover:text-white"
               >
                 {item.title}
               </a>
