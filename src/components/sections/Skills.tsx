@@ -1,67 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
-import { Progress } from '@/components/ui/progress';
-import { Code, Server, Layers, Terminal } from 'lucide-react';
-import { useState } from 'react';
-
-// Define skill categories and skills with proficiency levels
-const skillCategories = [
-  {
-    id: 'languages',
-    name: 'Languages',
-    icon: <Code className="h-5 w-5" />,
-    skills: [
-      { name: 'C#', level: 90 },
-      { name: 'TypeScript', level: 85 },
-      { name: 'JavaScript', level: 75 },
-      { name: 'C++', level: 65 },
-      { name: 'Python', level: 60 },
-    ],
-  },
-  {
-    id: 'frontend',
-    name: 'Frontend',
-    icon: <Layers className="h-5 w-5" />,
-    skills: [
-      { name: 'React', level: 90 },
-      { name: 'Tailwind CSS', level: 95 },
-      { name: 'CSS/SCSS', level: 85 },
-      { name: 'Next.js', level: 80 },
-      { name: 'Radix UI', level: 70 },
-    ],
-  },
-  {
-    id: 'backend',
-    name: 'Backend',
-    icon: <Server className="h-5 w-5" />,
-    skills: [
-      { name: 'ASP.NET Core', level: 85 },
-      { name: 'Node.js', level: 80 },
-      { name: 'RESTful APIs', level: 85 },
-      { name: 'GraphQL', level: 60 },
-      { name: 'Docker', level: 60 },
-    ],
-  },
-  {
-    id: 'automation',
-    name: 'Automation',
-    icon: <Terminal className="h-5 w-5" />,
-    skills: [
-      { name: 'PowerShell', level: 95 },
-      { name: 'Batch Scripting', level: 85 },
-      { name: 'Bash/Shell', level: 80 },
-      { name: 'GitHub Actions', level: 80 },
-      { name: 'CI/CD Pipelines', level: 70 },
-    ],
-  },
-];
+import { Code, Wrench, Brain, Terminal } from 'lucide-react';
 
 export default function Skills() {
-  const [activeCategory, setActiveCategory] = useState('languages');
-  
-  const selectedCategory = skillCategories.find(
-    (category) => category.id === activeCategory
-  );
-
   return (
     <section id="skills" className="py-20">
       <div className="container mx-auto px-4">
@@ -69,78 +9,94 @@ export default function Skills() {
           Skills & Technologies
         </h2>
         
-        <div className="max-w-5xl mx-auto">
-          {/* Category Tabs */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-            {skillCategories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`p-4 rounded-lg flex flex-col items-center justify-center transition-all ${
-                  activeCategory === category.id
-                    ? 'bg-primary/10 text-primary'
-                    : 'bg-muted hover:bg-muted/80'
-                }`}
-              >
-                <div className="p-2">{category.icon}</div>
-                <span className="font-medium">{category.name}</span>
-              </button>
-            ))}
-          </div>
-          
-          {/* Skills List */}
-          {selectedCategory && (
-            <Card className="shadow-lg border-primary/10">
-              <CardContent className="p-6 md:p-8">
-                <h3 className="text-xl font-bold mb-6 flex items-center">
-                  {selectedCategory.icon}
-                  <span className="ml-2">{selectedCategory.name}</span>
-                </h3>
-                
-                <div className="grid gap-6">
-                  {selectedCategory.skills.map((skill) => (
-                    <div key={skill.name}>
-                      <div className="flex justify-between mb-1">
-                        <span className="font-medium">{skill.name}</span>
-                        <span className="text-sm text-muted-foreground">{skill.level}%</span>
-                      </div>
-                      <Progress
-                        value={skill.level}
-                        className="h-2 bg-muted"
-                        // indicatorClassName={`${
-                        //   skill.level > 90
-                        //     ? 'bg-gradient-to-r from-primary to-accent'
-                        //     : 'bg-primary'
-                        // }`}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          )}
-          
-          {/* Additional Skills */}
-          <div className="mt-10">
-            <h3 className="section-subheading text-center">Additional Expertise</h3>
-            <div className="flex flex-wrap justify-center gap-2 mt-4">
-              {[
-                'Git',
-                'Microcontrollers',
-                'OpenAI API',
-                'Docker Compose',
-                'Windows Automation',
-                'SOLID Principles',
-                'Performance Optimization',
-                'TDD',
-                'UX/UI',
-                'System Design'
-              ].map((skill) => (
-                <span key={skill} className="tech-badge">
-                  {skill}
+        <div className="max-w-5xl mx-auto space-y-8">
+          {/* Strongest Skills */}
+          <Card className="shadow-lg border-primary/20">
+            <CardContent className="p-6 md:p-8">
+              <h3 className="text-xl font-bold mb-4 flex items-center text-primary">
+                <Code className="h-5 w-5 mr-2" />
+                Strongest
+              </h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Language I'm most proficient with through years of self-taught development.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="px-4 py-2 bg-primary/10 text-primary rounded-lg font-medium border border-primary/20">
+                  C#
                 </span>
-              ))}
-            </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Learned in College */}
+          <Card className="shadow-lg border-muted">
+            <CardContent className="p-6 md:p-8">
+              <h3 className="text-xl font-bold mb-4 flex items-center">
+                <Terminal className="h-5 w-5 mr-2" />
+                Foundation (College)
+              </h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Learned the fundamentals in community college ~10 years ago. Rusty but foundational.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="tech-badge">C++</span>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* AI-Assisted Development */}
+          <Card className="shadow-lg border-accent/20">
+            <CardContent className="p-6 md:p-8">
+              <h3 className="text-xl font-bold mb-4 flex items-center text-accent">
+                <Brain className="h-5 w-5 mr-2" />
+                Work With (AI-Assisted)
+              </h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Technologies I actively use with heavy AI assistance (Claude, Copilot, etc.). I'm practical—I use what works.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="tech-badge">TypeScript</span>
+                <span className="tech-badge">JavaScript</span>
+                <span className="tech-badge">Python</span>
+                <span className="tech-badge">React</span>
+                <span className="tech-badge">Tailwind CSS</span>
+                <span className="tech-badge">PowerShell</span>
+                <span className="tech-badge">Bash</span>
+                <span className="tech-badge">Node.js</span>
+                <span className="tech-badge">Vite</span>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Tools & Platforms */}
+          <Card className="shadow-lg border-muted">
+            <CardContent className="p-6 md:p-8">
+              <h3 className="text-xl font-bold mb-4 flex items-center">
+                <Wrench className="h-5 w-5 mr-2" />
+                Tools & Platforms
+              </h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Development tools and platforms I use regularly.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="tech-badge">Git</span>
+                <span className="tech-badge">GitHub</span>
+                <span className="tech-badge">VS Code</span>
+                <span className="tech-badge">Visual Studio</span>
+                <span className="tech-badge">WinUI3</span>
+                <span className="tech-badge">Arduino/Teensy</span>
+                <span className="tech-badge">Windows Automation</span>
+                <span className="tech-badge">GitHub Actions</span>
+                <span className="tech-badge">CI/CD Pipelines</span>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Additional Context */}
+          <div className="mt-8 text-center">
+            <p className="text-muted-foreground italic">
+              "I'm self-taught, practical, and constantly learning. I don't claim to know everything—I just know how to figure things out."
+            </p>
           </div>
         </div>
       </div>
