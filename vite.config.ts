@@ -21,13 +21,4 @@ export default defineConfig({
       },
     },
   },
-  server: {
-    proxy: {
-      '/api/tech-news': {
-        target: 'http://localhost:3001',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
-      }
-    }
-  }
 });

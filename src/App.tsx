@@ -6,7 +6,6 @@ import Hero from '@/components/sections/Hero';
 import About from '@/components/sections/About';
 import Skills from '@/components/sections/Skills';
 import Projects from '@/components/sections/Projects';
-// import DevTools from '@/components/sections/DevTools';
 import SocialHub from '@/components/sections/SocialHub';
 import Contact from '@/components/sections/Contact';
 import TechNewsFeed from '@/components/dashboard/TechNewsFeed';
@@ -24,7 +23,6 @@ function App() {
           <About />
           <Skills />
           <Projects />
-          {/* <DevTools /> */}
           <SocialHub />
           <Contact />
         </main>

@@ -177,20 +177,8 @@
     }
   }
 
-  /* Kept for older components; now maps to the same accent gradient */
-  .gradient-heading {
-    background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
   .section-heading {
     @apply text-4xl md:text-5xl font-bold tracking-tight text-foreground;
-  }
-
-  .section-subheading {
-    @apply text-xl md:text-2xl font-semibold text-muted-foreground mb-4;
   }
 
   /* "— Heading" style used for in-section headings */
@@ -220,11 +208,6 @@
 
   .tech-badge {
     @apply px-3 py-1 text-xs rounded-full border border-white/10 bg-white/5 text-gray-300 transition-colors hover:border-white/25 hover:text-white;
-  }
-
-  .code-block {
-    font-family: 'JetBrains Mono', monospace;
-    @apply p-4 rounded-md bg-muted/50 text-sm border overflow-x-auto;
   }
 
   /* Scroll-reveal: fades content up once it enters the viewport */

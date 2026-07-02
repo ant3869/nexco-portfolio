@@ -22,11 +22,32 @@ const json = (data: unknown, status = 200) =>
     headers: { 'Content-Type': 'application/json' },
   });
 
+// Origins allowed to submit the form (production + Pages previews)
+const isAllowedOrigin = (origin: string | null): boolean => {
+  if (!origin) return false;
+  try {
+    const host = new URL(origin).hostname;
+    return (
+      host === 'nexcomedia.com' ||
+      host.endsWith('.nexcomedia.com') ||
+      host.endsWith('.pages.dev') ||
+      host === 'localhost' ||
+      host === '127.0.0.1'
+    );
+  } catch {
+    return false;
+  }
+};
+
 export const onRequestPost = async (context: {
   request: Request;
   env: Env;
 }): Promise<Response> => {
   const { request, env } = context;
+
+  if (!isAllowedOrigin(request.headers.get('Origin'))) {
+    return json({ error: 'Forbidden.' }, 403);
+  }
 
   let payload: ContactPayload;
   try {

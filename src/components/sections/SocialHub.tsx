@@ -69,7 +69,7 @@ const socialData = {
       id: 'tJ2tKEvZGIw',
       title: 'Ghostbusters Proton Beam After Effects',
       thumbnailUrl:
-        'https://i9.ytimg.com/vi/tJ2tKEvZGIw/maxresdefault.jpg?v=6158e911&sqp=COiJqsEG&rs=AOn4CLC2lxWLdVGj81liePUA5DsA8CpInA',
+        'https://i.ytimg.com/vi/tJ2tKEvZGIw/hqdefault.jpg',
       views: '5.2K',
       published: '3 years ago',
     },
@@ -77,7 +77,7 @@ const socialData = {
       id: 'WZGYdTfGNgQ',
       title: 'Planet Vegeta (DBZ) Mockup After Effects',
       thumbnailUrl:
-        'https://i9.ytimg.com/vi_webp/WZGYdTfGNgQ/maxresdefault.webp?v=616cd813&sqp=COiJqsEG&rs=AOn4CLD__rcIbkkheaivM4LrUbckJWyIqA',
+        'https://i.ytimg.com/vi/WZGYdTfGNgQ/hqdefault.jpg',
       views: '888',
       published: '3 years ago',
     },
@@ -85,7 +85,7 @@ const socialData = {
       id: 'OwWkHsjrHbk',
       title: 'Planet Earth (After Effects) (VideoCopilot) (Orb Plugin)',
       thumbnailUrl:
-        'https://i9.ytimg.com/vi_webp/OwWkHsjrHbk/maxresdefault.webp?v=61903bad&sqp=COiJqsEG&rs=AOn4CLDQ6s4lkmb0Hb79xojzJCCUtex38w',
+        'https://i.ytimg.com/vi/OwWkHsjrHbk/hqdefault.jpg',
       views: '126',
       published: '3 years ago',
     },
@@ -93,7 +93,7 @@ const socialData = {
       id: '-A7nD_mlL9w',
       title: 'Motion Tracked Demonic Face Test (After Effects)',
       thumbnailUrl:
-        'https://i9.ytimg.com/vi_webp/-A7nD_mlL9w/maxresdefault.webp?v=615baad9&sqp=CLyHqsEG&rs=AOn4CLA_17zdiDen8dWYv8JeerNq202mwg',
+        'https://i.ytimg.com/vi/-A7nD_mlL9w/hqdefault.jpg',
       views: '56',
       published: '3 years ago',
     }
