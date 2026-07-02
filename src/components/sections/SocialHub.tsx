@@ -135,9 +135,7 @@ export default function SocialHub() {
 
     const fetchReddit = async () => {
       try {
-        const res = await fetch(
-          'https://www.reddit.com/user/SuperHands3869/submitted.json?limit=10'
-        );
+        const res = await fetch('/api/reddit?feed=user');
         if (!res.ok) return;
         const data = await res.json();
         type RedditApiChild = {
@@ -216,7 +214,7 @@ export default function SocialHub() {
             )}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {githubRepos.map((repo) => (
-                <Card key={repo.id} className="card-hover border-white/10 bg-white/[0.02]">
+                <Card key={repo.id} className="spotlight-card card-hover border-white/10 bg-white/[0.02]">
                   <CardHeader className="pb-2">
                     <div className="flex items-start justify-between">
                       <div className="flex items-center">
@@ -263,7 +261,7 @@ export default function SocialHub() {
               {socialData.deviantArt.map((art) => (
                 <Card
                   key={art.id}
-                  className="overflow-hidden card-hover border-white/10 bg-white/[0.02]"
+                  className="spotlight-card overflow-hidden card-hover border-white/10 bg-white/[0.02]"
                 >
                   <div className="aspect-[4/3] relative overflow-hidden">
                     <img
@@ -301,7 +299,7 @@ export default function SocialHub() {
               >
                 <Card
                   key={video.id}
-                  className="overflow-hidden card-hover border-white/10 bg-white/[0.02]"
+                  className="spotlight-card overflow-hidden card-hover border-white/10 bg-white/[0.02]"
                 >
                   <div className="aspect-video relative">
                     <img
@@ -338,11 +336,20 @@ export default function SocialHub() {
             <div className="space-y-4">
               {redditPosts.length === 0 && (
                 <p className="text-center text-sm text-muted-foreground">
-                  Unable to load posts.
+                  Couldn't load posts right now — find me on{' '}
+                  <a
+                    href="https://www.reddit.com/user/SuperHands3869/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:underline"
+                  >
+                    reddit.com/u/SuperHands3869
+                  </a>
+                  .
                 </p>
               )}
               {redditPosts.map((post) => (
-                <Card key={post.id} className="card-hover border-white/10 bg-white/[0.02]">
+                <Card key={post.id} className="spotlight-card card-hover border-white/10 bg-white/[0.02]">
                   <CardContent className="p-4">
                     <div className="flex items-start">
                       <div className="mr-4 flex flex-col items-center">

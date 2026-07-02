@@ -68,7 +68,7 @@ export default function Skills() {
             <Reveal
               key={group.title}
               delay={i * 75}
-              className="card-hover rounded-2xl border border-white/10 bg-white/[0.03] p-7"
+              className="spotlight-card card-hover rounded-2xl border border-white/10 bg-white/[0.03] p-7"
             >
               <h3 className="flex items-center text-lg font-bold mb-2">
                 <group.icon className="h-5 w-5 mr-3 text-blue-400" />
@@ -89,7 +89,7 @@ export default function Skills() {
         </div>
 
         {/* Quote banner */}
-        <Reveal className="mt-10 rounded-2xl border border-white/10 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 p-8 text-center">
+        <Reveal className="gradient-border mt-10 rounded-2xl bg-gradient-to-r from-blue-500/[0.07] via-purple-500/[0.07] to-pink-500/[0.07] p-8 text-center">
           <p className="text-muted-foreground italic">
             "I'm self-taught, practical, and constantly learning. I don't claim
             to know everything—I just know how to figure things out."

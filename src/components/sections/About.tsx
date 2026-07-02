@@ -62,7 +62,7 @@ export default function About() {
                 {quickFacts.map((fact) => (
                   <div
                     key={fact.label}
-                    className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] px-5 py-3.5"
+                    className="spotlight-card flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] px-5 py-3.5"
                   >
                     <span className="text-sm text-muted-foreground">
                       {fact.label}
@@ -76,7 +76,7 @@ export default function About() {
             <div>
               <h3 className="dash-heading mb-6">Education & Certifications</h3>
               <div className="space-y-3">
-                <Card className="card-hover border-white/10 bg-white/[0.03]">
+                <Card className="spotlight-card card-hover border-white/10 bg-white/[0.03]">
                   <CardContent className="p-5">
                     <div className="space-y-1">
                       <div className="flex justify-between items-start">
@@ -96,7 +96,7 @@ export default function About() {
                   </CardContent>
                 </Card>
 
-                <Card className="card-hover border-white/10 bg-white/[0.03]">
+                <Card className="spotlight-card card-hover border-white/10 bg-white/[0.03]">
                   <CardContent className="p-5">
                     <div className="space-y-1">
                       <h4 className="font-semibold">Certifications</h4>

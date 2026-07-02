@@ -120,7 +120,7 @@ const projects: Project[] = [
 // Wide card with image beside the details, used for tabs that show few items
 function WideProjectCard({ project }: { project: Project }) {
   return (
-    <Card className="overflow-hidden border border-white/10 bg-white/[0.02]">
+    <Card className="spotlight-card overflow-hidden border border-white/10 bg-white/[0.02]">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="p-6 md:p-8 flex flex-col">
           <CardHeader className="p-0 mb-4">
@@ -195,7 +195,7 @@ function WideProjectCard({ project }: { project: Project }) {
 // Compact card used in the grid tabs
 function GridProjectCard({ project }: { project: Project }) {
   return (
-    <Card className="overflow-hidden card-hover border border-white/10 bg-white/[0.02]">
+    <Card className="spotlight-card overflow-hidden card-hover border border-white/10 bg-white/[0.02]">
       <AspectRatio ratio={16 / 9} className="bg-muted">
         <img
           loading="lazy"

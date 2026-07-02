@@ -46,7 +46,7 @@ export default function Hero() {
 
   return (
     <section id="home" className="relative min-h-screen overflow-hidden">
-      {/* Subtle radial glow behind the headline */}
+      {/* Subtle radial glow + dot grid behind the headline */}
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden="true"
@@ -55,10 +55,18 @@ export default function Hero() {
             'radial-gradient(ellipse 60% 40% at 50% 40%, rgba(59, 130, 246, 0.08), transparent 70%)',
         }}
       />
+      <div className="dot-grid pointer-events-none absolute inset-0" aria-hidden="true" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="min-h-screen flex flex-col items-center justify-center text-center">
           <div className="space-y-8 max-w-4xl">
+            <div className="flex justify-center">
+              <span className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-muted-foreground">
+                <span className="pulse-dot" />
+                Available for opportunities
+              </span>
+            </div>
+
             <p className="kicker">Hi, I'm</p>
 
             <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight leading-[1.05]">

@@ -10,11 +10,13 @@ import Projects from '@/components/sections/Projects';
 import SocialHub from '@/components/sections/SocialHub';
 import Contact from '@/components/sections/Contact';
 import TechNewsFeed from '@/components/dashboard/TechNewsFeed';
+import SpotlightEffect from '@/components/ui/SpotlightEffect';
 
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
       <div className="min-h-screen bg-background font-sans antialiased">
+        <SpotlightEffect />
         <Navbar />
         <TechNewsFeed />
         <main className="relative">

@@ -48,12 +48,133 @@
     font-family: 'JetBrains Mono', monospace;
   }
 
-  /* Blue -> purple -> pink accent, used on a few key words */
+  /* Blue -> purple -> pink accent, used on a few key words.
+     The gradient loops so the shimmer animation tiles seamlessly. */
   .gradient-accent {
-    background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
+    background: linear-gradient(
+      90deg,
+      #60a5fa,
+      #a78bfa,
+      #f472b6,
+      #a78bfa,
+      #60a5fa
+    );
+    background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    animation: shimmer 6s linear infinite;
+  }
+
+  @keyframes shimmer {
+    to {
+      background-position: 200% center;
+    }
+  }
+
+  /* Subtle dot-grid backdrop, faded out toward the edges */
+  .dot-grid {
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.09) 1px,
+      transparent 1px
+    );
+    background-size: 26px 26px;
+    -webkit-mask-image: radial-gradient(
+      ellipse 65% 55% at 50% 45%,
+      black 25%,
+      transparent 72%
+    );
+    mask-image: radial-gradient(
+      ellipse 65% 55% at 50% 45%,
+      black 25%,
+      transparent 72%
+    );
+  }
+
+  /* Cursor-tracking spotlight on hover (set --spot-x/--spot-y from JS) */
+  .spotlight-card {
+    position: relative;
+    overflow: hidden;
+  }
+  .spotlight-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: radial-gradient(
+      320px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      rgba(96, 165, 250, 0.1),
+      transparent 65%
+    );
+    pointer-events: none;
+  }
+  .spotlight-card:hover::before {
+    opacity: 1;
+  }
+
+  /* Slow-flowing gradient border */
+  .gradient-border {
+    position: relative;
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6, #a78bfa, #60a5fa);
+    background-size: 300% 100%;
+    animation: border-flow 8s linear infinite;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  @keyframes border-flow {
+    to {
+      background-position: 300% center;
+    }
+  }
+
+  /* Pulsing availability dot */
+  .pulse-dot {
+    position: relative;
+    display: inline-block;
+    height: 0.5rem;
+    width: 0.5rem;
+    border-radius: 9999px;
+    background: #4ade80;
+  }
+  .pulse-dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: #4ade80;
+    animation: pulse-ring 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes pulse-ring {
+    75%,
+    100% {
+      transform: scale(2.4);
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gradient-accent,
+    .gradient-border::before,
+    .pulse-dot::after {
+      animation: none;
+    }
   }
 
   /* Kept for older components; now maps to the same accent gradient */
