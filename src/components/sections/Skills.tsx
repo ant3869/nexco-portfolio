@@ -1,4 +1,5 @@
 import { Code, Wrench, Brain, Terminal } from 'lucide-react';
+import Reveal from '@/components/ui/Reveal';
 
 const skillGroups = [
   {
@@ -54,19 +55,20 @@ export default function Skills() {
   return (
     <section id="skills" className="py-24 border-t border-white/5">
       <div className="container mx-auto px-4 max-w-6xl">
-        <div className="mb-14">
+        <Reveal className="mb-14">
           <h2 className="dash-heading text-3xl">Tech Stack</h2>
           <p className="mt-4 text-muted-foreground max-w-2xl">
             Skills and technologies I use to build things that solve real
             problems.
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {skillGroups.map((group) => (
-            <div
+          {skillGroups.map((group, i) => (
+            <Reveal
               key={group.title}
-              className="card-hover rounded-2xl border border-white/10 bg-white/[0.03] p-7"
+              delay={i * 75}
+              className="spotlight-card card-hover rounded-2xl border border-white/10 bg-white/[0.03] p-7"
             >
               <h3 className="flex items-center text-lg font-bold mb-2">
                 <group.icon className="h-5 w-5 mr-3 text-blue-400" />
@@ -82,17 +84,17 @@ export default function Skills() {
                   </span>
                 ))}
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
 
         {/* Quote banner */}
-        <div className="mt-10 rounded-2xl border border-white/10 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 p-8 text-center">
+        <Reveal className="gradient-border mt-10 rounded-2xl bg-gradient-to-r from-blue-500/[0.07] via-purple-500/[0.07] to-pink-500/[0.07] p-8 text-center">
           <p className="text-muted-foreground italic">
             "I'm self-taught, practical, and constantly learning. I don't claim
             to know everything—I just know how to figure things out."
           </p>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

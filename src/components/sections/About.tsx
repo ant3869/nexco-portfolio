@@ -1,4 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card';
+import Reveal from '@/components/ui/Reveal';
 
 const quickFacts = [
   { label: 'Based in', value: 'Bentonville, AR' },
@@ -12,7 +13,7 @@ export default function About() {
     <section id="about" className="py-24 border-t border-white/5">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Statement headline */}
-        <div className="max-w-3xl mb-20">
+        <Reveal className="max-w-3xl mb-20">
           <p className="kicker mb-4">About Me</p>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
             IT guy by day,{' '}
@@ -25,9 +26,9 @@ export default function About() {
             I design scripts, apps, and tools to make workflows faster,
             cleaner, and less frustrating.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* My Story */}
           <div>
             <h3 className="dash-heading mb-6">My Story</h3>
@@ -61,7 +62,7 @@ export default function About() {
                 {quickFacts.map((fact) => (
                   <div
                     key={fact.label}
-                    className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] px-5 py-3.5"
+                    className="spotlight-card flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] px-5 py-3.5"
                   >
                     <span className="text-sm text-muted-foreground">
                       {fact.label}
@@ -75,7 +76,7 @@ export default function About() {
             <div>
               <h3 className="dash-heading mb-6">Education & Certifications</h3>
               <div className="space-y-3">
-                <Card className="card-hover border-white/10 bg-white/[0.03]">
+                <Card className="spotlight-card card-hover border-white/10 bg-white/[0.03]">
                   <CardContent className="p-5">
                     <div className="space-y-1">
                       <div className="flex justify-between items-start">
@@ -95,7 +96,7 @@ export default function About() {
                   </CardContent>
                 </Card>
 
-                <Card className="card-hover border-white/10 bg-white/[0.03]">
+                <Card className="spotlight-card card-hover border-white/10 bg-white/[0.03]">
                   <CardContent className="p-5">
                     <div className="space-y-1">
                       <h4 className="font-semibold">Certifications</h4>
@@ -109,7 +110,7 @@ export default function About() {
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

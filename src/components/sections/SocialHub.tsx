@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useEffect, useState } from 'react';
+import Reveal from '@/components/ui/Reveal';
 
 // Sample data for social feeds
 interface GitHubRepo {
@@ -39,39 +40,6 @@ interface RedditPost {
   url: string;
 }
 
-const initialGitHubRepos: GitHubRepo[] = [
-  {
-    id: 1,
-    title: 'developer-toolkit',
-    description:
-      'A comprehensive suite of developer tools that streamlines common tasks',
-    url: 'https://github.com/example/developer-toolkit',
-    stars: 235,
-    forks: 45,
-    language: 'TypeScript',
-  },
-  {
-    id: 2,
-    title: 'build-optimizer',
-    description:
-      'An intelligent build system for C++ projects that reduces compilation time',
-    url: 'https://github.com/example/build-optimizer',
-    stars: 187,
-    forks: 32,
-    language: 'C++',
-  },
-  {
-    id: 3,
-    title: 'code-analyzer',
-    description:
-      'Static analysis tool that identifies code quality issues and security vulnerabilities',
-    url: 'https://github.com/example/code-analyzer',
-    stars: 156,
-    forks: 28,
-    language: 'Python',
-  },
-];
-
 const socialData = {
   deviantArt: [
     {
@@ -101,7 +69,7 @@ const socialData = {
       id: 'tJ2tKEvZGIw',
       title: 'Ghostbusters Proton Beam After Effects',
       thumbnailUrl:
-        'https://i9.ytimg.com/vi/tJ2tKEvZGIw/maxresdefault.jpg?v=6158e911&sqp=COiJqsEG&rs=AOn4CLC2lxWLdVGj81liePUA5DsA8CpInA',
+        'https://i.ytimg.com/vi/tJ2tKEvZGIw/hqdefault.jpg',
       views: '5.2K',
       published: '3 years ago',
     },
@@ -109,7 +77,7 @@ const socialData = {
       id: 'WZGYdTfGNgQ',
       title: 'Planet Vegeta (DBZ) Mockup After Effects',
       thumbnailUrl:
-        'https://i9.ytimg.com/vi_webp/WZGYdTfGNgQ/maxresdefault.webp?v=616cd813&sqp=COiJqsEG&rs=AOn4CLD__rcIbkkheaivM4LrUbckJWyIqA',
+        'https://i.ytimg.com/vi/WZGYdTfGNgQ/hqdefault.jpg',
       views: '888',
       published: '3 years ago',
     },
@@ -117,7 +85,7 @@ const socialData = {
       id: 'OwWkHsjrHbk',
       title: 'Planet Earth (After Effects) (VideoCopilot) (Orb Plugin)',
       thumbnailUrl:
-        'https://i9.ytimg.com/vi_webp/OwWkHsjrHbk/maxresdefault.webp?v=61903bad&sqp=COiJqsEG&rs=AOn4CLDQ6s4lkmb0Hb79xojzJCCUtex38w',
+        'https://i.ytimg.com/vi/OwWkHsjrHbk/hqdefault.jpg',
       views: '126',
       published: '3 years ago',
     },
@@ -125,7 +93,7 @@ const socialData = {
       id: '-A7nD_mlL9w',
       title: 'Motion Tracked Demonic Face Test (After Effects)',
       thumbnailUrl:
-        'https://i9.ytimg.com/vi_webp/-A7nD_mlL9w/maxresdefault.webp?v=615baad9&sqp=CLyHqsEG&rs=AOn4CLA_17zdiDen8dWYv8JeerNq202mwg',
+        'https://i.ytimg.com/vi/-A7nD_mlL9w/hqdefault.jpg',
       views: '56',
       published: '3 years ago',
     }
@@ -134,7 +102,7 @@ const socialData = {
 };
 
 export default function SocialHub() {
-  const [githubRepos, setGithubRepos] = useState<GitHubRepo[]>(initialGitHubRepos);
+  const [githubRepos, setGithubRepos] = useState<GitHubRepo[]>([]);
   const [redditPosts, setRedditPosts] = useState<RedditPost[]>([]);
 
   useEffect(() => {
@@ -167,9 +135,7 @@ export default function SocialHub() {
 
     const fetchReddit = async () => {
       try {
-        const res = await fetch(
-          'https://www.reddit.com/user/SuperHands3869/submitted.json?limit=10'
-        );
+        const res = await fetch('/api/reddit?feed=user');
         if (!res.ok) return;
         const data = await res.json();
         type RedditApiChild = {
@@ -203,10 +169,10 @@ export default function SocialHub() {
   return (
     <section id="social" className="py-24 border-t border-white/5">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-14">
+        <Reveal className="text-center mb-14">
           <p className="kicker mb-4">Online</p>
           <h2 className="section-heading">Social Media Hub</h2>
-        </div>
+        </Reveal>
 
         <Tabs defaultValue="github" className="max-w-6xl mx-auto">
           <div className="flex justify-center mb-8">
@@ -232,9 +198,23 @@ export default function SocialHub() {
               Check out my top repositories on GitHub where I share developer
               tools, automation scripts, and more.
             </p>
+            {githubRepos.length === 0 && (
+              <p className="text-center text-sm text-muted-foreground">
+                Couldn't load repositories right now — browse them directly on{' '}
+                <a
+                  href="https://github.com/ant3869"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:underline"
+                >
+                  github.com/ant3869
+                </a>
+                .
+              </p>
+            )}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {githubRepos.map((repo) => (
-                <Card key={repo.id} className="card-hover border-white/10 bg-white/[0.02]">
+                <Card key={repo.id} className="spotlight-card card-hover border-white/10 bg-white/[0.02]">
                   <CardHeader className="pb-2">
                     <div className="flex items-start justify-between">
                       <div className="flex items-center">
@@ -281,10 +261,12 @@ export default function SocialHub() {
               {socialData.deviantArt.map((art) => (
                 <Card
                   key={art.id}
-                  className="overflow-hidden card-hover border-white/10 bg-white/[0.02]"
+                  className="spotlight-card overflow-hidden card-hover border-white/10 bg-white/[0.02]"
                 >
                   <div className="aspect-[4/3] relative overflow-hidden">
                     <img
+                      loading="lazy"
+                      decoding="async"
                       src={art.imageUrl}
                       alt={art.title}
                       className="w-full h-full object-cover transition-transform hover:scale-105"
@@ -317,10 +299,12 @@ export default function SocialHub() {
               >
                 <Card
                   key={video.id}
-                  className="overflow-hidden card-hover border-white/10 bg-white/[0.02]"
+                  className="spotlight-card overflow-hidden card-hover border-white/10 bg-white/[0.02]"
                 >
                   <div className="aspect-video relative">
                     <img
+                      loading="lazy"
+                      decoding="async"
                       src={video.thumbnailUrl}
                       alt={video.title}
                       className="w-full h-full object-cover"
@@ -352,11 +336,20 @@ export default function SocialHub() {
             <div className="space-y-4">
               {redditPosts.length === 0 && (
                 <p className="text-center text-sm text-muted-foreground">
-                  Unable to load posts.
+                  Couldn't load posts right now — find me on{' '}
+                  <a
+                    href="https://www.reddit.com/user/SuperHands3869/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:underline"
+                  >
+                    reddit.com/u/SuperHands3869
+                  </a>
+                  .
                 </p>
               )}
               {redditPosts.map((post) => (
-                <Card key={post.id} className="card-hover border-white/10 bg-white/[0.02]">
+                <Card key={post.id} className="spotlight-card card-hover border-white/10 bg-white/[0.02]">
                   <CardContent className="p-4">
                     <div className="flex items-start">
                       <div className="mr-4 flex flex-col items-center">

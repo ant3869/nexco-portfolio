@@ -1,4 +1,4 @@
-import { Github, Instagram, Linkedin } from 'lucide-react';
+import { Github, Instagram } from 'lucide-react';
 import { FaReddit } from 'react-icons/fa';
 
 const quickLinks = [
@@ -19,11 +19,6 @@ const socials = [
     href: 'https://www.reddit.com/user/SuperHands3869/',
     label: 'Reddit',
     icon: <FaReddit size={18} />,
-  },
-  {
-    href: 'https://linkedin.com',
-    label: 'LinkedIn',
-    icon: <Linkedin size={18} />,
   },
   {
     href: 'https://www.instagram.com/nexcomedia/',

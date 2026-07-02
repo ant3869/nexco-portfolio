@@ -120,6 +120,16 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+            <a
+              href="/docs/resume.txt"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center rounded-lg px-4 py-2 text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
+              onClick={closeMenu}
+            >
+              <FileText className="mr-2 h-4 w-4" />
+              Resume
+            </a>
           </nav>
         </div>
       )}

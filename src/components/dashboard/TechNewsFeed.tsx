@@ -89,9 +89,7 @@ const TechNewsFeed: React.FC<TechNewsFeedProps> = ({ className = '' }) => {
         const vergeReq = fetch(
           'https://api.rss2json.com/v1/api.json?rss_url=https://www.theverge.com/rss/index.xml'
         );
-        const redditReq = fetch(
-          'https://www.reddit.com/r/technology/top.json?limit=5&t=day'
-        );
+        const redditReq = fetch('/api/reddit?feed=technology');
         const spaceReq = fetch(
           'https://api.spaceflightnewsapi.net/v4/articles?limit=5'
         );

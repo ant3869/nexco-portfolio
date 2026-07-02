@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useToast } from '@/hooks/use-toast';
+import Reveal from '@/components/ui/Reveal';
 
 // Form validation schema
 const contactFormSchema = z.object({
@@ -50,36 +51,53 @@ export default function Contact() {
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-    // Handle form submission (in a real app, this would send data to a server)
-    console.log('Form data:', data);
+      if (!res.ok) {
+        const body = (await res.json().catch(() => null)) as {
+          error?: string;
+        } | null;
+        throw new Error(body?.error ?? 'Failed to send message.');
+      }
 
-    toast({
-      title: 'Message Sent!',
-      description: "Thanks for reaching out. I'll get back to you soon.",
-      variant: 'default',
-    });
-
-    // Reset form
-    reset();
-    setIsSubmitting(false);
+      toast({
+        title: 'Message Sent!',
+        description: "Thanks for reaching out. I'll get back to you soon.",
+        variant: 'default',
+      });
+      reset();
+    } catch (err) {
+      toast({
+        title: "Couldn't send message",
+        description:
+          err instanceof Error && err.message !== 'Failed to fetch'
+            ? `${err.message} You can also email me directly at anthon3869@gmail.com.`
+            : 'Something went wrong. You can email me directly at anthon3869@gmail.com.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <section id="contact" className="py-24 border-t border-white/5">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-14">
+        <Reveal className="text-center mb-14">
           <p className="kicker mb-4">Contact</p>
           <h2 className="section-heading">Let's connect.</h2>
           <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
             Always open to new opportunities, collaborations, or just a good
             conversation.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <Reveal className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {/* Contact Form */}
           <div className="lg:col-span-2">
             <Card className="border-white/10 bg-white/[0.02]">
@@ -225,10 +243,8 @@ export default function Contact() {
                     Best for detailed inquiries
                   </p>
                   <p>
-                    <span className="font-medium text-foreground">
-                      LinkedIn:
-                    </span>{' '}
-                    Great for professional connections
+                    <span className="font-medium text-foreground">Reddit:</span>{' '}
+                    Casual chats and community posts
                   </p>
                   <p>
                     <span className="font-medium text-foreground">GitHub:</span>{' '}
@@ -238,7 +254,7 @@ export default function Contact() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
