@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Moon, Sun, Menu, X } from 'lucide-react';
-import { useTheme } from '@/components/theme-provider';
+import { Menu, X, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const navLinks = [
@@ -8,13 +7,11 @@ const navLinks = [
   { href: '#about', label: 'About' },
   { href: '#skills', label: 'Skills' },
   { href: '#projects', label: 'Projects' },
-  { href: '#devtools', label: 'Dev Tools' },
   { href: '#social', label: 'Social' },
   { href: '#contact', label: 'Contact' },
 ];
 
 export default function Navbar() {
-  const { theme, setTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -23,10 +20,10 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
-      
+
       // Find the current active section
       const sections = navLinks.map((link) => link.href.substring(1));
-      
+
       for (const section of sections.reverse()) {
         const element = document.getElementById(section);
         if (element) {
@@ -50,24 +47,18 @@ export default function Navbar() {
     <header
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? 'backdrop-blur-lg bg-background/70 shadow-md'
+          ? 'backdrop-blur-lg bg-black/70 border-b border-white/5'
           : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#home" className="flex flex-col items-center space-y-1">
-          {/* <img 
-            src="/images/logo2.png"
-            alt="Nexco Media Logo"
-            className="w-32 h-32 object-contain"
-          /> */}
-          <span className="font-bold text-lg md:text-xl gradient-heading"></span>
+        <a href="#home" className="font-bold text-lg tracking-tight">
+          AC
         </a>
 
-
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-1">
+        <nav className="hidden md:flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-1.5 py-1.5">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -78,26 +69,21 @@ export default function Navbar() {
               onClick={() => setActiveSection(link.href.substring(1))}
             >
               {link.label}
-              {activeSection === link.href.substring(1) && (
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary rounded-full" />
-              )}
             </a>
           ))}
         </nav>
 
-        {/* Theme Toggle and Mobile Menu Button */}
-        <div className="flex items-center space-x-2">
+        {/* Resume and Mobile Menu Button */}
+        <div className="flex items-center gap-2">
           <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            aria-label="Toggle theme"
+            asChild
+            variant="outline"
+            className="hidden md:inline-flex rounded-full border-white/15 bg-transparent hover:bg-white/10"
           >
-            {theme === 'dark' ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
+            <a href="/docs/resume.txt" target="_blank" rel="noopener noreferrer">
+              <FileText className="mr-2 h-4 w-4" />
+              Resume
+            </a>
           </Button>
 
           {/* Mobile Menu Button */}
@@ -115,14 +101,16 @@ export default function Navbar() {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-lg border-b">
-          <nav className="container mx-auto px-4 py-4 flex flex-col space-y-3">
+        <div className="md:hidden bg-black/95 backdrop-blur-lg border-b border-white/10">
+          <nav className="container mx-auto px-4 py-4 flex flex-col space-y-1">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className={`nav-link text-base ${
-                  activeSection === link.href.substring(1) ? 'active-nav-link' : ''
+                className={`rounded-lg px-4 py-2 text-base font-medium transition-colors ${
+                  activeSection === link.href.substring(1)
+                    ? 'bg-white/10 text-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
                 }`}
                 onClick={() => {
                   setActiveSection(link.href.substring(1));

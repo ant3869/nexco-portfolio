@@ -9,11 +9,22 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Badge } from '@/components/ui/badge';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  tech: string[];
+  demoUrl: string;
+  repoUrl: string;
+  metrics?: string;
+  type: string;
+}
+
 // Project data
-const projects = [
+const projects: Project[] = [
   {
     id: 'nexta',
     title: 'Nexta-UI',
@@ -76,7 +87,7 @@ const projects = [
     type: 'ui',
   },
   {
-    id: 'proton-pack',
+    id: 'proton-pack-2',
     title: 'Proton Pack (Ghostbusters II)',
     description:
       'Proton Pack prop replica from the movie Ghostbusters.',
@@ -91,7 +102,7 @@ const projects = [
     title: 'PKE Meter Replica with EMF Detection',
     description:
       'P.K.E. Meter replica from the Ghostbusters movies, integrating modern electronics to simulate its behavior based on electromagnetic field (EMF) detection.',
-      image: 'images/pke1.png',
+    image: 'images/pke1.png',
     tech: ['Microcontroller', 'C++', 'Python', 'Arduino', 'Prop', '3d Printing'],
     demoUrl:
       'https://www.tiktok.com/@nexcomedia/video/7345535167726947630?is_from_webapp=1&sender_device=pc&web_id=7505664205899761198',
@@ -111,467 +122,186 @@ const projects = [
   },
 ];
 
-// Filter projects by type
-const featuredProjects = projects.filter((p) => p.type === 'featured');
-const propProjects = projects.filter((p) => p.type === 'prop');
-const uiProjects = projects.filter((p) => p.type === 'ui');
-const autoProjects = projects.filter((p) => p.type === 'auto');
-const arduinoProjects = projects.filter((p) => p.type === 'arduino');
-const otherProjects = projects.filter((p) => p.type === 'other');
+// Wide card with image beside the details, used for tabs that show few items
+function WideProjectCard({ project }: { project: Project }) {
+  return (
+    <Card className="overflow-hidden border border-white/10 bg-white/[0.02]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="p-6 md:p-8 flex flex-col">
+          <CardHeader className="p-0 mb-4">
+            <CardTitle className="text-2xl">{project.title}</CardTitle>
+            <CardDescription className="text-base mt-2">
+              {project.description}
+            </CardDescription>
+          </CardHeader>
 
-function getCategoryBorder(type: string) {
-  switch (type) {
-    case 'featured':
-      return 'border-yellow-500';
-    case 'prop':
-      return 'border-green-500';
-    case 'ui':
-      return 'border-blue-500';
-    case 'auto':
-      return 'border-purple-500';
-    case 'arduino':
-      return 'border-teal-500';
-    default:
-      return 'border-primary/10';
-  }
+          <div className="flex flex-wrap gap-2 my-4">
+            {project.tech.map((tech) => (
+              <span key={tech} className="tech-badge">
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          {project.metrics && (
+            <div className="rounded-xl border border-purple-500/20 bg-purple-500/5 p-4 my-2 text-sm text-muted-foreground">
+              <span className="font-semibold text-foreground">Impact: </span>
+              {project.metrics}
+            </div>
+          )}
+
+          <CardFooter className="p-0 mt-auto pt-4 flex gap-3">
+            <Button
+              asChild
+              size="sm"
+              className="rounded-full bg-white text-black hover:bg-white/90"
+            >
+              <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="h-4 w-4 mr-2" />
+                Live Demo
+              </a>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="rounded-full border-white/15 bg-transparent hover:bg-white/10"
+            >
+              <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
+                <Github className="h-4 w-4 mr-2" />
+                Source Code
+              </a>
+            </Button>
+          </CardFooter>
+        </div>
+
+        <div className="md:order-first md:h-auto">
+          <AspectRatio ratio={15 / 13} className="bg-muted">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="h-full w-full object-cover"
+            />
+          </AspectRatio>
+        </div>
+      </div>
+    </Card>
+  );
 }
+
+// Compact card used in the grid tabs
+function GridProjectCard({ project }: { project: Project }) {
+  return (
+    <Card className="overflow-hidden card-hover border border-white/10 bg-white/[0.02]">
+      <AspectRatio ratio={16 / 9} className="bg-muted">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="h-full w-full object-cover"
+        />
+      </AspectRatio>
+
+      <CardHeader>
+        <CardTitle>{project.title}</CardTitle>
+        <CardDescription>{project.description}</CardDescription>
+      </CardHeader>
+
+      <CardContent className="p-6 pt-0">
+        <div className="flex flex-wrap gap-2">
+          {project.tech.map((tech) => (
+            <span key={tech} className="tech-badge">
+              {tech}
+            </span>
+          ))}
+        </div>
+      </CardContent>
+
+      <CardFooter className="flex justify-between pt-0">
+        <Button asChild variant="ghost" size="sm">
+          <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+            <Link2 className="h-4 w-4 mr-2" />
+            Video
+          </a>
+        </Button>
+        <Button asChild variant="ghost" size="sm">
+          <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
+            <Github className="h-4 w-4 mr-2" />
+            Code
+          </a>
+        </Button>
+        <Button asChild variant="ghost" size="sm">
+          <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
+            <GalleryHorizontalIcon className="h-4 w-4 mr-2" />
+            Gallery
+          </a>
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+}
+
+const tabs = [
+  { value: 'featured', label: 'Featured' },
+  { value: 'prop', label: 'Prop Replicas' },
+  { value: 'ui', label: 'UI' },
+  { value: 'auto', label: 'Automation' },
+  { value: 'arduino', label: 'Arduino' },
+  { value: 'other', label: 'Other' },
+];
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-20 bg-muted/20">
-      <div className="container mx-auto px-4">
-        <h2 className="section-heading text-center mb-12">Projects</h2>
+    <section id="projects" className="py-24 border-t border-white/5">
+      <div className="container mx-auto px-4 max-w-6xl">
+        <div className="text-center mb-14">
+          <p className="kicker mb-4">My Work</p>
+          <h2 className="section-heading">Featured Projects</h2>
+          <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
+            A collection of projects I've worked on, from developer tools to
+            prop replica electronics.
+          </p>
+        </div>
 
-        <Tabs defaultValue="featured" className="max-w-6xl mx-auto">
-          <div className="flex justify-center mb-8">
-            <TabsList>
-              <TabsTrigger value="featured">Featured</TabsTrigger>
-              <TabsTrigger value="prop">Prop Replicas</TabsTrigger>
-              <TabsTrigger value="ui">UI</TabsTrigger>
-              <TabsTrigger value="auto">Automation</TabsTrigger>
-              <TabsTrigger value="arduino">Arduino</TabsTrigger>
-              <TabsTrigger value="other">Other</TabsTrigger>
+        <Tabs defaultValue="featured">
+          <div className="flex justify-center mb-10">
+            <TabsList className="rounded-full border border-white/10 bg-white/5 p-1.5 h-auto flex-wrap justify-center">
+              {tabs.map((tab) => (
+                <TabsTrigger
+                  key={tab.value}
+                  value={tab.value}
+                  className="rounded-full data-[state=active]:bg-white/10"
+                >
+                  {tab.label}
+                </TabsTrigger>
+              ))}
             </TabsList>
           </div>
 
-          {/* Featured Projects Tab */}
-          <TabsContent value="featured" className="space-y-12">
-            {featuredProjects.map((project) => (
-              <Card
-                key={project.id}
-                className={`overflow-hidden border-2 ${getCategoryBorder(project.type)} shadow-lg`}
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="p-6 md:p-8 flex flex-col">
-                    <CardHeader className="p-0 mb-4">
-                      <CardTitle className="text-2xl">
-                        {project.title}
-                      </CardTitle>
-                      <CardDescription className="text-base mt-2">
-                        {project.description}
-                      </CardDescription>
-                    </CardHeader>
-
-                    <div className="flex flex-wrap gap-2 my-4">
-                      {project.tech.map((tech) => (
-                        <Badge key={tech} variant="secondary">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {project.metrics && (
-                      <div className="bg-primary/5 rounded-lg p-3 my-2 text-sm">
-                        <strong>Impact:</strong> {project.metrics}
-                      </div>
-                    )}
-
-                    <CardFooter className="p-0 mt-auto pt-4 flex gap-3">
-                      <Button asChild size="sm">
-                        <a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <ExternalLink className="h-4 w-4 mr-2" />
-                          Live Demo
-                        </a>
-                      </Button>
-                      <Button asChild variant="outline" size="sm">
-                        <a
-                          href={project.repoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Github className="h-4 w-4 mr-2" />
-                          Source Code
-                        </a>
-                      </Button>
-                    </CardFooter>
+          {tabs.map((tab) => {
+            const tabProjects = projects.filter((p) => p.type === tab.value);
+            const useGrid = tab.value === 'prop';
+            return (
+              <TabsContent key={tab.value} value={tab.value}>
+                {tabProjects.length === 0 ? (
+                  <p className="text-center text-muted-foreground py-12">
+                    More coming soon.
+                  </p>
+                ) : useGrid ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {tabProjects.map((project) => (
+                      <GridProjectCard key={project.id} project={project} />
+                    ))}
                   </div>
-
-                  <div className="md:order-first md:h-auto">
-                    <AspectRatio ratio={15 / 13} className="bg-muted">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="rounded-l-none md:rounded-l-lg h-full w-full object-cover"
-                      />
-                    </AspectRatio>
+                ) : (
+                  <div className="space-y-10">
+                    {tabProjects.map((project) => (
+                      <WideProjectCard key={project.id} project={project} />
+                    ))}
                   </div>
-                </div>
-              </Card>
-            ))}
-          </TabsContent>
-
-          {/* Prop Projects Tab */}
-          <TabsContent value="prop">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {propProjects.map((project) => (
-                <Card
-                  key={project.id}
-                  className={`overflow-hidden card-hover border-2 ${getCategoryBorder(project.type)}`}
-                >
-                  <AspectRatio ratio={16 / 9} className="bg-muted">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="h-full w-full object-cover"
-                    />
-                  </AspectRatio>
-
-                  <CardHeader>
-                    <CardTitle>{project.title}</CardTitle>
-                    <CardDescription>{project.description}</CardDescription>
-                  </CardHeader>
-
-                  <CardContent className="p-6 pt-0">
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map((tech) => (
-                        <Badge key={tech} variant="outline">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-
-                  <CardFooter className="flex justify-between pt-0">
-                    <Button asChild variant="ghost" size="sm">
-                      <a
-                        href={project.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Link2 className="h-4 w-4 mr-2" />
-                        Video
-                      </a>
-                    </Button>
-                    <Button asChild variant="ghost" size="sm">
-                      <a
-                        href={project.repoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Github className="h-4 w-4 mr-2" />
-                        Code
-                      </a>
-                    </Button>
-                    <Button asChild variant="ghost" size="sm">
-                      <a
-                        href={project.repoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <GalleryHorizontalIcon className="h-4 w-4 mr-2" />
-                        Gallery
-                      </a>
-                    </Button>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
-
-          {/* UI Projects Tab */}
-          <TabsContent value="ui" className="space-y-12">
-            {uiProjects.map((project) => (
-              <Card
-                key={project.id}
-                className={`overflow-hidden border-2 ${getCategoryBorder(project.type)} shadow-lg`}
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="p-6 md:p-8 flex flex-col">
-                    <CardHeader className="p-0 mb-4">
-                      <CardTitle className="text-2xl">
-                        {project.title}
-                      </CardTitle>
-                      <CardDescription className="text-base mt-2">
-                        {project.description}
-                      </CardDescription>
-                    </CardHeader>
-
-                    <div className="flex flex-wrap gap-2 my-4">
-                      {project.tech.map((tech) => (
-                        <Badge key={tech} variant="secondary">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {project.metrics && (
-                      <div className="bg-primary/5 rounded-lg p-3 my-2 text-sm">
-                        <strong>Impact:</strong> {project.metrics}
-                      </div>
-                    )}
-
-                    <CardFooter className="p-0 mt-auto pt-4 flex gap-3">
-                      <Button asChild size="sm">
-                        <a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <ExternalLink className="h-4 w-4 mr-2" />
-                          Live Demo
-                        </a>
-                      </Button>
-                      <Button asChild variant="outline" size="sm">
-                        <a
-                          href={project.repoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Github className="h-4 w-4 mr-2" />
-                          Source Code
-                        </a>
-                      </Button>
-                    </CardFooter>
-                  </div>
-
-                  <div className="md:order-first md:h-auto">
-                    <AspectRatio ratio={15 / 13} className="bg-muted">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="rounded-l-none md:rounded-l-lg h-full w-full object-cover"
-                      />
-                    </AspectRatio>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </TabsContent>
-
-            {/* Automation Projects Tab */}
-            <TabsContent value="auto" className="space-y-12">
-            {autoProjects.map((project) => (
-              <Card
-                key={project.id}
-                className={`overflow-hidden border-2 ${getCategoryBorder(project.type)} shadow-lg`}
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="p-6 md:p-8 flex flex-col">
-                    <CardHeader className="p-0 mb-4">
-                      <CardTitle className="text-2xl">
-                        {project.title}
-                      </CardTitle>
-                      <CardDescription className="text-base mt-2">
-                        {project.description}
-                      </CardDescription>
-                    </CardHeader>
-
-                    <div className="flex flex-wrap gap-2 my-4">
-                      {project.tech.map((tech) => (
-                        <Badge key={tech} variant="secondary">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {project.metrics && (
-                      <div className="bg-primary/5 rounded-lg p-3 my-2 text-sm">
-                        <strong>Impact:</strong> {project.metrics}
-                      </div>
-                    )}
-
-                    <CardFooter className="p-0 mt-auto pt-4 flex gap-3">
-                      <Button asChild size="sm">
-                        <a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <ExternalLink className="h-4 w-4 mr-2" />
-                          Live Demo
-                        </a>
-                      </Button>
-                      <Button asChild variant="outline" size="sm">
-                        <a
-                          href={project.repoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Github className="h-4 w-4 mr-2" />
-                          Source Code
-                        </a>
-                      </Button>
-                    </CardFooter>
-                  </div>
-
-                  <div className="md:order-first md:h-auto">
-                    <AspectRatio ratio={15 / 13} className="bg-muted">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="rounded-l-none md:rounded-l-lg h-full w-full object-cover"
-                      />
-                    </AspectRatio>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </TabsContent>
-
-            {/* Arduino Projects Tab */}
-            <TabsContent value="arduino" className="space-y-12">
-            {arduinoProjects.map((project) => (
-              <Card
-                key={project.id}
-                className={`overflow-hidden border-2 ${getCategoryBorder(project.type)} shadow-lg`}
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="p-6 md:p-8 flex flex-col">
-                    <CardHeader className="p-0 mb-4">
-                      <CardTitle className="text-2xl">
-                        {project.title}
-                      </CardTitle>
-                      <CardDescription className="text-base mt-2">
-                        {project.description}
-                      </CardDescription>
-                    </CardHeader>
-
-                    <div className="flex flex-wrap gap-2 my-4">
-                      {project.tech.map((tech) => (
-                        <Badge key={tech} variant="secondary">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {project.metrics && (
-                      <div className="bg-primary/5 rounded-lg p-3 my-2 text-sm">
-                        <strong>Impact:</strong> {project.metrics}
-                      </div>
-                    )}
-
-                    <CardFooter className="p-0 mt-auto pt-4 flex gap-3">
-                      <Button asChild size="sm">
-                        <a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <ExternalLink className="h-4 w-4 mr-2" />
-                          Live Demo
-                        </a>
-                      </Button>
-                      <Button asChild variant="outline" size="sm">
-                        <a
-                          href={project.repoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Github className="h-4 w-4 mr-2" />
-                          Source Code
-                        </a>
-                      </Button>
-                    </CardFooter>
-                  </div>
-
-                  <div className="md:order-first md:h-auto">
-                    <AspectRatio ratio={15 / 13} className="bg-muted">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="rounded-l-none md:rounded-l-lg h-full w-full object-cover"
-                      />
-                    </AspectRatio>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </TabsContent>
-
-            {/* Other Projects Tab */}
-            <TabsContent value="other" className="space-y-12">
-            {otherProjects.map((project) => (
-              <Card
-                key={project.id}
-                className={`overflow-hidden border-2 ${getCategoryBorder(project.type)} shadow-lg`}
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="p-6 md:p-8 flex flex-col">
-                    <CardHeader className="p-0 mb-4">
-                      <CardTitle className="text-2xl">
-                        {project.title}
-                      </CardTitle>
-                      <CardDescription className="text-base mt-2">
-                        {project.description}
-                      </CardDescription>
-                    </CardHeader>
-
-                    <div className="flex flex-wrap gap-2 my-4">
-                      {project.tech.map((tech) => (
-                        <Badge key={tech} variant="secondary">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {project.metrics && (
-                      <div className="bg-primary/5 rounded-lg p-3 my-2 text-sm">
-                        <strong>Impact:</strong> {project.metrics}
-                      </div>
-                    )}
-
-                    <CardFooter className="p-0 mt-auto pt-4 flex gap-3">
-                      <Button asChild size="sm">
-                        <a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <ExternalLink className="h-4 w-4 mr-2" />
-                          Live Demo
-                        </a>
-                      </Button>
-                      <Button asChild variant="outline" size="sm">
-                        <a
-                          href={project.repoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Github className="h-4 w-4 mr-2" />
-                          Source Code
-                        </a>
-                      </Button>
-                    </CardFooter>
-                  </div>
-
-                  <div className="md:order-first md:h-auto">
-                    <AspectRatio ratio={15 / 13} className="bg-muted">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="rounded-l-none md:rounded-l-lg h-full w-full object-cover"
-                      />
-                    </AspectRatio>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </TabsContent>
-
+                )}
+              </TabsContent>
+            );
+          })}
         </Tabs>
       </div>
     </section>

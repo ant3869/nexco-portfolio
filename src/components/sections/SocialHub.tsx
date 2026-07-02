@@ -201,23 +201,26 @@ export default function SocialHub() {
   }, []);
 
   return (
-    <section id="social" className="py-20 bg-muted/20">
+    <section id="social" className="py-24 border-t border-white/5">
       <div className="container mx-auto px-4">
-        <h2 className="section-heading text-center mb-12">Social Media Hub</h2>
+        <div className="text-center mb-14">
+          <p className="kicker mb-4">Online</p>
+          <h2 className="section-heading">Social Media Hub</h2>
+        </div>
 
         <Tabs defaultValue="github" className="max-w-6xl mx-auto">
           <div className="flex justify-center mb-8">
-            <TabsList>
-              <TabsTrigger value="github" className="flex items-center">
+            <TabsList className="rounded-full border border-white/10 bg-white/5 p-1.5 h-auto flex-wrap justify-center">
+              <TabsTrigger value="github" className="flex items-center rounded-full data-[state=active]:bg-white/10">
                 <Github className="h-4 w-4 mr-2" /> GitHub
               </TabsTrigger>
-              <TabsTrigger value="deviantArt" className="flex items-center">
+              <TabsTrigger value="deviantArt" className="flex items-center rounded-full data-[state=active]:bg-white/10">
                 <Brush className="h-4 w-4 mr-2" /> DeviantArt
               </TabsTrigger>
-              <TabsTrigger value="youtube" className="flex items-center">
+              <TabsTrigger value="youtube" className="flex items-center rounded-full data-[state=active]:bg-white/10">
                 <Youtube className="h-4 w-4 mr-2" /> YouTube
               </TabsTrigger>
-              <TabsTrigger value="reddit" className="flex items-center">
+              <TabsTrigger value="reddit" className="flex items-center rounded-full data-[state=active]:bg-white/10">
                 <MessageCircle className="h-4 w-4 mr-2" /> Reddit
               </TabsTrigger>
             </TabsList>
@@ -231,7 +234,7 @@ export default function SocialHub() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {githubRepos.map((repo) => (
-                <Card key={repo.id} className="card-hover border-primary/10">
+                <Card key={repo.id} className="card-hover border-white/10 bg-white/[0.02]">
                   <CardHeader className="pb-2">
                     <div className="flex items-start justify-between">
                       <div className="flex items-center">
@@ -278,7 +281,7 @@ export default function SocialHub() {
               {socialData.deviantArt.map((art) => (
                 <Card
                   key={art.id}
-                  className="overflow-hidden card-hover border-primary/10"
+                  className="overflow-hidden card-hover border-white/10 bg-white/[0.02]"
                 >
                   <div className="aspect-[4/3] relative overflow-hidden">
                     <img
@@ -314,7 +317,7 @@ export default function SocialHub() {
               >
                 <Card
                   key={video.id}
-                  className="overflow-hidden card-hover border-primary/10"
+                  className="overflow-hidden card-hover border-white/10 bg-white/[0.02]"
                 >
                   <div className="aspect-video relative">
                     <img
@@ -353,7 +356,7 @@ export default function SocialHub() {
                 </p>
               )}
               {redditPosts.map((post) => (
-                <Card key={post.id} className="card-hover border-primary/10">
+                <Card key={post.id} className="card-hover border-white/10 bg-white/[0.02]">
                   <CardContent className="p-4">
                     <div className="flex items-start">
                       <div className="mr-4 flex flex-col items-center">

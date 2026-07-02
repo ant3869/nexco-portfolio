@@ -68,14 +68,21 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20">
+    <section id="contact" className="py-24 border-t border-white/5">
       <div className="container mx-auto px-4">
-        <h2 className="section-heading text-center mb-12">Get In Touch</h2>
+        <div className="text-center mb-14">
+          <p className="kicker mb-4">Contact</p>
+          <h2 className="section-heading">Let's connect.</h2>
+          <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
+            Always open to new opportunities, collaborations, or just a good
+            conversation.
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <Card className="border-primary/10 shadow-lg">
+            <Card className="border-white/10 bg-white/[0.02]">
               <CardContent className="p-6 md:p-8">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -144,7 +151,7 @@ export default function Contact() {
 
                   <Button
                     type="submit"
-                    className="w-full md:w-auto"
+                    className="w-full md:w-auto rounded-full bg-white text-black hover:bg-white/90"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
@@ -163,7 +170,7 @@ export default function Contact() {
 
           {/* Contact Information */}
           <div className="space-y-6">
-            <Card className="border-primary/10 shadow-md">
+            <Card className="border-white/10 bg-white/[0.02]">
               <CardContent className="p-6">
                 <h3 className="font-semibold text-lg mb-4">
                   Contact Information
@@ -206,7 +213,7 @@ export default function Contact() {
               </CardContent>
             </Card>
 
-            <Card className="border-primary/10 shadow-md">
+            <Card className="border-white/10 bg-white/[0.02]">
               <CardContent className="p-6">
                 <h3 className="font-semibold text-lg mb-4">
                   Preferred Contact Methods
