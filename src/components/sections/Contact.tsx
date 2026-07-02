@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useToast } from '@/hooks/use-toast';
+import Reveal from '@/components/ui/Reveal';
 
 // Form validation schema
 const contactFormSchema = z.object({
@@ -87,16 +88,16 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 border-t border-white/5">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-14">
+        <Reveal className="text-center mb-14">
           <p className="kicker mb-4">Contact</p>
           <h2 className="section-heading">Let's connect.</h2>
           <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
             Always open to new opportunities, collaborations, or just a good
             conversation.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <Reveal className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {/* Contact Form */}
           <div className="lg:col-span-2">
             <Card className="border-white/10 bg-white/[0.02]">
@@ -253,7 +254,7 @@ export default function Contact() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

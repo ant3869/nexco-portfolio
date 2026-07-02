@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useEffect, useState } from 'react';
+import Reveal from '@/components/ui/Reveal';
 
 // Sample data for social feeds
 interface GitHubRepo {
@@ -170,10 +171,10 @@ export default function SocialHub() {
   return (
     <section id="social" className="py-24 border-t border-white/5">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-14">
+        <Reveal className="text-center mb-14">
           <p className="kicker mb-4">Online</p>
           <h2 className="section-heading">Social Media Hub</h2>
-        </div>
+        </Reveal>
 
         <Tabs defaultValue="github" className="max-w-6xl mx-auto">
           <div className="flex justify-center mb-8">
@@ -266,6 +267,8 @@ export default function SocialHub() {
                 >
                   <div className="aspect-[4/3] relative overflow-hidden">
                     <img
+                      loading="lazy"
+                      decoding="async"
                       src={art.imageUrl}
                       alt={art.title}
                       className="w-full h-full object-cover transition-transform hover:scale-105"
@@ -302,6 +305,8 @@ export default function SocialHub() {
                 >
                   <div className="aspect-video relative">
                     <img
+                      loading="lazy"
+                      decoding="async"
                       src={video.thumbnailUrl}
                       alt={video.title}
                       className="w-full h-full object-cover"

@@ -10,6 +10,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import Reveal from '@/components/ui/Reveal';
 
 interface Project {
   id: string;
@@ -178,6 +179,8 @@ function WideProjectCard({ project }: { project: Project }) {
         <div className="md:order-first md:h-auto">
           <AspectRatio ratio={15 / 13} className="bg-muted">
             <img
+              loading="lazy"
+              decoding="async"
               src={project.image}
               alt={project.title}
               className="h-full w-full object-cover"
@@ -195,6 +198,8 @@ function GridProjectCard({ project }: { project: Project }) {
     <Card className="overflow-hidden card-hover border border-white/10 bg-white/[0.02]">
       <AspectRatio ratio={16 / 9} className="bg-muted">
         <img
+          loading="lazy"
+          decoding="async"
           src={project.image}
           alt={project.title}
           className="h-full w-full object-cover"
@@ -261,14 +266,14 @@ export default function Projects() {
   return (
     <section id="projects" className="py-24 border-t border-white/5">
       <div className="container mx-auto px-4 max-w-6xl">
-        <div className="text-center mb-14">
+        <Reveal className="text-center mb-14">
           <p className="kicker mb-4">My Work</p>
           <h2 className="section-heading">Featured Projects</h2>
           <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
             A collection of projects I've worked on, from developer tools to
             prop replica electronics.
           </p>
-        </div>
+        </Reveal>
 
         <Tabs defaultValue="featured">
           <div className="flex justify-center mb-10">
