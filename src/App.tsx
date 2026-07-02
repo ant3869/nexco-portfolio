@@ -15,6 +15,12 @@ function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
       <div className="min-h-screen bg-background font-sans antialiased">
+        <a
+          href="#home"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-black"
+        >
+          Skip to content
+        </a>
         <SpotlightEffect />
         <Navbar />
         <TechNewsFeed />

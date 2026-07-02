@@ -36,6 +36,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand */}
           <div className="space-y-3">
+            <img
+              src="/images/logo-mark.png"
+              alt="Nexco Media logo"
+              className="h-14 w-auto"
+              loading="lazy"
+            />
             <h3 className="font-bold text-lg">Anthony "Ant" Clark</h3>
             <p className="text-sm text-muted-foreground max-w-xs">
               Software developer. Tools & automation builder. Bentonville, AR.
