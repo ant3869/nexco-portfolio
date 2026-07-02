@@ -1,12 +1,13 @@
-import { Github, Instagram } from 'lucide-react';
-import { FaReddit } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { Github, Instagram, Youtube } from 'lucide-react';
+import { FaReddit, FaTiktok } from 'react-icons/fa';
 
 const quickLinks = [
-  { href: '#home', label: 'Home' },
-  { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#contact', label: 'Contact' },
+  { to: '/', label: 'Home' },
+  { to: '/about', label: 'About' },
+  { to: '/projects', label: 'Projects' },
+  { to: '/social', label: 'Social' },
+  { to: '/contact', label: 'Contact' },
 ];
 
 const socials = [
@@ -19,6 +20,16 @@ const socials = [
     href: 'https://www.reddit.com/user/SuperHands3869/',
     label: 'Reddit',
     icon: <FaReddit size={18} />,
+  },
+  {
+    href: 'https://www.youtube.com/@nexcomedia1697',
+    label: 'YouTube',
+    icon: <Youtube size={18} />,
+  },
+  {
+    href: 'https://www.tiktok.com/@nexcomedia',
+    label: 'TikTok',
+    icon: <FaTiktok size={16} />,
   },
   {
     href: 'https://www.instagram.com/nexcomedia/',
@@ -42,7 +53,7 @@ export default function Footer() {
               className="h-14 w-auto"
               loading="lazy"
             />
-            <h3 className="font-bold text-lg">Anthony "Ant" Clark</h3>
+            <h3 className="font-bold text-lg">Anthony Clark</h3>
             <p className="text-sm text-muted-foreground max-w-xs">
               Software developer. Tools & automation builder. Bentonville, AR.
             </p>
@@ -53,13 +64,13 @@ export default function Footer() {
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <nav className="flex flex-col space-y-2.5">
               {quickLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
+                <Link
+                  key={link.to}
+                  to={link.to}
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>

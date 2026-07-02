@@ -16,7 +16,7 @@ interface Project {
   id: string;
   title: string;
   description: string;
-  image: string;
+  image?: string;
   tech: string[];
   demoUrl?: string;
   demoLabel?: string;
@@ -115,7 +115,81 @@ const projects: Project[] = [
     tech: ['Microcontroller', 'C++', 'Arduino', 'Prop', '3d Printing'],
     type: 'prop',
   },
+  {
+    id: 'llm-finetune-platform',
+    title: 'LLM Fine-Tune Platform',
+    description:
+      'A platform for fine-tuning open-source language models — dataset preparation, training runs, and evaluation brought together in one workflow.',
+    tech: ['Python', 'LLM', 'Fine-Tuning', 'Machine Learning'],
+    repoUrl: 'https://github.com/ant3869/llm-finetune-platform',
+    type: 'featured',
+  },
+  {
+    id: 'mission-control',
+    title: 'Mission Control',
+    description:
+      'A centralized command center for keeping track of systems, jobs, and everything that needs watching — one dashboard instead of a dozen tabs.',
+    tech: ['TypeScript', 'React', 'Dashboard', 'Automation'],
+    repoUrl: 'https://github.com/ant3869/mission-control',
+    type: 'auto',
+  },
+  {
+    id: 'agentic-workflow',
+    title: 'Agentic Workflow',
+    description:
+      'Experiments in agentic AI — chaining LLM agents into multi-step workflows that carry real tasks from start to finish.',
+    tech: ['Python', 'LLM Agents', 'AI', 'Automation'],
+    repoUrl: 'https://github.com/ant3869/AgenticWorkflow',
+    type: 'auto',
+  },
+  {
+    id: 'auraclean',
+    title: 'AuraClean',
+    description:
+      'A system cleanup utility that automates the tedious parts of keeping a machine tidy.',
+    tech: ['Automation', 'Utility', 'Windows'],
+    repoUrl: 'https://github.com/ant3869/AuraClean',
+    type: 'auto',
+  },
+  {
+    id: 'teensy-magnetometer',
+    title: 'Teensy Prop Shield Magnetometer',
+    description:
+      'Magnetometer sensing on the Teensy Prop Shield — the groundwork behind the PKE meter\'s EMF detection.',
+    tech: ['Teensy', 'C++', 'Sensors', 'Electronics'],
+    repoUrl: 'https://github.com/ant3869/Teensy_Prop_Shield_Magnetometer',
+    type: 'arduino',
+  },
 ];
+
+// Project image, or a branded placeholder when no screenshot exists yet
+function ProjectImage({ project, ratio }: { project: Project; ratio: number }) {
+  return (
+    <AspectRatio ratio={ratio} className="bg-muted">
+      {project.image ? (
+        <img
+          loading="lazy"
+          decoding="async"
+          src={project.image}
+          alt={project.title}
+          className="h-full w-full object-cover"
+        />
+      ) : (
+        <div className="flex h-full w-full flex-col items-center justify-center gap-4 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10">
+          <img
+            src="/images/logo-mark.png"
+            alt=""
+            className="h-16 w-auto opacity-50"
+            loading="lazy"
+          />
+          <span className="mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            {project.title}
+          </span>
+        </div>
+      )}
+    </AspectRatio>
+  );
+}
 
 // Wide card with image beside the details, used for tabs that show few items
 function WideProjectCard({ project }: { project: Project }) {
@@ -177,15 +251,7 @@ function WideProjectCard({ project }: { project: Project }) {
         </div>
 
         <div className="md:order-first md:h-auto">
-          <AspectRatio ratio={15 / 13} className="bg-muted">
-            <img
-              loading="lazy"
-              decoding="async"
-              src={project.image}
-              alt={project.title}
-              className="h-full w-full object-cover"
-            />
-          </AspectRatio>
+          <ProjectImage project={project} ratio={15 / 13} />
         </div>
       </div>
     </Card>
@@ -196,15 +262,7 @@ function WideProjectCard({ project }: { project: Project }) {
 function GridProjectCard({ project }: { project: Project }) {
   return (
     <Card className="spotlight-card overflow-hidden card-hover border border-white/10 bg-white/[0.02]">
-      <AspectRatio ratio={16 / 9} className="bg-muted">
-        <img
-          loading="lazy"
-          decoding="async"
-          src={project.image}
-          alt={project.title}
-          className="h-full w-full object-cover"
-        />
-      </AspectRatio>
+      <ProjectImage project={project} ratio={16 / 9} />
 
       <CardHeader>
         <CardTitle>{project.title}</CardTitle>
