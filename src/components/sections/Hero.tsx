@@ -1,4 +1,5 @@
-import { ArrowDown, Github } from 'lucide-react';
+import { Github } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 
@@ -72,7 +73,7 @@ export default function Hero() {
             <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight leading-[1.05]">
               Anthony
               <br />
-              "Ant" Clark
+              Clark
             </h1>
 
             <div className="h-8">
@@ -103,7 +104,7 @@ export default function Hero() {
                 size="lg"
                 className="w-full sm:w-auto rounded-full bg-white text-black hover:bg-white/90"
               >
-                <a href="#projects">View My Work</a>
+                <Link to="/projects">View My Work</Link>
               </Button>
               <Button
                 asChild
@@ -111,7 +112,7 @@ export default function Hero() {
                 size="lg"
                 className="w-full sm:w-auto rounded-full border-white/15 bg-transparent hover:bg-white/10"
               >
-                <a href="#contact">Get In Touch</a>
+                <Link to="/contact">Get In Touch</Link>
               </Button>
               <Button
                 asChild
@@ -131,16 +132,6 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Scroll indicator */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-            <a
-              href="#about"
-              className="group flex flex-col items-center text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="Scroll to About section"
-            >
-              <ArrowDown className="h-5 w-5 animate-bounce" />
-            </a>
-          </div>
         </div>
       </div>
     </section>
