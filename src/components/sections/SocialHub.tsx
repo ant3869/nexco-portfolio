@@ -39,39 +39,6 @@ interface RedditPost {
   url: string;
 }
 
-const initialGitHubRepos: GitHubRepo[] = [
-  {
-    id: 1,
-    title: 'developer-toolkit',
-    description:
-      'A comprehensive suite of developer tools that streamlines common tasks',
-    url: 'https://github.com/example/developer-toolkit',
-    stars: 235,
-    forks: 45,
-    language: 'TypeScript',
-  },
-  {
-    id: 2,
-    title: 'build-optimizer',
-    description:
-      'An intelligent build system for C++ projects that reduces compilation time',
-    url: 'https://github.com/example/build-optimizer',
-    stars: 187,
-    forks: 32,
-    language: 'C++',
-  },
-  {
-    id: 3,
-    title: 'code-analyzer',
-    description:
-      'Static analysis tool that identifies code quality issues and security vulnerabilities',
-    url: 'https://github.com/example/code-analyzer',
-    stars: 156,
-    forks: 28,
-    language: 'Python',
-  },
-];
-
 const socialData = {
   deviantArt: [
     {
@@ -134,7 +101,7 @@ const socialData = {
 };
 
 export default function SocialHub() {
-  const [githubRepos, setGithubRepos] = useState<GitHubRepo[]>(initialGitHubRepos);
+  const [githubRepos, setGithubRepos] = useState<GitHubRepo[]>([]);
   const [redditPosts, setRedditPosts] = useState<RedditPost[]>([]);
 
   useEffect(() => {
@@ -232,6 +199,20 @@ export default function SocialHub() {
               Check out my top repositories on GitHub where I share developer
               tools, automation scripts, and more.
             </p>
+            {githubRepos.length === 0 && (
+              <p className="text-center text-sm text-muted-foreground">
+                Couldn't load repositories right now — browse them directly on{' '}
+                <a
+                  href="https://github.com/ant3869"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:underline"
+                >
+                  github.com/ant3869
+                </a>
+                .
+              </p>
+            )}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {githubRepos.map((repo) => (
                 <Card key={repo.id} className="card-hover border-white/10 bg-white/[0.02]">

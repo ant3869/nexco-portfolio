@@ -50,21 +50,38 @@ export default function Contact() {
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-    // Handle form submission (in a real app, this would send data to a server)
-    console.log('Form data:', data);
+      if (!res.ok) {
+        const body = (await res.json().catch(() => null)) as {
+          error?: string;
+        } | null;
+        throw new Error(body?.error ?? 'Failed to send message.');
+      }
 
-    toast({
-      title: 'Message Sent!',
-      description: "Thanks for reaching out. I'll get back to you soon.",
-      variant: 'default',
-    });
-
-    // Reset form
-    reset();
-    setIsSubmitting(false);
+      toast({
+        title: 'Message Sent!',
+        description: "Thanks for reaching out. I'll get back to you soon.",
+        variant: 'default',
+      });
+      reset();
+    } catch (err) {
+      toast({
+        title: "Couldn't send message",
+        description:
+          err instanceof Error && err.message !== 'Failed to fetch'
+            ? `${err.message} You can also email me directly at anthon3869@gmail.com.`
+            : 'Something went wrong. You can email me directly at anthon3869@gmail.com.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -225,10 +242,8 @@ export default function Contact() {
                     Best for detailed inquiries
                   </p>
                   <p>
-                    <span className="font-medium text-foreground">
-                      LinkedIn:
-                    </span>{' '}
-                    Great for professional connections
+                    <span className="font-medium text-foreground">Reddit:</span>{' '}
+                    Casual chats and community posts
                   </p>
                   <p>
                     <span className="font-medium text-foreground">GitHub:</span>{' '}
