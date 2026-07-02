@@ -53,8 +53,13 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#home" className="font-bold text-lg tracking-tight">
-          AC
+        <a href="#home" className="flex items-center gap-2.5 font-bold text-lg tracking-tight">
+          <img
+            src="/images/logo-mark.png"
+            alt="Nexco Media logo"
+            className="h-9 w-auto"
+          />
+          <span className="hidden sm:inline">AC</span>
         </a>
 
         {/* Desktop Navigation */}

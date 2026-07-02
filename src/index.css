@@ -172,7 +172,8 @@
   @media (prefers-reduced-motion: reduce) {
     .gradient-accent,
     .gradient-border::before,
-    .pulse-dot::after {
+    .pulse-dot::after,
+    .animate-marquee {
       animation: none;
     }
   }
