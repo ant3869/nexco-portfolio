@@ -226,35 +226,20 @@ const TechNewsFeed: React.FC<TechNewsFeedProps> = ({ className = '' }) => {
     fetchTechNews();
   }, []);
 
-  if (loading) {
-    return (
-      <div className={`bg-gray-900 border border-accent rounded-lg p-6 ${className}`}>
-        <h3 className="text-lg font-semibold text-white mb-4">Tech News</h3>
-        <div className="space-y-4">
-          {[...Array(3)].map((_, i) => (
-            <div key={i} className="animate-pulse">
-              <div className="h-4 bg-gray-700 rounded w-3/4 mb-2"></div>
-              <div className="h-3 bg-gray-800 rounded w-1/2"></div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className={`bg-gray-900 border border-accent rounded-lg p-6 ${className}`}>
-        <h3 className="text-lg font-semibold text-white mb-4">Tech News</h3>
-        <div className="text-red-400 text-sm">{error}</div>
-      </div>
-    );
+  // Keep the strip invisible until there is something to show
+  if (loading || error || news.length === 0) {
+    return null;
   }
 
   return (
-    <div className={`bg-gray-900 border border-accent rounded-lg p-6 ${className}`}>
-      <h3 className="text-lg font-semibold text-white mb-4">Tech News</h3>
-      <div className="overflow-hidden whitespace-nowrap relative group">
+    <div
+      className={`fixed top-16 z-40 w-full border-b border-white/5 bg-black/70 backdrop-blur-lg py-2 ${className}`}
+    >
+      <div className="container mx-auto px-4 flex items-center gap-4">
+        <span className="mono shrink-0 text-[10px] font-medium uppercase tracking-[0.2em] text-blue-400">
+          Tech News
+        </span>
+        <div className="overflow-hidden whitespace-nowrap relative group flex-1">
         <div
           className="flex gap-8 animate-marquee items-center"
           style={{ animationDuration: `${speed}s` }}
@@ -265,36 +250,34 @@ const TechNewsFeed: React.FC<TechNewsFeedProps> = ({ className = '' }) => {
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-accent hover:text-white"
+                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
               >
                 {item.title}
               </a>
-              {idx !== news.length - 1 && <span className="mx-4">•</span>}
+              {idx !== news.length - 1 && (
+                <span className="mx-4 text-white/20">•</span>
+              )}
             </React.Fragment>
           ))}
-        </div>
-        <div className="absolute right-2 top-1/2 -translate-y-1/2 flex space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
-          <button
-            onClick={() => setSpeed((s) => Math.min(60, s + 5))}
-            className="p-1 rounded bg-gray-800/60 hover:bg-gray-800"
-            aria-label="Slow down ticker"
-          >
-            <Minus className="h-3 w-3" />
-          </button>
-          <button
-            onClick={() => setSpeed((s) => Math.max(5, s - 5))}
-            className="p-1 rounded bg-gray-800/60 hover:bg-gray-800"
-            aria-label="Speed up ticker"
-          >
-            <Plus className="h-3 w-3" />
-          </button>
+          </div>
+          <div className="absolute right-2 top-1/2 -translate-y-1/2 flex space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
+            <button
+              onClick={() => setSpeed((s) => Math.min(60, s + 5))}
+              className="p-1 rounded-full border border-white/10 bg-black/60 hover:bg-white/10"
+              aria-label="Slow down ticker"
+            >
+              <Minus className="h-3 w-3" />
+            </button>
+            <button
+              onClick={() => setSpeed((s) => Math.max(5, s - 5))}
+              className="p-1 rounded-full border border-white/10 bg-black/60 hover:bg-white/10"
+              aria-label="Speed up ticker"
+            >
+              <Plus className="h-3 w-3" />
+            </button>
+          </div>
         </div>
       </div>
-      {news.length === 0 && (
-        <div className="text-gray-400 text-sm text-center py-8">
-          No tech news available
-        </div>
-      )}
     </div>
   );
 };

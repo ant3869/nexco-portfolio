@@ -1,9 +1,6 @@
-import { ArrowDown, FileText, Github } from 'lucide-react';
+import { ArrowDown, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useEffect, useState, Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
-import Globe from '@/components/3d/Globe';
-import LiveTickers from '@/components/dashboard/LiveTickers';
+import { useEffect, useState } from 'react';
 
 const roles = [
   'Software Developer',
@@ -48,100 +45,76 @@ export default function Hero() {
   }, [displayText, isTyping, roleIndex]);
 
   return (
-    <section
-      id="home"
-      className="min-h-screen relative overflow-hidden bg-gradient-to-b from-background via-background to-primary/5"
-    >
-      {/* 3D Globe Animation */}
-      <div className="absolute inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 3.5], fov: 45 }}>
-          <Suspense fallback={null}>
-            <ambientLight intensity={0.5} />
-            <pointLight position={[10, 10, 10]} intensity={1} />
-            <Globe />
-          </Suspense>
-        </Canvas>
-      </div>
+    <section id="home" className="relative min-h-screen overflow-hidden">
+      {/* Subtle radial glow behind the headline */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        aria-hidden="true"
+        style={{
+          background:
+            'radial-gradient(ellipse 60% 40% at 50% 40%, rgba(59, 130, 246, 0.08), transparent 70%)',
+        }}
+      />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="min-h-screen flex flex-col items-center justify-center text-center">
-          {/* Main content */}
-          <div className="space-y-8 max-w-4xl backdrop-blur-sm bg-background/30 p-8 rounded-2xl tilt-card">
-            {/* Avatar/Headshot with enhanced styling */}
-            <div className="relative inline-block group">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity animated-hue"></div>
-              <div className="relative w-32 h-32 md:w-40 md:h-40">
-                <div className="w-full h-full bg-gradient-to-r from-primary to-accent rounded-full p-1">
-                  <div className="w-full h-full bg-background rounded-full flex items-center justify-center overflow-hidden">
-                    <img
-                      src="/images/self.png"
-                      alt="Professional headshot"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-                <div className="absolute -bottom-2 -right-2 bg-accent text-white text-xs px-3 py-1 rounded-full shadow-lg">
-                  Available
-                </div>
-              </div>
-            </div>
+          <div className="space-y-8 max-w-4xl">
+            <p className="kicker">Hi, I'm</p>
 
-            {/* Name & Role with enhanced typography */}
-          <div className="space-y-4">
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight gradient-heading neon-text">
-              <span className="block">
-                Anthony "Ant" Clark
-              </span>
+            <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight leading-[1.05]">
+              Anthony
+              <br />
+              "Ant" Clark
             </h1>
-            <div className="h-20">
-              <h2 className="text-2xl md:text-3xl font-medium">
+
+            <div className="h-8">
+              <h2 className="mono text-xl md:text-2xl text-blue-400">
                 <span className="inline-flex items-center">
-                  <span className="gradient-heading neon-text">{displayText}</span>
+                  {displayText}
                   <span
-                    className={`ml-1 h-8 w-1 bg-primary ${
+                    className={`ml-1 h-6 w-0.5 bg-blue-400 ${
                       isTyping ? 'opacity-100' : 'opacity-0'
                     } transition-opacity duration-200`}
                   ></span>
                 </span>
               </h2>
             </div>
-          </div>
 
-            {/* Enhanced CTA buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <p className="mx-auto max-w-2xl text-xl md:text-2xl text-muted-foreground leading-relaxed">
+              I build scripts, apps, and tools that make workflows{' '}
+              <span className="gradient-accent font-medium">
+                faster, cleaner, and less frustrating
+              </span>
+              .
+            </p>
+
+            {/* CTA buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
               <Button
+                asChild
                 size="lg"
-                className="w-full sm:w-auto bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity hover:scale-105"
+                className="w-full sm:w-auto rounded-full bg-white text-black hover:bg-white/90"
               >
-                <a href="#contact" className="flex items-center">
-                  Contact Me
-                </a>
+                <a href="#projects">View My Work</a>
               </Button>
               <Button
+                asChild
                 variant="outline"
                 size="lg"
-                className="w-full sm:w-auto border-primary/20 hover:border-primary/40 hover:scale-105"
+                className="w-full sm:w-auto rounded-full border-white/15 bg-transparent hover:bg-white/10"
               >
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center"
-                >
-                  <FileText className="mr-2 h-4 w-4" />
-                  Resume
-                </a>
+                <a href="#contact">Get In Touch</a>
               </Button>
               <Button
+                asChild
                 variant="outline"
                 size="lg"
-                className="w-full sm:w-auto border-primary/20 hover:border-primary/40 hover:scale-105"
+                className="w-full sm:w-auto rounded-full border-white/15 bg-transparent hover:bg-white/10"
               >
                 <a
                   href="https://github.com/ant3869"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center"
                 >
                   <Github className="mr-2 h-4 w-4" />
                   GitHub
@@ -150,20 +123,13 @@ export default function Hero() {
             </div>
           </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <LiveTickers/>
-        </div>
-          
-          {/* Enhanced scroll indicator */}
+          {/* Scroll indicator */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
             <a
               href="#about"
-              className="group flex flex-col items-center text-muted-foreground hover:text-primary transition-colors"
+              className="group flex flex-col items-center text-muted-foreground hover:text-foreground transition-colors"
               aria-label="Scroll to About section"
             >
-              <span className="text-sm mb-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                Scroll
-              </span>
               <ArrowDown className="h-5 w-5 animate-bounce" />
             </a>
           </div>
