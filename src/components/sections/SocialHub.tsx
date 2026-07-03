@@ -1,14 +1,56 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import {
-  Github,
-  Youtube,
-  FileCode,
-  Brush,
-  MessageCircle,
-} from 'lucide-react';
+import { Github, Youtube, FileCode, Brush } from 'lucide-react';
+import { FaTiktok } from 'react-icons/fa';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useEffect, useState } from 'react';
 import Reveal from '@/components/ui/Reveal';
+
+// TikTok's creator embed: shows the live @nexcomedia profile with latest
+// videos. The embed script scans for blockquotes on load, so it's re-added
+// on every mount to work with client-side routing.
+function TikTokEmbed() {
+  useEffect(() => {
+    document.getElementById('tiktok-embed-script')?.remove();
+    const script = document.createElement('script');
+    script.id = 'tiktok-embed-script';
+    script.src = 'https://www.tiktok.com/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center">
+      <blockquote
+        className="tiktok-embed"
+        cite="https://www.tiktok.com/@nexcomedia"
+        data-unique-id="nexcomedia"
+        data-embed-type="creator"
+        style={{ maxWidth: '780px', minWidth: '288px' }}
+      >
+        <section>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.tiktok.com/@nexcomedia?refer=creator_embed"
+          >
+            @nexcomedia on TikTok
+          </a>
+        </section>
+      </blockquote>
+      <p className="mt-6 text-center text-sm text-muted-foreground">
+        Feed not loading?{' '}
+        <a
+          href="https://www.tiktok.com/@nexcomedia"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-400 hover:underline"
+        >
+          Watch on TikTok →
+        </a>
+      </p>
+    </div>
+  );
+}
 
 // Sample data for social feeds
 interface GitHubRepo {
@@ -29,15 +71,6 @@ interface GitHubApiRepo {
   stargazers_count: number;
   forks_count: number;
   language: string | null;
-}
-
-interface RedditPost {
-  id: string;
-  title: string;
-  subreddit: string;
-  score: number;
-  comments: number;
-  url: string;
 }
 
 const socialData = {
@@ -95,12 +128,10 @@ const socialData = {
       published: '3 years ago',
     }
   ],
-  reddit: [],
 };
 
 export default function SocialHub() {
   const [githubRepos, setGithubRepos] = useState<GitHubRepo[]>([]);
-  const [redditPosts, setRedditPosts] = useState<RedditPost[]>([]);
   const [reposLoading, setReposLoading] = useState(true);
 
   useEffect(() => {
@@ -132,38 +163,6 @@ export default function SocialHub() {
     };
 
     fetchRepos();
-
-    const fetchReddit = async () => {
-      try {
-        const res = await fetch('/api/reddit?feed=user');
-        if (!res.ok) return;
-        const data = await res.json();
-        type RedditApiChild = {
-          data: {
-            id: string;
-            title: string;
-            subreddit_name_prefixed: string;
-            score: number;
-            num_comments: number;
-            permalink: string;
-          };
-        };
-        const posts: RedditPost[] = (data.data.children as RedditApiChild[]).map(
-          (child) => ({
-            id: child.data.id,
-            title: child.data.title,
-            subreddit: child.data.subreddit_name_prefixed,
-            score: child.data.score,
-            comments: child.data.num_comments,
-            url: `https://www.reddit.com${child.data.permalink}`,
-        }));
-        setRedditPosts(posts);
-      } catch (err: unknown) {
-        console.error('Failed to fetch Reddit posts:', err);
-      }
-    };
-
-    fetchReddit();
   }, []);
 
   return (
@@ -186,8 +185,8 @@ export default function SocialHub() {
               <TabsTrigger value="youtube" className="flex items-center rounded-full data-[state=active]:bg-white/10">
                 <Youtube className="h-4 w-4 mr-2" /> YouTube
               </TabsTrigger>
-              <TabsTrigger value="reddit" className="flex items-center rounded-full data-[state=active]:bg-white/10">
-                <MessageCircle className="h-4 w-4 mr-2" /> Reddit
+              <TabsTrigger value="tiktok" className="flex items-center rounded-full data-[state=active]:bg-white/10">
+                <FaTiktok className="h-3.5 w-3.5 mr-2" /> TikTok
               </TabsTrigger>
             </TabsList>
           </div>
@@ -336,54 +335,12 @@ export default function SocialHub() {
             </div>
           </TabsContent>
 
-          {/* Reddit Tab */}
-          <TabsContent value="reddit" className="min-h-[420px]">
+          {/* TikTok Tab */}
+          <TabsContent value="tiktok" className="min-h-[420px]">
             <p className="text-center text-muted-foreground mb-6">
-              Latest on Reddit
+              Prop builds and effects in motion on TikTok
             </p>
-            <div className="space-y-4">
-              {redditPosts.length === 0 && (
-                <p className="text-center text-sm text-muted-foreground">
-                  Couldn't load posts right now — find me on{' '}
-                  <a
-                    href="https://www.reddit.com/user/SuperHands3869/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-400 hover:underline"
-                  >
-                    reddit.com/u/SuperHands3869
-                  </a>
-                  .
-                </p>
-              )}
-              {redditPosts.map((post) => (
-                <Card key={post.id} className="spotlight-card card-hover border-white/10 bg-white/[0.02]">
-                  <CardContent className="p-4">
-                    <div className="flex items-start">
-                      <div className="mr-4 flex flex-col items-center">
-                        <span className="font-bold text-lg text-primary">
-                          {post.score}
-                        </span>
-                        <span className="text-xs text-muted-foreground">
-                          upvotes
-                        </span>
-                      </div>
-                      <div>
-                        <h4 className="font-medium">{post.title}</h4>
-                        <div className="flex items-center space-x-2 mt-1">
-                          <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
-                            {post.subreddit}
-                          </span>
-                          <span className="text-xs text-muted-foreground">
-                            {post.comments} comments
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <TikTokEmbed />
           </TabsContent>
         </Tabs>
       </div>
