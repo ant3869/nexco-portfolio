@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react';
 
 const roles = [
   'Software Developer',
-  'Tools & Automation Specialist',
-  'Frontend Engineer',
+  'Internal Tools Builder',
+  'Applied GenAI Automation',
   'Problem Solver',
 ];
 

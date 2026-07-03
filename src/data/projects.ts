@@ -16,6 +16,16 @@ export interface Project {
 // Project data
 export const projects: Project[] = [
   {
+    id: 'autoservice',
+    title: 'AutoService',
+    description:
+      'IT support automation platform that streamlines IMS-to-ServiceNow workflows: queue triage, incident creation, form fill, timer tracking, resolution notes, and closure — with device discovery across CM Search, JAMF, and AirWatch.',
+    tech: ['React', 'TypeScript', 'Flask', 'Selenium', 'ServiceNow', 'Ollama'],
+    metrics:
+      'LLM-assisted resolution notes, KB article suggestions, smart templates, and configurable local AI backends. Walmart internal.',
+    type: 'featured',
+  },
+  {
     id: 'nexta',
     title: 'Nexta-UI',
     description:
@@ -157,5 +167,25 @@ export const projects: Project[] = [
     tech: ['Teensy', 'C++', 'Sensors', 'Electronics'],
     repoUrl: 'https://github.com/ant3869/Teensy_Prop_Shield_Magnetometer',
     type: 'arduino',
+  },
+  {
+    id: 'supportops-workbench',
+    title: 'SupportOps Workbench',
+    description:
+      'A local web console for endpoint support that puts trusted PowerShell diagnostics, fixes, app deploys, and remote machine actions behind safe UI buttons — with live output streaming and YubiKey credential brokerage.',
+    tech: ['Python', 'FastAPI', 'HTMX', 'PowerShell', 'WinRM', 'SSE'],
+    metrics:
+      'Covers Windows Update, AD checks/unlocks, network resets, SFC/DISM, Teams/Outlook/print repairs, and BitLocker/cert inventory. Walmart internal.',
+    type: 'auto',
+  },
+  {
+    id: 'code-puppy-gui',
+    title: 'Code Puppy GUI',
+    description:
+      'A private localhost web GUI for an AI coding-agent runtime — chat, sessions, agents, models, memory, skills, MCP, and tools without requiring slash commands.',
+    tech: ['Python', 'FastAPI', 'AI Agents', 'Local-First'],
+    metrics:
+      'Visual status cards for tool calls, transcript export, secret masking, and risky-action confirmations. Walmart internal.',
+    type: 'auto',
   },
 ];

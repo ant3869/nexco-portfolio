@@ -3,9 +3,44 @@ import Reveal from '@/components/ui/Reveal';
 
 const quickFacts = [
   { label: 'Based in', value: 'Bentonville, AR' },
-  { label: 'Role', value: 'IT & Internal Tools' },
-  { label: 'Approach', value: 'Self-taught & practical' },
-  { label: 'Passion', value: 'Automation & Dev Tools' },
+  { label: 'Role', value: 'IT Support & Internal Tools @ Walmart' },
+  { label: 'Experience', value: '7+ years at Walmart' },
+  { label: 'Focus', value: 'GenAI Automation & Dev Tools' },
+];
+
+const workHistory = [
+  {
+    role: 'APEX Tech Spot — End-User IT Support',
+    company: 'Walmart',
+    period: 'Jun 2023 – Present',
+    points: [
+      'Resolve Windows/macOS device, application, access, and data-recovery issues in a customer-facing support environment.',
+      'Manage Active Directory and Microsoft 365 requests; endpoint diagnostics, repairs, and migration support.',
+      'Build and document Python, PowerShell, and React tooling that standardizes Tech Spot support workflows — including AutoService for IMS/ServiceNow automation and Workbench for remote endpoint diagnostics.',
+    ],
+    tech: ['Python', 'PowerShell', 'React', 'ServiceNow', 'Active Directory', 'M365'],
+  },
+  {
+    role: 'APEX-DLE — Software & Hardware Support',
+    company: 'Walmart',
+    period: 'Oct 2021 – Jun 2023',
+    points: [
+      'Developed a C# GUI for an automated shipping tool used by operations.',
+      'Modernized the Onsite Migration Tool (OMT) GUI, improving usability and feature coverage for device migrations.',
+      'Built the front end of an automated emailing platform for the company-wide device refresh program.',
+    ],
+    tech: ['C#', 'WinForms', 'Automation', 'Device Migration'],
+  },
+  {
+    role: 'Contact Center — Resolution Specialist III',
+    company: 'Walmart',
+    period: 'Feb 2018 – Oct 2021',
+    points: [
+      'Handled 50+ daily calls across Customer Care, Facilities Maintenance, Fuel, Fraud, and Emergency Operations.',
+      'Coordinated vendor dispatch and follow-through for scheduling, fuel stations, building controls, and facilities issues.',
+    ],
+    tech: ['Customer Care', 'Vendor Coordination', 'Operations'],
+  },
 ];
 
 export default function About() {
@@ -41,10 +76,11 @@ export default function About() {
                 like React and Flask.
               </p>
               <p>
-                I work in IT for a major retail company, where I build internal
-                tools, automation systems, and utilities that help teams skip
-                the repetitive junk and get to the real work. It's not always
-                clean or elegant, but it works—and when it breaks, I fix it.
+                I've spent 7+ years at Walmart across Tech Spot support, device
+                migration, and operations — building internal tools, automation
+                systems, and utilities that help teams skip the repetitive junk
+                and get to the real work. It's not always clean or elegant, but
+                it works—and when it breaks, I fix it.
               </p>
               <p>
                 Today, I rely heavily on AI tools to assist with development.
@@ -111,6 +147,49 @@ export default function About() {
             </div>
           </div>
         </Reveal>
+
+        {/* Work History */}
+        <div className="mt-24">
+          <Reveal>
+            <h3 className="dash-heading mb-10">Work History</h3>
+          </Reveal>
+          <div className="relative border-l border-white/10 pl-8 space-y-12">
+            {workHistory.map((job, i) => (
+              <Reveal key={job.role} delay={i * 80} className="relative">
+                {/* Timeline dot */}
+                <span
+                  className={`absolute -left-[37px] top-1.5 h-2.5 w-2.5 rounded-full ${
+                    i === 0 ? 'bg-blue-500' : 'bg-white/25'
+                  }`}
+                />
+                <div className="spotlight-card card-hover rounded-2xl border border-white/10 bg-white/[0.02] p-6 md:p-7">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-1 mb-1">
+                    <h4 className="font-bold text-lg">{job.role}</h4>
+                    <span className="shrink-0 text-sm text-muted-foreground md:text-right">
+                      {job.period}
+                    </span>
+                  </div>
+                  <p className="text-sm text-blue-400 mb-4">{job.company}</p>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    {job.points.map((point) => (
+                      <li key={point} className="flex gap-2.5">
+                        <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-blue-500/70" />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {job.tech.map((tech) => (
+                      <span key={tech} className="tech-badge">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
