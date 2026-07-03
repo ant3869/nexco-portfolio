@@ -47,7 +47,6 @@ export default function Navbar() {
             alt="Nexco Media logo"
             className="h-9 w-auto"
           />
-          <span className="hidden sm:inline">AC</span>
         </Link>
 
         {/* Desktop Navigation */}

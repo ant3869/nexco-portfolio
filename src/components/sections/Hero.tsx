@@ -70,13 +70,6 @@ export default function Hero() {
               />
             </div>
 
-            <div className="flex justify-center">
-              <span className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-muted-foreground">
-                <span className="pulse-dot" />
-                Available for opportunities
-              </span>
-            </div>
-
             <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight leading-[1.05]">
               Anthony
               <br />
