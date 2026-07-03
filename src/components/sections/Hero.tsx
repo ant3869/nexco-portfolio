@@ -59,16 +59,23 @@ export default function Hero() {
       <div className="dot-grid pointer-events-none absolute inset-0" aria-hidden="true" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="min-h-screen flex flex-col items-center justify-center text-center">
-          <div className="space-y-8 max-w-4xl">
+        <div className="min-h-screen flex flex-col items-center justify-center text-center py-28">
+          <div className="space-y-6 max-w-4xl">
+            {/* Brand mark as the focal anchor */}
+            <div className="flex justify-center">
+              <img
+                src="/images/logo-mark.png"
+                alt="Nexco Media"
+                className="h-24 md:h-28 w-auto drop-shadow-[0_0_35px_rgba(96,165,250,0.3)]"
+              />
+            </div>
+
             <div className="flex justify-center">
               <span className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-muted-foreground">
                 <span className="pulse-dot" />
                 Available for opportunities
               </span>
             </div>
-
-            <p className="kicker">Hi, I'm</p>
 
             <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight leading-[1.05]">
               Anthony
