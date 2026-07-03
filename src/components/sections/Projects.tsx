@@ -119,36 +119,47 @@ const projects: Project[] = [
     id: 'llm-finetune-platform',
     title: 'LLM Fine-Tune Platform',
     description:
-      'A platform for fine-tuning open-source language models — dataset preparation, training runs, and evaluation brought together in one workflow.',
-    tech: ['Python', 'LLM', 'Fine-Tuning', 'Machine Learning'],
+      'A user-friendly platform for fine-tuning local LLMs on consumer hardware (8GB GPU) using QLoRA. Built for IT automation, ServiceNow training data, and knowledge extraction from books and PDFs.',
+    image: 'images/llm-finetune.jpg',
+    tech: ['Python', 'QLoRA', 'HuggingFace', 'LLM', 'Fine-Tuning'],
     repoUrl: 'https://github.com/ant3869/llm-finetune-platform',
+    metrics:
+      'QLoRA training fits 7B–13B models in 8GB VRAM, with pre-built IT support templates and 25+ curated datasets.',
     type: 'featured',
   },
   {
     id: 'mission-control',
     title: 'Mission Control',
     description:
-      'A centralized command center for keeping track of systems, jobs, and everything that needs watching — one dashboard instead of a dozen tabs.',
-    tech: ['TypeScript', 'React', 'Dashboard', 'Automation'],
+      'A personal command-center dashboard for orchestrating AI agents, projects, hardware builds, spend, and day-to-day ops — all from a single pane of glass.',
+    image: 'images/mission-control.jpg',
+    tech: ['React', 'TypeScript', 'Tailwind', 'Express', 'AI Ops'],
     repoUrl: 'https://github.com/ant3869/mission-control',
+    metrics:
+      'Command palette, kanban tasks, agent approvals, spend tracking, calendar sync, and chat history in one dashboard.',
     type: 'auto',
   },
   {
     id: 'agentic-workflow',
     title: 'Agentic Workflow',
     description:
-      'Experiments in agentic AI — chaining LLM agents into multi-step workflows that carry real tasks from start to finish.',
-    tech: ['Python', 'LLM Agents', 'AI', 'Automation'],
+      'A portable operating model for AI-assisted software delivery — a shared contract for planning, implementation, debugging, review, and durable memory across Copilot, MCP-enabled IDEs, and CLI coding agents.',
+    tech: ['AI Agents', 'MCP', 'Copilot', 'CLI', 'Workflow'],
     repoUrl: 'https://github.com/ant3869/AgenticWorkflow',
+    metrics:
+      'Versioned workflow manifest, specialist prompts, instruction templates, and a dependency-free CLI with CI validation.',
     type: 'auto',
   },
   {
     id: 'auraclean',
     title: 'AuraClean',
     description:
-      'A system cleanup utility that automates the tedious parts of keeping a machine tidy.',
-    tech: ['Automation', 'Utility', 'Windows'],
+      'Windows system utility: clean junk, boost RAM, scan threats, manage startups, shred files, and analyze storage — built with .NET 8 and WPF, wrapped in a sleek dark UI.',
+    image: 'images/auraclean.png',
+    tech: ['C#', '.NET 8', 'WPF', 'Windows'],
     repoUrl: 'https://github.com/ant3869/AuraClean',
+    metrics:
+      'Scans 15 junk categories, deep uninstall with leftover scanning, RAM trimming via native Windows APIs.',
     type: 'auto',
   },
   {
