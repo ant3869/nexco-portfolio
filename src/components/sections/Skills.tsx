@@ -1,52 +1,78 @@
-import { Code, Wrench, Brain, Terminal } from 'lucide-react';
+import { Code, Layout, Server, MonitorSmartphone, Brain } from 'lucide-react';
 import Reveal from '@/components/ui/Reveal';
 
 const skillGroups = [
   {
     icon: Code,
-    title: 'Strongest',
+    title: 'Languages',
     description:
-      "Language I'm most proficient with through years of self-taught development.",
-    skills: ['C#'],
+      'Self-taught across the stack — I reach for whichever language fits the job.',
+    skills: ['Python', 'TypeScript', 'C#', 'C++', 'PowerShell', 'Batch'],
   },
   {
-    icon: Terminal,
-    title: 'Foundation (College)',
+    icon: Layout,
+    title: 'Frontend / UI',
     description:
-      'Learned the fundamentals in community college ~10 years ago. Rusty but foundational.',
-    skills: ['C++'],
-  },
-  {
-    icon: Brain,
-    title: 'Work With (AI-Assisted)',
-    description:
-      "Technologies I actively use with heavy AI assistance (Claude, Copilot, etc.). I'm practical—I use what works.",
+      'From modern web apps to native Windows tools — if it has a UI, I can build it.',
     skills: [
-      'TypeScript',
-      'JavaScript',
-      'Python',
-      'React',
+      'React 18',
       'Tailwind CSS',
-      'PowerShell',
-      'Bash',
-      'Node.js',
       'Vite',
+      'shadcn/ui',
+      'WinUI 3',
+      'WinForms',
+      'WPF',
+      'HTMX',
+      'Streamlit',
     ],
   },
   {
-    icon: Wrench,
-    title: 'Tools & Platforms',
-    description: 'Development tools and platforms I use regularly.',
+    icon: Server,
+    title: 'Backend / Automation',
+    description:
+      'The glue that turns repeated support playbooks into one-click workflows.',
     skills: [
-      'Git',
-      'GitHub',
-      'VS Code',
-      'Visual Studio',
-      'WinUI3',
-      'Arduino/Teensy',
-      'Windows Automation',
-      'GitHub Actions',
-      'CI/CD Pipelines',
+      'Flask',
+      'FastAPI',
+      'Selenium',
+      'REST APIs',
+      'WinRM',
+      'SQLite',
+      'n8n',
+    ],
+  },
+  {
+    icon: MonitorSmartphone,
+    title: 'Endpoint / Enterprise',
+    description:
+      '7+ years of hands-on enterprise IT — the environment my tools are built for.',
+    skills: [
+      'Windows 10/11',
+      'macOS',
+      'Linux',
+      'Active Directory',
+      'Microsoft 365',
+      'SCCM/CM',
+      'JAMF',
+      'AirWatch',
+      'ServiceNow',
+      'YubiKey Auth',
+    ],
+  },
+  {
+    icon: Brain,
+    title: 'AI / LLM',
+    description:
+      "Applied GenAI, not hype — local models, fine-tuning, and agent workflows that ship. I'm practical: I use what works.",
+    skills: [
+      'Local LLMs',
+      'Ollama',
+      'LM Studio',
+      'QLoRA/LoRA',
+      'PEFT',
+      'HuggingFace',
+      'Evaluation Workflows',
+      'Copilot/Roo/Cline',
     ],
   },
 ];
@@ -68,7 +94,9 @@ export default function Skills() {
             <Reveal
               key={group.title}
               delay={i * 75}
-              className="spotlight-card card-hover rounded-2xl border border-white/10 bg-white/[0.03] p-7"
+              className={`spotlight-card card-hover rounded-2xl border border-white/10 bg-white/[0.03] p-7 ${
+                group.title === 'AI / LLM' ? 'md:col-span-2' : ''
+              }`}
             >
               <h3 className="flex items-center text-lg font-bold mb-2">
                 <group.icon className="h-5 w-5 mr-3 text-blue-400" />

@@ -66,7 +66,7 @@ export default function Navbar() {
             variant="outline"
             className="hidden md:inline-flex rounded-full border-white/15 bg-transparent hover:bg-white/10"
           >
-            <a href="/docs/resume.txt" target="_blank" rel="noopener noreferrer">
+            <a href="/docs/Anthony_Clark_Resume.pdf" target="_blank" rel="noopener noreferrer">
               <FileText className="mr-2 h-4 w-4" />
               Resume
             </a>
@@ -107,7 +107,7 @@ export default function Navbar() {
               </NavLink>
             ))}
             <a
-              href="/docs/resume.txt"
+              href="/docs/Anthony_Clark_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center rounded-lg px-4 py-2 text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
