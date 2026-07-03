@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Github, Youtube, FileCode, Brush } from 'lucide-react';
+import { Github, Youtube, FileCode, Brush, Star, Users, FolderGit2 } from 'lucide-react';
 import { FaTiktok } from 'react-icons/fa';
+import { GitHubCalendar } from 'react-github-calendar';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useEffect, useState } from 'react';
 import Reveal from '@/components/ui/Reveal';
@@ -130,9 +131,18 @@ const socialData = {
   ],
 };
 
+interface GitHubProfileStats {
+  publicRepos: number;
+  followers: number;
+  totalStars: number;
+}
+
 export default function SocialHub() {
   const [githubRepos, setGithubRepos] = useState<GitHubRepo[]>([]);
   const [reposLoading, setReposLoading] = useState(true);
+  const [profileStats, setProfileStats] = useState<GitHubProfileStats | null>(
+    null
+  );
 
   useEffect(() => {
     const fetchRepos = async () => {
@@ -142,6 +152,26 @@ export default function SocialHub() {
         );
         if (!res.ok) return;
         const data: GitHubApiRepo[] = await res.json();
+        const totalStars = data.reduce(
+          (sum, repo) => sum + repo.stargazers_count,
+          0
+        );
+        try {
+          const userRes = await fetch('https://api.github.com/users/ant3869');
+          if (userRes.ok) {
+            const user = (await userRes.json()) as {
+              public_repos: number;
+              followers: number;
+            };
+            setProfileStats({
+              publicRepos: user.public_repos,
+              followers: user.followers,
+              totalStars,
+            });
+          }
+        } catch {
+          // stats row simply doesn't render
+        }
         const repos = data
           .sort((a, b) => b.stargazers_count - a.stargazers_count)
           .slice(0, 6)
@@ -197,6 +227,45 @@ export default function SocialHub() {
               Check out my top repositories on GitHub where I share developer
               tools, automation scripts, and more.
             </p>
+
+            {/* Contribution graph */}
+            <div className="spotlight-card rounded-2xl border border-white/10 bg-white/[0.02] p-6 md:p-7">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
+                <h3 className="font-bold flex items-center">
+                  <Github className="h-5 w-5 mr-2.5 text-primary" />
+                  Contribution Activity
+                </h3>
+                {profileStats && (
+                  <div className="flex flex-wrap gap-2">
+                    <span className="tech-badge inline-flex items-center gap-1.5">
+                      <FolderGit2 className="h-3.5 w-3.5" />
+                      {profileStats.publicRepos} repos
+                    </span>
+                    <span className="tech-badge inline-flex items-center gap-1.5">
+                      <Star className="h-3.5 w-3.5" />
+                      {profileStats.totalStars} stars
+                    </span>
+                    <span className="tech-badge inline-flex items-center gap-1.5">
+                      <Users className="h-3.5 w-3.5" />
+                      {profileStats.followers} followers
+                    </span>
+                  </div>
+                )}
+              </div>
+              <div className="overflow-x-auto pb-1 text-muted-foreground">
+                <GitHubCalendar
+                  username="ant3869"
+                  colorScheme="dark"
+                  theme={{
+                    dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
+                  }}
+                  blockSize={11}
+                  blockMargin={3}
+                  fontSize={12}
+                  errorMessage="Couldn't load contribution data right now — see the full graph on GitHub."
+                />
+              </div>
+            </div>
             {!reposLoading && githubRepos.length === 0 && (
               <p className="text-center text-sm text-muted-foreground">
                 Couldn't load repositories right now — browse them directly on{' '}
