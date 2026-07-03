@@ -101,6 +101,7 @@ const socialData = {
 export default function SocialHub() {
   const [githubRepos, setGithubRepos] = useState<GitHubRepo[]>([]);
   const [redditPosts, setRedditPosts] = useState<RedditPost[]>([]);
+  const [reposLoading, setReposLoading] = useState(true);
 
   useEffect(() => {
     const fetchRepos = async () => {
@@ -125,6 +126,8 @@ export default function SocialHub() {
         setGithubRepos(repos);
       } catch (err: unknown) {
         console.error('Failed to fetch GitHub repositories:', err);
+      } finally {
+        setReposLoading(false);
       }
     };
 
@@ -190,12 +193,12 @@ export default function SocialHub() {
           </div>
 
           {/* GitHub Tab */}
-          <TabsContent value="github" className="space-y-6">
+          <TabsContent value="github" className="space-y-6 min-h-[420px]">
             <p className="text-center text-muted-foreground mb-6">
               Check out my top repositories on GitHub where I share developer
               tools, automation scripts, and more.
             </p>
-            {githubRepos.length === 0 && (
+            {!reposLoading && githubRepos.length === 0 && (
               <p className="text-center text-sm text-muted-foreground">
                 Couldn't load repositories right now — browse them directly on{' '}
                 <a
@@ -210,6 +213,14 @@ export default function SocialHub() {
               </p>
             )}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {reposLoading &&
+                githubRepos.length === 0 &&
+                Array.from({ length: 6 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className="h-40 rounded-xl border border-white/10 bg-white/[0.02] animate-pulse"
+                  />
+                ))}
               {githubRepos.map((repo) => (
                 <Card key={repo.id} className="spotlight-card card-hover border-white/10 bg-white/[0.02]">
                   <CardHeader className="pb-2">
@@ -250,7 +261,7 @@ export default function SocialHub() {
           </TabsContent>
 
           {/* DeviantArt Tab */}
-          <TabsContent value="deviantArt">
+          <TabsContent value="deviantArt" className="min-h-[420px]">
             <p className="text-center text-muted-foreground mb-6">
               Creative work and UI design concepts on DeviantArt
             </p>
@@ -282,7 +293,7 @@ export default function SocialHub() {
           </TabsContent>
 
           {/* YouTube Tab */}
-          <TabsContent value="youtube">
+          <TabsContent value="youtube" className="min-h-[420px]">
             <p className="text-center text-muted-foreground mb-6">
               Visual effects and creative render showcases on YouTube
             </p>
@@ -326,7 +337,7 @@ export default function SocialHub() {
           </TabsContent>
 
           {/* Reddit Tab */}
-          <TabsContent value="reddit">
+          <TabsContent value="reddit" className="min-h-[420px]">
             <p className="text-center text-muted-foreground mb-6">
               Latest on Reddit
             </p>

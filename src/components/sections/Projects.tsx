@@ -352,7 +352,11 @@ export default function Projects() {
             const tabProjects = projects.filter((p) => p.type === tab.value);
             const useGrid = tab.value === 'prop';
             return (
-              <TabsContent key={tab.value} value={tab.value}>
+              <TabsContent
+                key={tab.value}
+                value={tab.value}
+                className="min-h-[600px] focus-visible:outline-none"
+              >
                 {tabProjects.length === 0 ? (
                   <p className="text-center text-muted-foreground py-12">
                     More coming soon.
