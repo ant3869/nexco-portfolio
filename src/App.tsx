@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/sections/Hero';
+import FeaturedWork from '@/components/sections/FeaturedWork';
 import About from '@/components/sections/About';
 import Skills from '@/components/sections/Skills';
 import Projects from '@/components/sections/Projects';
@@ -57,7 +58,15 @@ function AnimatedRoutes() {
   return (
     <div key={location.pathname} className="page-enter flex flex-1 flex-col">
       <Routes location={location}>
-        <Route path="/" element={<Hero />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <Hero />
+              <FeaturedWork />
+            </>
+          }
+        />
         <Route
           path="/about"
           element={
