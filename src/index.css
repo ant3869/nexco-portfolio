@@ -143,6 +143,108 @@
     }
   }
 
+  /* Aurora: slow-drifting color blobs behind the hero */
+  .aurora-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(90px);
+    opacity: 0.35;
+    animation: aurora-drift 18s ease-in-out infinite alternate;
+  }
+
+  @keyframes aurora-drift {
+    from {
+      transform: translate3d(-6%, -4%, 0) scale(1);
+    }
+    to {
+      transform: translate3d(6%, 5%, 0) scale(1.15);
+    }
+  }
+
+  /* Orbit rings around the hero emblem */
+  .orbit-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .orbit-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 8px;
+    width: 8px;
+    margin: -4px 0 0 -4px;
+    border-radius: 9999px;
+    animation: orbit var(--orbit-duration, 20s) linear infinite;
+  }
+
+  .orbit-dot::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: inherit;
+    background: inherit;
+    filter: blur(7px);
+    opacity: 0.8;
+  }
+
+  @keyframes orbit {
+    from {
+      transform: rotate(var(--orbit-start, 0deg)) translateX(var(--orbit-radius));
+    }
+    to {
+      transform: rotate(calc(var(--orbit-start, 0deg) + 360deg))
+        translateX(var(--orbit-radius));
+    }
+  }
+
+  .orbit-reverse {
+    animation-direction: reverse;
+  }
+
+  /* Gentle float for the emblem */
+  .float-slow {
+    animation: float-y 6s ease-in-out infinite;
+  }
+
+  @keyframes float-y {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Twinkling sparkle points */
+  .sparkle {
+    position: absolute;
+    height: 3px;
+    width: 3px;
+    border-radius: 9999px;
+    background: #cbd5e1;
+    opacity: 0;
+    animation: twinkle 3.5s ease-in-out infinite;
+    animation-delay: var(--twinkle-delay, 0s);
+  }
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0;
+      transform: scale(0.6);
+    }
+    50% {
+      opacity: 0.9;
+      transform: scale(1.25);
+    }
+  }
+
   /* Pulsing availability dot */
   .pulse-dot {
     position: relative;
@@ -173,8 +275,15 @@
     .gradient-accent,
     .gradient-border::before,
     .pulse-dot::after,
-    .animate-marquee {
+    .animate-marquee,
+    .aurora-blob,
+    .orbit-dot,
+    .float-slow,
+    .sparkle {
       animation: none;
+    }
+    .sparkle {
+      opacity: 0.5;
     }
   }
 
