@@ -47,27 +47,84 @@ export default function Hero() {
 
   return (
     <section id="home" className="relative min-h-screen overflow-hidden">
-      {/* Subtle radial glow + dot grid behind the headline */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        aria-hidden="true"
-        style={{
-          background:
-            'radial-gradient(ellipse 60% 40% at 50% 40%, rgba(59, 130, 246, 0.08), transparent 70%)',
-        }}
-      />
+      {/* Aurora blobs + dot grid behind the headline */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div
+          className="aurora-blob"
+          style={{
+            top: '8%',
+            left: '18%',
+            width: '34rem',
+            height: '22rem',
+            background: 'radial-gradient(circle, rgba(59,130,246,0.5), transparent 70%)',
+          }}
+        />
+        <div
+          className="aurora-blob"
+          style={{
+            top: '30%',
+            right: '12%',
+            width: '30rem',
+            height: '20rem',
+            background: 'radial-gradient(circle, rgba(168,85,247,0.4), transparent 70%)',
+            animationDelay: '-6s',
+            animationDuration: '22s',
+          }}
+        />
+        <div
+          className="aurora-blob"
+          style={{
+            bottom: '6%',
+            left: '38%',
+            width: '26rem',
+            height: '18rem',
+            background: 'radial-gradient(circle, rgba(244,114,182,0.25), transparent 70%)',
+            animationDelay: '-12s',
+            animationDuration: '26s',
+          }}
+        />
+      </div>
       <div className="dot-grid pointer-events-none absolute inset-0" aria-hidden="true" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="min-h-screen flex flex-col items-center justify-center text-center py-28">
           <div className="space-y-6 max-w-4xl">
-            {/* Brand mark as the focal anchor */}
+            {/* Centerpiece: emblem with orbit rings and sparkles */}
             <div className="flex justify-center">
-              <img
-                src="/images/logo-mark.png"
-                alt="Nexco Media"
-                className="h-24 md:h-28 w-auto drop-shadow-[0_0_35px_rgba(96,165,250,0.3)]"
-              />
+              <div className="relative flex h-48 w-48 md:h-60 md:w-60 items-center justify-center">
+                {/* Orbit rings (desktop and up) */}
+                <div className="hidden md:block" aria-hidden="true">
+                  <div className="orbit-ring h-44 w-44" />
+                  <div className="orbit-ring h-60 w-60" />
+                  <div
+                    className="orbit-dot bg-blue-400"
+                    style={{ '--orbit-radius': '88px', '--orbit-duration': '14s' } as React.CSSProperties}
+                  />
+                  <div
+                    className="orbit-dot orbit-reverse bg-purple-400"
+                    style={{ '--orbit-radius': '120px', '--orbit-duration': '22s', '--orbit-start': '140deg' } as React.CSSProperties}
+                  />
+                  <div
+                    className="orbit-dot bg-pink-400"
+                    style={{ '--orbit-radius': '120px', '--orbit-duration': '30s', '--orbit-start': '290deg', height: '6px', width: '6px' } as React.CSSProperties}
+                  />
+                </div>
+
+                {/* Sparkles */}
+                <div aria-hidden="true">
+                  <span className="sparkle" style={{ top: '12%', left: '20%', '--twinkle-delay': '0s' } as React.CSSProperties} />
+                  <span className="sparkle" style={{ top: '30%', right: '8%', '--twinkle-delay': '0.8s' } as React.CSSProperties} />
+                  <span className="sparkle" style={{ bottom: '18%', left: '10%', '--twinkle-delay': '1.6s' } as React.CSSProperties} />
+                  <span className="sparkle" style={{ bottom: '8%', right: '22%', '--twinkle-delay': '2.4s' } as React.CSSProperties} />
+                  <span className="sparkle" style={{ top: '4%', right: '38%', '--twinkle-delay': '3s' } as React.CSSProperties} />
+                </div>
+
+                <img
+                  src="/images/logo-mark.png"
+                  alt="Nexco Media"
+                  className="float-slow relative h-24 md:h-28 w-auto drop-shadow-[0_0_35px_rgba(96,165,250,0.35)]"
+                />
+              </div>
             </div>
 
             <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight leading-[1.05]">
